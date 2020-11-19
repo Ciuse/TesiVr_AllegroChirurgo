@@ -15,24 +15,27 @@ public class pinzare : MonoBehaviour
     public Transform endPosPinza2;
     public Vector3 startPosPinza1;
     public Vector3 startPosPinza2;
+    
     public List<GameObject> sphereListPinza1;
     public List<GameObject> sphereListPinza2;
     public float collisionRadius;
     public Collider[] _colliders = new Collider[10];
     public LayerMask sphereCollisionMask;
+    
     public bool pinza1Collided = false;
     public bool pinza2Collided = false;
-    public bool m_TriggerDown;
-    public bool b_Button;
-    XRGrabInteractable m_InteractableBase;
-    public float m_TriggerHeldTime;
-    public float speed;
     public GameObject objectWithPinza1 = null;
     public GameObject objectWithPinza2 = null;
-
     public bool isMoving;
-
     public bool collided;
+   
+    XRGrabInteractable m_InteractableBase;
+    public bool m_TriggerDown;
+    public bool b_Button;
+    public float m_TriggerHeldTime;
+    
+    public float speed;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -76,47 +79,29 @@ public class pinzare : MonoBehaviour
 
         if (isMoving)
         {
-            
-            
-            foreach (GameObject sphere in sphereListPinza1)
+            if(IsPinza1Collided()){
+                pinza1Collided = true;
+                if(objectWithPinza1==null)
+                    objectWithPinza1 = _colliders[0].gameObject;
+            }
+            else
             {
-                var sphereMovableCollisions =
-                    Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
-                        sphereCollisionMask);
-                if (sphereMovableCollisions > 0)
-                {
-                    pinza1Collided = true;
-                    if(objectWithPinza1==null)
-                           objectWithPinza1 = _colliders[0].gameObject;
-                  
-                }
-                else
-                {
-                    Debug.Log("entrato");
-                    pinza1Collided = false;
-                    objectWithPinza1 = null;
-
-                }
+                pinza1Collided = false;
+                objectWithPinza1 = null;
             }
 
-            
-            foreach (GameObject sphere in sphereListPinza2)
+
+           
+            if (IsPinza2Collided())
             {
-                var sphereMovableCollisions =
-                    Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
-                        sphereCollisionMask);
-                if (sphereMovableCollisions > 0)
-                {
-                    pinza2Collided = true;
-                    if(objectWithPinza2==null) 
-                            objectWithPinza2 = _colliders[0].gameObject;
-                    
-                }
-                else
-                {
-                    pinza2Collided = false;
-                    objectWithPinza2 = null;
-                }
+                pinza2Collided = true;
+                if(objectWithPinza2==null) 
+                    objectWithPinza2 = _colliders[0].gameObject;
+            }
+            else
+            {
+                pinza2Collided = false;
+                objectWithPinza2 = null;
             }
 
             if (pinza1Collided && pinza2Collided)
@@ -134,12 +119,41 @@ public class pinzare : MonoBehaviour
 
     }
 
+    private bool IsPinza1Collided()
+    {
+           
+        foreach (GameObject sphere in sphereListPinza1)
+        {
+            var sphereMovableCollisions =
+                Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
+                    sphereCollisionMask);
+            if (sphereMovableCollisions > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    private bool IsPinza2Collided()
+    {
+        foreach (GameObject sphere in sphereListPinza2)
+        {
+            var sphereMovableCollisions =
+                Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
+                    sphereCollisionMask);
+            if (sphereMovableCollisions > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }  
 
     void StopMovement()
     {
 
-        collided = true;
+        collided = true; 
         isMoving = false;
 
     }

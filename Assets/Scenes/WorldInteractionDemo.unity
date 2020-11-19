@@ -4664,14 +4664,14 @@ MonoBehaviour:
     m_Bits: 256
   pinza1Collided: 0
   pinza2Collided: 0
-  m_TriggerDown: 0
-  b_Button: 0
-  m_TriggerHeldTime: 0
-  speed: 1
   objectWithPinza1: {fileID: 0}
   objectWithPinza2: {fileID: 0}
   isMoving: 0
   collided: 0
+  m_TriggerDown: 0
+  b_Button: 0
+  m_TriggerHeldTime: 0
+  speed: 0.3
 --- !u!1001 &1531181700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5234,12 +5234,12 @@ PrefabInstance:
     - target: {fileID: 8839391152220064262, guid: 44e5222a12267ff4b9aa4dc996f61757,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.353
+      value: 2.327
       objectReference: {fileID: 0}
     - target: {fileID: 8839391152220064262, guid: 44e5222a12267ff4b9aa4dc996f61757,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.381
+      value: 1.172
       objectReference: {fileID: 0}
     - target: {fileID: 8839391152220064262, guid: 44e5222a12267ff4b9aa4dc996f61757,
         type: 3}
