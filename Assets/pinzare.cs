@@ -112,6 +112,7 @@ public class pinzare : MonoBehaviour
                     if (objectWithPinza1 == objectWithPinza2)
                     {
                         objectWithPinza1.transform.SetParent(this.gameObject.transform);
+                        objectWithPinza1.GetComponent<Collider>().attachedRigidbody.useGravity = false;
                     }
                 }
             }
@@ -185,8 +186,12 @@ public class pinzare : MonoBehaviour
         {
             pinza2Collided = false;
             pinza1Collided = false;
-            if(objectWithPinza1!=null)
+            if (objectWithPinza1 != null)
+            {
                 objectWithPinza1.transform.SetParent(null);
+                objectWithPinza1.GetComponent<Collider>().attachedRigidbody.useGravity = true;
+            }
+                
         }
 
         collided = false;
