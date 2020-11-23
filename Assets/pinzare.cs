@@ -35,7 +35,7 @@ public class pinzare : MonoBehaviour
     public float m_TriggerHeldTime;
     
     public float speed;
-   
+    const float k_HeldThreshold = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +43,7 @@ public class pinzare : MonoBehaviour
         m_InteractableBase = GetComponent<XRGrabInteractable>();
         m_InteractableBase.onActivate.AddListener(TriggerPulled);
         m_InteractableBase.onDeactivate.AddListener(TriggerReleased);
+        
         isMoving = false;
         Vector3 localPos1 = pinza1.localPosition;
         startPosPinza1 = new Vector3(localPos1.x, localPos1.y, localPos1.z);
@@ -67,15 +68,23 @@ public class pinzare : MonoBehaviour
     public void FixedUpdate()
     {
         // check collision with tweezer and object
-
-        if (Keyboard.current.aKey.isPressed)
+        if (m_TriggerDown)
         {
-            ClosePinze();
+            m_TriggerHeldTime += Time.deltaTime;
+
+            if (m_TriggerHeldTime >= k_HeldThreshold)
+            {
+                
+                ClosePinze();
+                
+            }
         }
         else
         {
             ResetPinze();
         }
+
+        
 
         if (isMoving)
         {
