@@ -66,10 +66,9 @@ using UnityEngine;
 
         if (gripAction.action.enabled)
         {
-            if (gripAction.action.triggered)
-            {
+            
                 SetFingerTargets(gripFingers, gripAction.action.ReadValue<float>());
-            }
+            
                 
         }
         
@@ -80,10 +79,9 @@ using UnityEngine;
         
         if (pointerAction.action.enabled)
         {
-            if (pointerAction.action.triggered)
-            {
+            
                 SetFingerTargets(pointFingers, pointerAction.action.ReadValue<float>());
-            }
+            
                 
         }
         
