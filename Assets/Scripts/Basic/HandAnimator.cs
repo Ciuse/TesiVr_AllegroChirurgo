@@ -117,4 +117,14 @@ using UnityEngine;
     {
         animator.SetFloat(finger,blend);
     }
+
+    public void SetAnimatorHandPickPinza1()
+    {
+        animator.SetInteger("StatoMano", 1);
+    }
+    public void SetAnimatorHandUnPickPinza1()
+    {
+        animator.SetInteger("StatoMano", 0);
+    }
+    
 }
