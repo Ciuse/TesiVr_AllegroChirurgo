@@ -941,6 +941,56 @@ Transform:
   m_Father: {fileID: 6112047196887425432}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &272097392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 272097394}
+  - component: {fileID: 272097393}
+  m_Layer: 12
+  m_Name: ControllerUsedToPickObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &272097393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272097392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e480226aac4d4469ff887d64fbb196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftControllerUsedEvent: {fileID: 11400000, guid: a9348deffb462e34c8beb68427138f96,
+    type: 2}
+  rightControllerUsedEvent: {fileID: 11400000, guid: 7c042182ef174e048a37fcd7641d41fc,
+    type: 2}
+  controllerUsed: {fileID: 272097392}
+  isEventLeftSend: 0
+  isEventRightSend: 0
+--- !u!4 &272097394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272097392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6519052, y: 2.6696718, z: -8.627346}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &275837978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8164705571879959090, guid: 69bcbe8a3c723a8459bad61946074109,
@@ -7516,6 +7566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerUsed: {fileID: 272097392}
 --- !u!4 &1707976573
 Transform:
   m_ObjectHideFlags: 0
@@ -14669,13 +14720,55 @@ GameObject:
   - component: {fileID: 6232745470682200962}
   - component: {fileID: 6232745470682200963}
   - component: {fileID: 6232745470682200960}
+  - component: {fileID: 6232745470682200992}
+  - component: {fileID: 6232745470682200991}
   m_Layer: 0
   m_Name: LeftBaseController
-  m_TagString: Untagged
+  m_TagString: ControllerLeft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6232745470682200991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232745470682200990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a9348deffb462e34c8beb68427138f96, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6232745470682200992}
+        m_MethodName: hapticFeedbacks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6232745470682200992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232745470682200990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f4456d88f72504988c2b66c2c2edc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerUsedToPickObject: {fileID: 6232745470682200965}
 --- !u!4 &6232745470729633434
 Transform:
   m_ObjectHideFlags: 0
@@ -15334,9 +15427,11 @@ GameObject:
   - component: {fileID: 6232745471109905253}
   - component: {fileID: 6232745471109905250}
   - component: {fileID: 6232745471109905251}
+  - component: {fileID: 6232745471109905254}
+  - component: {fileID: 6232745471109905252}
   m_Layer: 0
   m_Name: RightBaseController
-  m_TagString: Untagged
+  m_TagString: ControllerRight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15408,6 +15503,33 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6232745471109905252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232745471109905249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7c042182ef174e048a37fcd7641d41fc, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6232745471109905254}
+        m_MethodName: hapticFeedbacks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6232745471109905253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15527,6 +15649,19 @@ MonoBehaviour:
     m_Reference: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!114 &6232745471109905254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232745471109905249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f4456d88f72504988c2b66c2c2edc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerUsedToPickObject: {fileID: 6232745471109905253}
 --- !u!1 &6232745471265545184
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,6 @@ public class ElectricEdgeScript : MonoBehaviour
 
     public void GetXrController()
     {
-        XRGrabInteractable grabInteractable;
+        
     }
 }
