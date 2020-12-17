@@ -951,8 +951,9 @@ GameObject:
   m_Component:
   - component: {fileID: 272097394}
   - component: {fileID: 272097393}
+  - component: {fileID: 272097395}
   m_Layer: 12
-  m_Name: ControllerUsedToPickObject
+  m_Name: ControllerPickPinza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -970,11 +971,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24e480226aac4d4469ff887d64fbb196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftControllerUsedEvent: {fileID: 11400000, guid: a9348deffb462e34c8beb68427138f96,
-    type: 2}
-  rightControllerUsedEvent: {fileID: 11400000, guid: 7c042182ef174e048a37fcd7641d41fc,
-    type: 2}
   controllerUsed: {fileID: 272097392}
+  leftControllerHand: {fileID: 6232745470682200965}
+  rightControllerHand: {fileID: 6232745471109905253}
   isEventLeftSend: 0
   isEventRightSend: 0
 --- !u!4 &272097394
@@ -991,6 +990,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &272097395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272097392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 2fd01a8fa5c93974189d6c073fd1a2d1, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 272097393}
+        m_MethodName: PinzaTouchedElectricEdge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &275837978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8164705571879959090, guid: 69bcbe8a3c723a8459bad61946074109,
@@ -14159,6 +14185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22687307decd1e34580661aa0a44fea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinzaTouchElectricEdge: {fileID: 0}
 --- !u!1 &6112047197182839858
 GameObject:
   m_ObjectHideFlags: 0
