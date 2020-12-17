@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EventSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR.Haptics;
@@ -8,8 +9,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ElectricEdgeScript : MonoBehaviour
 {
-    private XRBaseController controller;
-    private XRBaseInteractor interactor;
+
+    public GameEvent pinzaTouchElectricEdge;
     
     
     // Start is called before the first frame update
@@ -28,12 +29,9 @@ public class ElectricEdgeScript : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
-          
+          pinzaTouchElectricEdge.Raise();
         }
     }
 
-    public void GetXrController()
-    {
-        
-    }
+    
 }

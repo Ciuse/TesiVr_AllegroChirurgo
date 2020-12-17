@@ -4,13 +4,15 @@ using UnityEngine;
 using EventSystem;
 using UnityEngine.Serialization;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class IsUsedController : MonoBehaviour
 {
 
-    public GameEvent leftControllerUsedEvent;
-    public GameEvent rightControllerUsedEvent;
+   
     public GameObject controllerUsed;
+    public XRBaseController leftControllerHand;
+    public XRBaseController rightControllerHand;
     public bool isEventLeftSend = false;
     public bool isEventRightSend = false;
    
@@ -28,14 +30,26 @@ public class IsUsedController : MonoBehaviour
     {
         if (controllerUsed.layer == LayerMask.NameToLayer("ControllerLeft")&& isEventLeftSend==false){
            
-            leftControllerUsedEvent.Raise();
+            leftControllerHand.SendHapticImpulse(2f, 0.5f);
             print("LEFT");
             isEventLeftSend = true;
         }
         if (controllerUsed.layer == LayerMask.NameToLayer("ControllerRight")&& isEventRightSend==false){
-            rightControllerUsedEvent.Raise();
+            rightControllerHand.SendHapticImpulse(2f, 0.5f);
             print("RIGHT");
             isEventRightSend = true;
+        }
+    }
+
+    public void PinzaTouchedElectricEdge()
+    {
+        if (controllerUsed.layer == LayerMask.NameToLayer("ControllerLeft")){
+           
+            leftControllerHand.SendHapticImpulse(2f, 0.5f);
+        }
+        if (controllerUsed.layer == LayerMask.NameToLayer("ControllerRight")){
+            rightControllerHand.SendHapticImpulse(2f, 0.5f);
+            
         }
     }
 }
