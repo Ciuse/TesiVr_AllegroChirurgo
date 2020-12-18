@@ -134,6 +134,9 @@ if (isMoving)
             {
                 objectWithPinza1.transform.SetParent(this.gameObject.transform);
                 objectWithPinza1.GetComponent<Collider>().attachedRigidbody.useGravity = false;
+                objectWithPinza1.GetComponent<Collider>().attachedRigidbody.velocity =Vector3.zero;
+                objectWithPinza1.GetComponent<Collider>().attachedRigidbody.freezeRotation = true;
+
             }
         }
     }

@@ -30,12 +30,12 @@ public class IsUsedController : MonoBehaviour
     {
         if (controllerUsed.layer == LayerMask.NameToLayer("ControllerLeft")&& isEventLeftSend==false){
            
-            leftControllerHand.SendHapticImpulse(2f, 0.5f);
+            leftControllerHand.SendHapticImpulse(0.5f, 2);
             print("LEFT");
             isEventLeftSend = true;
         }
         if (controllerUsed.layer == LayerMask.NameToLayer("ControllerRight")&& isEventRightSend==false){
-            rightControllerHand.SendHapticImpulse(2f, 0.5f);
+            rightControllerHand.SendHapticImpulse(0.5f, 2);
             print("RIGHT");
             isEventRightSend = true;
         }
@@ -45,10 +45,10 @@ public class IsUsedController : MonoBehaviour
     {
         if (controllerUsed.layer == LayerMask.NameToLayer("ControllerLeft")){
            
-            leftControllerHand.SendHapticImpulse(2f, 0.5f);
+            leftControllerHand.SendHapticImpulse(0.5f, 2);
         }
         if (controllerUsed.layer == LayerMask.NameToLayer("ControllerRight")){
-            rightControllerHand.SendHapticImpulse(2f, 0.5f);
+            rightControllerHand.SendHapticImpulse(0.5f, 2);
             
         }
     }

@@ -12,7 +12,6 @@ public class ElectricEdgeScript : MonoBehaviour
 
     public GameEvent pinzaTouchElectricEdge;
     
-    
     // Start is called before the first frame update
     void Start()
     {
