@@ -22,6 +22,8 @@ public class consoleCanvas : MonoBehaviour
 
     public void AddErrore()
     {
-        textArea.text = textArea.text + "\n HO TOCCATO";
+        textArea.text = textArea.text + "\n OGGETTO CADUTO";
     }
+    
+    
 }

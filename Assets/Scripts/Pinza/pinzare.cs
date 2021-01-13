@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using EventSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -38,6 +39,8 @@ public class pinzare : MonoBehaviour
     
     public float speed;
     const float k_HeldThreshold = 0.1f;
+
+    public GameEvent raiseError;
 
     // Start is called before the first frame update
     void Start()
@@ -175,6 +178,7 @@ public class pinzare : MonoBehaviour
         if (!pinza1Collided || !pinza2Collided)
         {
             collided = false;
+            raiseError.Raise();
             if (objectWithPinza1 != null)
             {
                 objectWithPinza1.transform.SetParent(null);
