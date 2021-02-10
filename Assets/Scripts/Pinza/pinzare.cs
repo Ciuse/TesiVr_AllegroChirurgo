@@ -107,6 +107,7 @@ public class pinzare : MonoBehaviour
                     }
                     else
                     {
+                        RemoveVelocity();
                         if (Time.frameCount % 20 == 0)
                         {
                             CheckCollidersWhileObjectPinzato();
@@ -122,6 +123,15 @@ public class pinzare : MonoBehaviour
         }
         else{
           ResetPinze();
+        }
+    }
+
+    public void RemoveVelocity()
+    {
+        if (objectWithPinza2 != null || objectWithPinza1!=null)
+        {
+            objectWithPinza2.GetComponent<Collider>().attachedRigidbody.velocity=Vector3.zero;
+            objectWithPinza2.GetComponent<Collider>().attachedRigidbody.angularVelocity = Vector3.zero;
         }
     }
 
@@ -146,33 +156,17 @@ public class pinzare : MonoBehaviour
         if (IsPinza1Collided())
         {
             pinza1Collided = true;
-            if (objectWithPinza1 != null)
-            {
-                objectWithPinza1.GetComponent<Collider>().attachedRigidbody.velocity=Vector3.zero;
-                objectWithPinza1.GetComponent<Collider>().attachedRigidbody.angularVelocity = Vector3.zero;
-            }
-        }
-        else
+        }else
         {
-            pinza1Collided = false;
-           
+            pinza1Collided = false;   
         }
-
-
 
         if (IsPinza2Collided())
         {
-            pinza2Collided = true;
-            if (objectWithPinza2 != null)
-            {
-                objectWithPinza2.GetComponent<Collider>().attachedRigidbody.velocity=Vector3.zero;
-                objectWithPinza2.GetComponent<Collider>().attachedRigidbody.angularVelocity = Vector3.zero;
-            }
-        }
-        else
+            pinza2Collided = true;          
+        }else
         {
-            pinza2Collided = false;
-            
+            pinza2Collided = false;           
         }
 
         if (!pinza1Collided || !pinza2Collided)
