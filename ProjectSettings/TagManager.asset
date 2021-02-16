@@ -6,6 +6,9 @@ TagManager:
   tags:
   - ControllerLeft
   - ControllerRight
+  - Object1
+  - Object2
+  - Object3
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - ControllerRight
   - ControllerLeft
   - Hands
-  - 
+  - ColliderOverObject
   - 
   - 
   - 
