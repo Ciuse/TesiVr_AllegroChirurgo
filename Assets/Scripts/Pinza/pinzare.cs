@@ -100,19 +100,16 @@ public class pinzare : MonoBehaviour
                 if (m_TriggerHeldTime >= k_HeldThreshold)
                 {
 
-                    ClosePinze();
+                    
                     if(!collided)
                     {
+                        ClosePinze();
                         CheckCollidersWhileNoObject();
                     }
                     else
                     {
                         RemoveVelocity();
-                        if (Time.frameCount % 20 == 0)
-                        {
-                            CheckCollidersWhileObjectPinzato();
-
-                        }
+                        CheckCollidersWhileObjectPinzato();
                     }
                 }
             }
@@ -128,11 +125,13 @@ public class pinzare : MonoBehaviour
 
     public void RemoveVelocity()
     {
-        if (objectWithPinza2 != null || objectWithPinza1!=null)
+        if (objectWithPinza1 != null && objectWithPinza2 != null )
         {
-            objectWithPinza2.GetComponent<Collider>().attachedRigidbody.velocity=Vector3.zero;
-            objectWithPinza2.GetComponent<Collider>().attachedRigidbody.angularVelocity = Vector3.zero;
+            print("reset velocity");
+            objectWithPinza1.GetComponent<Collider>().attachedRigidbody.velocity=Vector3.zero;
+            objectWithPinza1.GetComponent<Collider>().attachedRigidbody.angularVelocity = Vector3.zero;
         }
+
     }
 
     private bool IsPinza1Collided()
@@ -171,8 +170,8 @@ public class pinzare : MonoBehaviour
 
         if (!pinza1Collided || !pinza2Collided)
         {
+            print("entrato");
             collided = false;
-            raiseError.Raise();
             if (objectWithPinza1 != null)
             {
                 objectWithPinza1.transform.SetParent(null);
@@ -249,13 +248,10 @@ public class pinzare : MonoBehaviour
 
     void ClosePinze()
     {
-        if (!collided)
-        {
+    
             isMoving = true;
             pinza1.localPosition = Vector3.MoveTowards(pinza1.localPosition, endPosPinza1.localPosition, Time.deltaTime * speed);
             pinza2.localPosition = Vector3.MoveTowards(pinza2.localPosition, endPosPinza2.localPosition, Time.deltaTime * speed);
-        }
-
 
     }
 

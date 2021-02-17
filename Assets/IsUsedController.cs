@@ -28,17 +28,17 @@ public class IsUsedController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controllerUsed.layer == LayerMask.NameToLayer("ControllerLeft")&& isEventLeftSend==false){
-           
-            leftControllerHand.SendHapticImpulse(0.5f, 2);
-            print("LEFT");
-            isEventLeftSend = true;
-        }
-        if (controllerUsed.layer == LayerMask.NameToLayer("ControllerRight")&& isEventRightSend==false){
-            rightControllerHand.SendHapticImpulse(0.5f, 2);
-            print("RIGHT");
-            isEventRightSend = true;
-        }
+//        if (controllerUsed.layer == LayerMask.NameToLayer("ControllerLeft")&& isEventLeftSend==false){
+//           
+//            leftControllerHand.SendHapticImpulse(0.5f, 2);
+//            print("LEFT");
+//            isEventLeftSend = true;
+//        }
+//        if (controllerUsed.layer == LayerMask.NameToLayer("ControllerRight")&& isEventRightSend==false){
+//            rightControllerHand.SendHapticImpulse(0.5f, 2);
+//            print("RIGHT");
+//            isEventRightSend = true;
+//        }
     }
 
     public void PinzaTouchedElectricEdge()

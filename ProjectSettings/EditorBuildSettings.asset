@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/WorldInteractionDemo.unity
     guid: 3d16fc5db26e2354e9ac2a5031a52e6d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/AllegroChirurgoDev.unity
     guid: 126b2e8826f4f094a85d54bebc91f8b9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ProvaGioco.unity
     guid: 42e07dd9060c1874f992d6fdc2a2a084
+  - enabled: 0
+    path: Assets/VR Examples/Scenes/UI Interaction.unity
+    guid: 9c5cf6044c0ff274cb6c603a307e995e
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: f3d36b094c7e90a48bfeecc8253553a0,
       type: 2}
