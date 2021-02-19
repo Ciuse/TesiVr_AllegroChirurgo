@@ -14,12 +14,7 @@ public class eventsManagement : MonoBehaviour
         objectPinzabili = objectToPick.GetComponent<ObjectPinzabili>();
     }
 
-    public void activateCollider()
-    {
-        colliderOverObject.enabled = true;
-        print("collider");
-        
-    }
+   
     
     public void OnTriggerEnter(Collider other)
     {
@@ -27,7 +22,7 @@ public class eventsManagement : MonoBehaviour
         {
             if (objectPinzabili.isActive)
             {
-                objectToPick.GetComponent<MeshRenderer>().material.color=Color.green;
+                objectToPick.GetComponent<MeshRenderer>().material.color=Color.yellow;
                 print("Oggetto uscito dal collider");
             }else{
                 objectToPick.GetComponent<MeshRenderer>().material.color=Color.red;

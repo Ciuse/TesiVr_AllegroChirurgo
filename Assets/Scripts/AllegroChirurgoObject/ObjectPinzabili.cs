@@ -32,6 +32,7 @@ public class ObjectPinzabili  : DynamicObjectAbstract
 
     public void ActivateObject()
     {
+        print("activate object");
         isActive = true;
     }
     
