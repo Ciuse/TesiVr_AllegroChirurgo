@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Vector3 = UnityEngine.Vector3;
 
-public class Pinzare : MonoBehaviour
+public class PinzareV2 : MonoBehaviour
 {
     public Transform pinza1;
     public Transform pinza2;
@@ -109,7 +109,6 @@ public class Pinzare : MonoBehaviour
                     }
                     else
                     {
-                        RemoveVelocity();
                         CheckCollidersWhileObjectPinzato();
                     }
                 }
@@ -188,15 +187,11 @@ public class Pinzare : MonoBehaviour
             collided = false;
             if (objectWithPinza1 != null)
             {
-                objectWithPinza1.transform.SetParent(null);
-                objectWithPinza1.GetComponent<Collider>().attachedRigidbody.useGravity = true;
-                objectWithPinza1 = null;
+              
             }
             if (objectWithPinza2 != null)
             {
-                objectWithPinza2.transform.SetParent(null);
-                objectWithPinza2.GetComponent<Collider>().attachedRigidbody.useGravity = true;
-                objectWithPinza2 = null;
+              
             }
         }
     }
@@ -237,10 +232,15 @@ public class Pinzare : MonoBehaviour
                 if (objectWithPinza1 == objectWithPinza2)
                 {
                     collided = true;
-                    objectWithPinza1.transform.SetParent(this.gameObject.transform);
-                    objectWithPinza1.GetComponent<Collider>().attachedRigidbody.useGravity = false;
-                    objectWithPinza1.GetComponent<Collider>().attachedRigidbody.velocity = Vector3.zero;
-                    objectWithPinza1.GetComponent<Collider>().attachedRigidbody.angularVelocity = Vector3.zero;
+                    if(objectWithPinza1.GetComponent<FixedJoint>()==null)
+                    {
+                        FixedJoint fixedJoint = objectWithPinza1.AddComponent<FixedJoint>();
+                        fixedJoint.connectedBody = gameObject.GetComponent<Rigidbody>();
+                        fixedJoint.breakTorque = 200;
+                        fixedJoint.breakForce = 200;
+                    }
+                   
+
                 }
             }
         }
@@ -299,15 +299,11 @@ public class Pinzare : MonoBehaviour
             pinza1Collided = false;
             if (objectWithPinza1 != null)
             {
-                objectWithPinza1.transform.SetParent(null);
-                objectWithPinza1.GetComponent<Collider>().attachedRigidbody.useGravity = true;
-                objectWithPinza1 = null;
+               
             }
             if (objectWithPinza2 != null)
             {
-                objectWithPinza2.transform.SetParent(null);
-                objectWithPinza2.GetComponent<Collider>().attachedRigidbody.useGravity = true;
-                objectWithPinza2 = null;
+               
             }
         }
 
