@@ -450,6 +450,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "TriggerPressing",
+                    "type": "Value",
+                    "id": "234e90db-92cd-4743-8649-5a1ee2b1f6c7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -626,6 +634,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Pinzare1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc906384-496d-4250-85dc-2ba31d726efd",
+                    "path": "<XRController>{RightHand}/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerPressing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

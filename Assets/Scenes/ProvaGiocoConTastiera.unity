@@ -499,7 +499,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21376
+  m_Name: pb_Mesh17894
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4567,6 +4567,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1522865692}
+  triggerPressing: {fileID: 3411308250165419798, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  maxLines: 15
 --- !u!114 &1522865697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7267,52 +7270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172435ff166ac404195c1d16a28b79d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pinza1: {fileID: 6112047196609642212}
-  pinza2: {fileID: 6112047196888148591}
-  endPosPinza1: {fileID: 6112047195235795078}
-  endPosPinza2: {fileID: 6112047195489574852}
-  startPosPinza1: {x: 0, y: 0, z: 0}
-  startPosPinza2: {x: 0, y: 0, z: 0}
-  sphereListPinza1:
-  - {fileID: 6112047196271873952}
-  - {fileID: 6112047196617891863}
-  - {fileID: 6112047195783478991}
-  - {fileID: 1948445459}
-  - {fileID: 262030806}
-  - {fileID: 555445999}
-  sphereListPinza2:
-  - {fileID: 6112047195926350574}
-  - {fileID: 6112047197182839858}
-  - {fileID: 6112047196398062312}
-  - {fileID: 1516771494}
-  - {fileID: 1248429071}
-  - {fileID: 1267131395}
-  collisionRadius: 0.0045
-  _colliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  sphereCollisionMask:
-    serializedVersion: 2
-    m_Bits: 256
-  pinza1Collided: 0
-  pinza2Collided: 0
-  objectWithPinza1: {fileID: 0}
-  objectWithPinza2: {fileID: 0}
-  isMoving: 0
-  collided: 0
-  m_gripDown: 0
-  m_TriggerDown: 0
-  m_TriggerHeldTime: 0
-  speed: 0.3
-  raiseError: {fileID: 11400000, guid: 2fd01a8fa5c93974189d6c073fd1a2d1, type: 2}
 --- !u!4 &6112047197000858028
 Transform:
   m_ObjectHideFlags: 0
