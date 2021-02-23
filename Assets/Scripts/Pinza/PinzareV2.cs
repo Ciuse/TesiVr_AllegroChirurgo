@@ -169,7 +169,7 @@ public class PinzareV2 : MonoBehaviour
                         fixedJoint.connectedBody = gameObject.GetComponent<Rigidbody>();
                         fixedJoint.breakTorque = 200;
                         fixedJoint.breakForce = 200;
-                        fixedJoint.enableCollision = true;
+                        fixedJoint.enableCollision = false;
                     }
                    
                 }
