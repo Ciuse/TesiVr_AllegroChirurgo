@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Vector3 = UnityEngine.Vector3;
 
-public class Pinzare : MonoBehaviour
+public class pinzare : MonoBehaviour
 {
     public Transform pinza1;
     public Transform pinza2;
@@ -21,16 +21,12 @@ public class Pinzare : MonoBehaviour
     public Collider[] _colliders = new Collider[10];
     public LayerMask sphereCollisionMask;
     
-    public List<GameObject> rectListPinza1;
-    public List<GameObject> rectListPinza2;
-    public Vector3 cubeDimension;
-    public LayerMask cubeCollisionMask;
+    
 
     public bool pinza1Collided = false;
     public bool pinza2Collided = false;
     public GameObject objectWithPinza1 = null;
     public GameObject objectWithPinza2 = null;
-    public bool isMoving;
     public bool collided;
    
     XRGrabInteractable m_InteractableBase;
@@ -40,8 +36,7 @@ public class Pinzare : MonoBehaviour
     
     public float speed;
     const float k_HeldThreshold = 0.1f;
-
-    public GameEvent raiseError;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -51,8 +46,7 @@ public class Pinzare : MonoBehaviour
         m_InteractableBase.onDeactivate.AddListener(TriggerReleased);
         m_InteractableBase.onSelectEntered.AddListener(GripPulled);
         m_InteractableBase.onSelectExited.AddListener(GripReleased);
-
-        isMoving = false;
+        
         Vector3 localPos1 = pinza1.localPosition;
         startPosPinza1 = new Vector3(localPos1.x, localPos1.y, localPos1.z);
         Vector3 localPos2 = pinza2.localPosition;
@@ -138,30 +132,17 @@ public class Pinzare : MonoBehaviour
     private bool IsPinza1Collided()
     {
            
-        // foreach (GameObject sphere in sphereListPinza1)
-        // {
-        //     var sphereMovableCollisions =
-        //         Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
-        //             sphereCollisionMask);
-        //     if (sphereMovableCollisions > 0)
-        //     {
-        //         return true;
-        //     }
-        // }
-        // return false;
-
-        foreach (GameObject rect in rectListPinza1)
-            
-        {
-            var cubeMovableCollisions =
-                Physics.OverlapBoxNonAlloc(rect.transform.position, cubeDimension / 2, _colliders, Quaternion.identity,
-                    cubeCollisionMask);
-            if (cubeMovableCollisions > 0)
+        foreach (GameObject sphere in sphereListPinza1){
+            var sphereMovableCollisions =
+                Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
+                    sphereCollisionMask);
+            if (sphereMovableCollisions > 0)
             {
                 return true;
             }
         }
         return false;
+        
     }
 
     public void CheckCollidersWhileObjectPinzato()
@@ -247,37 +228,23 @@ public class Pinzare : MonoBehaviour
     }
     private bool IsPinza2Collided()
     {
-        // foreach (GameObject sphere in sphereListPinza2)
-        // {
-        //     var sphereMovableCollisions =
-        //         Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
-        //             sphereCollisionMask);
-        //     if (sphereMovableCollisions > 0)
-        //     {
-        //         return true;
-        //     }
-        // }
-        // return false;
-        
-        foreach (GameObject rect in rectListPinza2)
-            
-        {
-            var cubeMovableCollisions =
-                Physics.OverlapBoxNonAlloc(rect.transform.position, cubeDimension / 2, _colliders, Quaternion.identity,
-                    cubeCollisionMask);
-            if (cubeMovableCollisions > 0)
-            {
+         foreach (GameObject sphere in sphereListPinza2)
+         {
+             var sphereMovableCollisions =
+                 Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
+                    sphereCollisionMask);
+             if (sphereMovableCollisions > 0)
+             {
                 return true;
-            }
-        }
-        return false;
+             }
+         }
+         return false;
+        
     }  
 
     void ClosePinze()
     {
-    
-            isMoving = true;
-            pinza1.localPosition = Vector3.MoveTowards(pinza1.localPosition, endPosPinza1.localPosition, Time.deltaTime * speed);
+        pinza1.localPosition = Vector3.MoveTowards(pinza1.localPosition, endPosPinza1.localPosition, Time.deltaTime * speed);
             pinza2.localPosition = Vector3.MoveTowards(pinza2.localPosition, endPosPinza2.localPosition, Time.deltaTime * speed);
 
     }
@@ -312,7 +279,6 @@ public class Pinzare : MonoBehaviour
         }
 
         collided = false;
-        isMoving = false;
     }
 
    
@@ -330,18 +296,7 @@ public class Pinzare : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(sphere.transform.position, collisionRadius);
         }
-
-        foreach (GameObject cube in rectListPinza1)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireCube(cube.transform.position, cubeDimension);
-        }
         
-        foreach (GameObject cube in rectListPinza2)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireCube(cube.transform.position, cubeDimension);
-        }
 
     }
 }

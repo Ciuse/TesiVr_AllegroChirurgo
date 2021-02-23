@@ -21,11 +21,14 @@ public class SaveObjectPicked : MonoBehaviour
     
     public void OnTriggerEnter(Collider other)
     {
+        print("qualcosa ha colliso");
         if (other.gameObject.layer == LayerMask.NameToLayer("ObjPinzabili"))
-        {
+        { 
+            print("ha colliso un oggetto pinzabile");
             ObjectPinzabili objectPinzabili = other.GetComponent<ObjectPinzabili>();
             if (objectPinzabili != null && objectPinzabili.isActive)
             {
+                print("entrato nella save platform");
                 saveObjectPickedEvent.Raise();
                 other.GetComponent<MeshRenderer>().material.color=Color.green;
                 objectPinzabili.isActive = false;

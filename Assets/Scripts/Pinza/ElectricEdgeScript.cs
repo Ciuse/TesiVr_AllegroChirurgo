@@ -29,6 +29,7 @@ public class ElectricEdgeScript : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
           pinzaTouchElectricEdge.Raise();
+          print("bordo elettrico toccato");
         }
     }
 
