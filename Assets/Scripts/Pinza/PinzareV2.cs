@@ -76,6 +76,7 @@ public class PinzareV2 : MonoBehaviour
                         _smoothTriggerValue = _smoothTriggerValue - 0.02f;
                     }
                     animatorPinza2.SetFloat("TriggerPressing", _smoothTriggerValue); 
+                    animatorPinza1.SetFloat("TriggerValue", _smoothTriggerValue); 
                     //animatorPinza1.SetFloat("TriggerValue", Random.Range(0f,1f));    
                     //ClosePinze();
                     CheckCollidersWhileNoObject();
