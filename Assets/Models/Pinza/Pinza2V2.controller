@@ -36,7 +36,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b0564d324aba1704ba75e89e1464fc49, type: 2}
+    m_Motion: {fileID: 7400000, guid: d4beff5e276fad943ba8c2e09b3360a8, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -44,7 +44,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 2ca9c745470fb4048b318b55b4fe2a3a, type: 2}
+    m_Motion: {fileID: 7400000, guid: d3aa77b3ad187234bb365cec6fa2ec66, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -114,7 +114,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pinza2
+  m_Name: Pinza2V2
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: ClosePinza2
@@ -188,7 +188,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b0564d324aba1704ba75e89e1464fc49, type: 2}
+  m_Motion: {fileID: 7400000, guid: d4beff5e276fad943ba8c2e09b3360a8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
