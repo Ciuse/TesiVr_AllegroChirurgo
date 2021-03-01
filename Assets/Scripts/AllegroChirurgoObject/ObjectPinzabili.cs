@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +8,19 @@ public class ObjectPinzabili  : DynamicObjectAbstract
 
 
     public bool isActive;
-    public Material material;
+    private Material material;
+    
+    
+    
+    
     public void Start()
     {
         StartHash();
         isActive = false;
-        material = gameObject.GetComponent<MeshRenderer>().material;
+       
     }
+
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -46,7 +53,6 @@ public class ObjectPinzabili  : DynamicObjectAbstract
     public void ResetColor()
     {
         
-       gameObject.GetComponent<MeshRenderer>().material.color=material.color;
     }
 }
 
