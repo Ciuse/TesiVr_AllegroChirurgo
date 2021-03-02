@@ -35,7 +35,6 @@ public class ObjectPinzabili  : DynamicObjectAbstract
 
             resetting = true;
             ResetState();
-            electricEdgeTouched.Raise();
 
         }
     }
@@ -50,7 +49,8 @@ public class ObjectPinzabili  : DynamicObjectAbstract
         ResetStatePosition();
         print("end reset");
 
-        resetting = false;
+        //resetting = false;
+        electricEdgeTouched.Raise();
 
     }
 
