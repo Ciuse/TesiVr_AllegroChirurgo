@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using EventSystem;
 using UnityEngine;
@@ -11,16 +12,26 @@ public class PinzareV3 : MonoBehaviour
     public List<GameObject> sphereListPinza1;
     public List<GameObject> sphereListPinza2;
 
+    public List<GameObject> sphereOutsideListPinza1;
+    public List<GameObject> sphereOutsideListPinza2;
+    
+    
     public Animator animatorPinza1;
     public Animator animatorPinza2;
-    private float _smoothTriggerValue=0f;
+    private float _smoothClosePinza1=0f;
+    private float _smoothClosePinza2=0f;
 
     public float collisionRadius;
+    public float collisionOutsideRadius;
+
     public Collider[] _colliders = new Collider[10];
     public LayerMask sphereCollisionMask;
     
-    public bool pinza1Collided = false;
-    public bool pinza2Collided = false;
+    public bool pinza1Collided;
+    public bool pinza2Collided;
+    public bool pinza1CollidedOutside;
+    public bool pinza2CollidedOutside;
+    
     public GameObject objectWithPinza1 = null;
     public GameObject objectWithPinza2 = null;
     public bool collided;
@@ -29,9 +40,15 @@ public class PinzareV3 : MonoBehaviour
     public bool m_gripDown;    
 
     public InputActionReference triggerPressing;
-    public InputActionReference gripPressing;
     private bool resetting;
 
+    public Material pinza1Material;
+
+    public Material pinza2Material;
+
+    private Color startPinza1Color;
+    private Color startPinza2Color;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +56,8 @@ public class PinzareV3 : MonoBehaviour
         m_InteractableBase.onSelectEntered.AddListener(GripPulled);
         m_InteractableBase.onSelectExited.AddListener(GripReleased);
 
+        startPinza1Color = pinza1Material.color;
+        startPinza2Color = pinza2Material.color;
     }
 
   
@@ -52,6 +71,27 @@ public class PinzareV3 : MonoBehaviour
         m_gripDown = false;
     }
 
+
+    public void Update()
+    {
+        if (pinza1CollidedOutside)
+        {
+            pinza1Material.color=Color.red;
+        }
+        else
+        {
+            pinza1Material.color = startPinza1Color;
+        }
+        
+        if (pinza2CollidedOutside)
+        {
+            pinza2Material.color=Color.red;
+        }
+        else
+        {
+            pinza2Material.color = startPinza2Color;
+        }
+    }
 
     public void FixedUpdate()
     {
@@ -67,16 +107,34 @@ public class PinzareV3 : MonoBehaviour
 
                 if(!collided)
                 {
-                    if (_smoothTriggerValue <= triggerValue)
+                    if(!pinza1Collided)
                     {
-                        _smoothTriggerValue = _smoothTriggerValue + 0.02f;
+                        if (_smoothClosePinza1 <= triggerValue)
+                        {
+                            _smoothClosePinza1 = _smoothClosePinza1 + 0.02f;
+                        }
+                        else
+                        {
+                            _smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
+                        }
+
+                        animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
                     }
-                    else
+                    
+                    if(!pinza2Collided)
                     {
-                        _smoothTriggerValue = _smoothTriggerValue - 0.02f;
+                        if (_smoothClosePinza2 <= triggerValue)
+                        {
+                            _smoothClosePinza2 = _smoothClosePinza2 + 0.02f;
+                        }
+                        else
+                        {
+                            _smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
+                        }
+
+                        animatorPinza2.SetFloat("TriggerValue", _smoothClosePinza2); 
                     }
-                    animatorPinza2.SetFloat("TriggerPressing", _smoothTriggerValue); 
-                    animatorPinza1.SetFloat("TriggerValue", _smoothTriggerValue); 
+                   
                     //animatorPinza1.SetFloat("TriggerValue", Random.Range(0f,1f));    
                     //ClosePinze();
                     CheckCollidersWhileNoObject();
@@ -111,16 +169,45 @@ public class PinzareV3 : MonoBehaviour
 
     }
 
+    private bool IsPinza1CollidedOutside()
+    {
+           
+        foreach (GameObject sphere in sphereOutsideListPinza1)
+        {
+            var sphereMovableCollisions =
+                Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionOutsideRadius, _colliders,
+                    sphereCollisionMask);
+            if (sphereMovableCollisions > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
     
+    private bool IsPinza2CollidedOutside()
+    {
+           
+        foreach (GameObject sphere in sphereOutsideListPinza2)
+        {
+            var sphereMovableCollisions =
+                Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionOutsideRadius, _colliders,
+                    sphereCollisionMask);
+            if (sphereMovableCollisions > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
     
     public void CheckCollidersWhileNoObject()
     {
         if (!resetting)
         {
-            
-           
-     
-        if (IsPinza1Collided())
+            if (IsPinza1Collided())
         {
             pinza1Collided = true;
             if (objectWithPinza1 == null)
@@ -146,23 +233,22 @@ public class PinzareV3 : MonoBehaviour
             pinza2Collided = false;
             objectWithPinza2 = null;
         }
+        
+        pinza1CollidedOutside = IsPinza1CollidedOutside(); 
+        
+        pinza2CollidedOutside = IsPinza2CollidedOutside();
+  
 
-        if (pinza1Collided && pinza2Collided)
+        if (pinza1Collided && pinza2Collided && !pinza1CollidedOutside && !pinza2CollidedOutside)
         {
-            print("collidono");
             if (objectWithPinza1 != null && objectWithPinza2 != null)
             {
                 if (objectWithPinza1 == objectWithPinza2)
                 {
-                    if(objectWithPinza1.gameObject.GetComponent<ObjectPinzabili>().resetting==false)
-                    {
-                        collided = true;
-                        objectWithPinza1.gameObject.transform.SetParent(transform);
-                        objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
-                        print(objectWithPinza1.gameObject.transform.position);
-                        print("oggetto pinzato");
+                    collided = true;
+                    objectWithPinza1.gameObject.transform.SetParent(transform);
+                    objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
 
-                    }
                 }
             }
         }
@@ -187,9 +273,6 @@ public class PinzareV3 : MonoBehaviour
 
     public void ResetPinze()
     {
-        //il reset delle pinze viene invocato solo se le due posizioni sono diverse perchè vuol dire che la pinza era stata compressa e deve ritornare
-        //allo stato iniziale 
-        
         animatorPinza1.SetBool("ClosePinza1",false);
         animatorPinza2.SetBool("ClosePinza2",false);
         
@@ -197,16 +280,20 @@ public class PinzareV3 : MonoBehaviour
         {
             objectWithPinza1.gameObject.transform.SetParent(null);
             objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
-
         }
-     
 
-        pinza2Collided = false;
+        pinza1CollidedOutside = false;
+        pinza2CollidedOutside = false;
         pinza1Collided = false;
+        pinza2Collided = false;
         objectWithPinza1 = null;
         objectWithPinza2 = null;
+        
         collided = false;
-        _smoothTriggerValue = 0f;
+        
+        _smoothClosePinza1 = 0f;
+        _smoothClosePinza2= 0f;
+
     }
 
     public void RemoveObjectPinzato()
@@ -218,15 +305,17 @@ public class PinzareV3 : MonoBehaviour
             objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
 
         }
-
-        pinza2Collided = false;
+        
+        pinza1CollidedOutside = false;
+        pinza2CollidedOutside = false;
         pinza1Collided = false;
+        pinza2Collided = false;
         objectWithPinza1 = null;
         objectWithPinza2 = null;
+        
         collided = false;
+        
         StartCoroutine(WaitReset());
-
-//        _smoothTriggerValue = 0f;
 
     }
     
@@ -234,7 +323,6 @@ public class PinzareV3 : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         resetting = false;
-
     }
    
     private void OnDrawGizmos()
@@ -251,6 +339,18 @@ public class PinzareV3 : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(sphere.transform.position, collisionRadius);
         }
+        
+        foreach (GameObject sphere in sphereOutsideListPinza1)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(sphere.transform.position, collisionOutsideRadius);
 
+        }
+
+        foreach (GameObject sphere in sphereOutsideListPinza2)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(sphere.transform.position, collisionOutsideRadius);
+        }
     }
 }

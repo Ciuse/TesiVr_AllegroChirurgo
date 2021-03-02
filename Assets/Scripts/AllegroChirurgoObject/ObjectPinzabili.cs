@@ -9,7 +9,6 @@ public class ObjectPinzabili  : DynamicObjectAbstract
 
 
     public bool isActive;
-    public bool resetting;
     public GameEvent electricEdgeTouched;
     public void Start()
     {
@@ -31,10 +30,8 @@ public class ObjectPinzabili  : DynamicObjectAbstract
 
         if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
-            print("start reset");
-
-            resetting = true;
             ResetState();
+            electricEdgeTouched.Raise();
 
         }
     }
@@ -47,11 +44,6 @@ public class ObjectPinzabili  : DynamicObjectAbstract
     public override void ResetState()
     {
         ResetStatePosition();
-        print("end reset");
-
-        resetting = false;
-        electricEdgeTouched.Raise();
-
     }
 
     public void ActivateObject()
