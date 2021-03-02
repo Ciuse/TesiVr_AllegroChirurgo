@@ -798,7 +798,7 @@ BoxCollider:
   m_GameObject: {fileID: 291928811}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.0036207004, y: 0.0070395907, z: 0.06149485}
   m_Center: {x: 0.00006485771, y: 1.1641531e-10, z: -0.0024626951}
@@ -1686,8 +1686,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550671872}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.0036228548, y: 0.0070395907, z: 0.061494887}
   m_Center: {x: -0.0000640013, y: 0.000002792687, z: -0.0024406125}
@@ -2566,58 +2566,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1285823228}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &746614766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746614765}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b59997ecc5645334dab5bc4891569550, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sphereListPinza1:
-  - {fileID: 970564542}
-  - {fileID: 1774314541}
-  - {fileID: 1442615078}
-  - {fileID: 942856894}
-  - {fileID: 140128858}
-  - {fileID: 1889341491}
-  sphereListPinza2:
-  - {fileID: 47779562}
-  - {fileID: 1284104126}
-  - {fileID: 1724251484}
-  - {fileID: 389633060}
-  - {fileID: 340419972}
-  - {fileID: 918750123}
-  animatorPinza1: {fileID: 550671873}
-  animatorPinza2: {fileID: 291928812}
-  collisionRadius: 0.002
-  _colliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  sphereCollisionMask:
-    serializedVersion: 2
-    m_Bits: 256
-  pinza1Collided: 0
-  pinza2Collided: 0
-  objectWithPinza1: {fileID: 0}
-  objectWithPinza2: {fileID: 0}
-  collided: 0
-  m_InteractableBase: {fileID: 0}
-  m_gripDown: 0
-  triggerPressing: {fileID: 3411308250165419798, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
 --- !u!114 &746614767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2756,6 +2704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pinzaTouchElectricEdge: {fileID: 11400000, guid: 2fd01a8fa5c93974189d6c073fd1a2d1,
     type: 2}
+  countCollision: 0
 --- !u!65 &746614770
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4316,17 +4265,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7259814201077639578, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}
@@ -4371,7 +4320,7 @@ PrefabInstance:
     - target: {fileID: -3330668621838588030, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3283391219154498694, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}
@@ -4381,7 +4330,7 @@ PrefabInstance:
     - target: {fileID: -3283391219154498694, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3283391219154498694, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}

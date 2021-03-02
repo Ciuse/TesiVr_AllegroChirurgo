@@ -49,7 +49,7 @@ public class ObjectPinzabili  : DynamicObjectAbstract
         ResetStatePosition();
         print("end reset");
 
-        //resetting = false;
+        resetting = false;
         electricEdgeTouched.Raise();
 
     }

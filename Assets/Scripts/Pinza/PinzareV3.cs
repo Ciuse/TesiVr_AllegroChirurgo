@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using EventSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,6 +30,7 @@ public class PinzareV3 : MonoBehaviour
 
     public InputActionReference triggerPressing;
     public InputActionReference gripPressing;
+    private bool resetting;
 
     // Start is called before the first frame update
     void Start()
@@ -92,10 +94,6 @@ public class PinzareV3 : MonoBehaviour
     }
 
 
-    public void ClosePinze()
-    {
-       
-    }
     private bool IsPinza1Collided()
     {
            
@@ -117,6 +115,11 @@ public class PinzareV3 : MonoBehaviour
     
     public void CheckCollidersWhileNoObject()
     {
+        if (!resetting)
+        {
+            
+           
+     
         if (IsPinza1Collided())
         {
             pinza1Collided = true;
@@ -164,6 +167,7 @@ public class PinzareV3 : MonoBehaviour
             }
         }
     }
+    }
     private bool IsPinza2Collided()
     {
         foreach (GameObject sphere in sphereListPinza2)
@@ -207,9 +211,7 @@ public class PinzareV3 : MonoBehaviour
 
     public void RemoveObjectPinzato()
     {
-        print("inizio remove");
-//        animatorPinza1.SetTrigger("Resetting");
-//        animatorPinza2.SetTrigger("Resetting");
+        resetting = true;
         if (objectWithPinza1 != null)
         {
             objectWithPinza1.gameObject.transform.SetParent(null);
@@ -222,9 +224,16 @@ public class PinzareV3 : MonoBehaviour
         objectWithPinza1 = null;
         objectWithPinza2 = null;
         collided = false;
-        print("fine remove");
+        StartCoroutine(WaitReset());
 
 //        _smoothTriggerValue = 0f;
+
+    }
+    
+    IEnumerator WaitReset()
+    {
+        yield return new WaitForSeconds(0.1f);
+        resetting = false;
 
     }
    

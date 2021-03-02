@@ -11,7 +11,8 @@ public class ElectricEdgeScript : MonoBehaviour
 {
 
     public GameEvent pinzaTouchElectricEdge;
-    
+
+    public int countCollision;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,12 +27,27 @@ public class ElectricEdgeScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+       
         if (other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
-          pinzaTouchElectricEdge.Raise();
-          print("bordo elettrico toccato");
+            if (countCollision == 0)
+            {
+                pinzaTouchElectricEdge.Raise();
+                print("bordo elettrico toccato");  
+            }
+
+            countCollision++;
+
         }
     }
 
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
+        {
+            countCollision--;
+
+        }
+
+    }
 }
