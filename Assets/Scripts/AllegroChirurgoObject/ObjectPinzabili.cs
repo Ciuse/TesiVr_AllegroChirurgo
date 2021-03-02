@@ -17,9 +17,11 @@ public class ObjectPinzabili  : DynamicObjectAbstract
         StartHash();
         SaveState();
         isActive = false;
-        material = gameObject.GetComponent<MeshRenderer>().material;
+
     }
-    
+
+
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,7 +29,7 @@ public class ObjectPinzabili  : DynamicObjectAbstract
         {
             Interact();
         }
-        
+
         if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
             resetting = true;
@@ -52,7 +54,7 @@ public class ObjectPinzabili  : DynamicObjectAbstract
         print("activate object");
         isActive = true;
     }
-    
+
     public void DeActivateObject()
     {
         print("enter deactivate object");
@@ -62,8 +64,6 @@ public class ObjectPinzabili  : DynamicObjectAbstract
 
     public void ResetColor()
     {
-        
-       gameObject.GetComponent<MeshRenderer>().material.color=material.color;
+
     }
 }
-
