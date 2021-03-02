@@ -61,6 +61,7 @@ public abstract class DynamicObjectAbstract : MonoBehaviour
         {
             gameObject.transform.position = new Vector3(defaultPosition.x,defaultPosition.y,defaultPosition.z);
             gameObject.transform.rotation = new Quaternion(defaultRotation.x,defaultRotation.y,defaultRotation.z, defaultRotation.w);
+            print("pos resettata");
         }
 
         public void SetHasInteract()

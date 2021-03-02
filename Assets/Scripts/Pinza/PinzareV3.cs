@@ -145,6 +145,7 @@ public class PinzareV3 : MonoBehaviour
 
         if (pinza1Collided && pinza2Collided)
         {
+            print("collidono");
             if (objectWithPinza1 != null && objectWithPinza2 != null)
             {
                 if (objectWithPinza1 == objectWithPinza2)
@@ -154,6 +155,9 @@ public class PinzareV3 : MonoBehaviour
                         collided = true;
                         objectWithPinza1.gameObject.transform.SetParent(transform);
                         objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+                        print(objectWithPinza1.gameObject.transform.position);
+                        print("oggetto pinzato");
+
                     }
                 }
             }
@@ -200,8 +204,9 @@ public class PinzareV3 : MonoBehaviour
         _smoothTriggerValue = 0f;
     }
 
-    public void Resetting()
+    public void RemoveObjectPinzato()
     {
+        print("inizio remove");
 //        animatorPinza1.SetTrigger("Resetting");
 //        animatorPinza2.SetTrigger("Resetting");
         if (objectWithPinza1 != null)
@@ -216,7 +221,8 @@ public class PinzareV3 : MonoBehaviour
         objectWithPinza1 = null;
         objectWithPinza2 = null;
         collided = false;
-        
+        print("fine remove");
+
 //        _smoothTriggerValue = 0f;
 
     }
