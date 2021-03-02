@@ -9,7 +9,6 @@ public class eventsManagement : MonoBehaviour
 
     public GameObject objectToPick;
     public GameObject cubeAssociated;
-    public BoxCollider colliderOverObject;
     private ObjectPinzabili objectPinzabili;
     public GameEvent saveObjectPickedEvent;
     public GameEvent objectPickedWithSuccess;
