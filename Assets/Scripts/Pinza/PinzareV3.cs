@@ -126,7 +126,8 @@ public class PinzareV3 : MonoBehaviour
         else
         {
             pinza1Collided = false;
-           
+            objectWithPinza1 = null;
+
         }
 
 
@@ -140,7 +141,7 @@ public class PinzareV3 : MonoBehaviour
         else
         {
             pinza2Collided = false;
-            
+            objectWithPinza2 = null;
         }
 
         if (pinza1Collided && pinza2Collided)
