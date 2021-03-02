@@ -11,7 +11,6 @@ namespace EventSystem
 
         public void Raise()
         {
-           Debug.Log("raise entrato");
             for (var i = listeners.Count -1; i >= 0 ; i--)
             {
                 listeners[i].OnEventRaised();

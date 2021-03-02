@@ -28,6 +28,7 @@ public class PinzareV3 : MonoBehaviour
     public bool m_gripDown;    
 
     public InputActionReference triggerPressing;
+    public InputActionReference gripPressing;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +36,6 @@ public class PinzareV3 : MonoBehaviour
         m_InteractableBase = GetComponent<XRGrabInteractable>();
         m_InteractableBase.onSelectEntered.AddListener(GripPulled);
         m_InteractableBase.onSelectExited.AddListener(GripReleased);
-
-        
 
     }
 
@@ -56,13 +55,14 @@ public class PinzareV3 : MonoBehaviour
     {
         if (m_gripDown)
         {
-            animatorPinza1.SetBool("ClosePinza1",true);
-            animatorPinza2.SetBool("ClosePinza2",true);
-
+        
             float triggerValue = triggerPressing.action.ReadValue<float>();
             // check collision with tweezer and object
             if (triggerValue>0.05f)
             {  
+                animatorPinza1.SetBool("ClosePinza1",true);
+                animatorPinza2.SetBool("ClosePinza2",true);
+
                 if(!collided)
                 {
                     if (_smoothTriggerValue <= triggerValue)
@@ -149,10 +149,12 @@ public class PinzareV3 : MonoBehaviour
             {
                 if (objectWithPinza1 == objectWithPinza2)
                 {
-                    collided = true;
-                    objectWithPinza1.gameObject.transform.parent.SetParent(transform);
-                    objectWithPinza1.gameObject.transform.parent.GetComponent<Rigidbody>().isKinematic = true;
-
+                    if(objectWithPinza1.gameObject.GetComponent<ObjectPinzabili>().resetting==false)
+                    {
+                        collided = true;
+                        objectWithPinza1.gameObject.transform.SetParent(transform);
+                        objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    }
                 }
             }
         }
@@ -174,7 +176,7 @@ public class PinzareV3 : MonoBehaviour
   
     }  
 
-    void ResetPinze()
+    public void ResetPinze()
     {
         //il reset delle pinze viene invocato solo se le due posizioni sono diverse perchè vuol dire che la pinza era stata compressa e deve ritornare
         //allo stato iniziale 
@@ -184,8 +186,8 @@ public class PinzareV3 : MonoBehaviour
         
         if (objectWithPinza1 != null)
         {
-            objectWithPinza1.gameObject.transform.parent.SetParent(null);
-            objectWithPinza1.gameObject.transform.parent.GetComponent<Rigidbody>().isKinematic = false;
+            objectWithPinza1.gameObject.transform.SetParent(null);
+            objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
 
         }
      
@@ -198,6 +200,26 @@ public class PinzareV3 : MonoBehaviour
         _smoothTriggerValue = 0f;
     }
 
+    public void Resetting()
+    {
+//        animatorPinza1.SetTrigger("Resetting");
+//        animatorPinza2.SetTrigger("Resetting");
+        if (objectWithPinza1 != null)
+        {
+            objectWithPinza1.gameObject.transform.SetParent(null);
+            objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+
+        }
+
+        pinza2Collided = false;
+        pinza1Collided = false;
+        objectWithPinza1 = null;
+        objectWithPinza2 = null;
+        collided = false;
+        
+//        _smoothTriggerValue = 0f;
+
+    }
    
     private void OnDrawGizmos()
     {

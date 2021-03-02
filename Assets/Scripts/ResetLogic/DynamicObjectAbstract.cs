@@ -8,7 +8,6 @@ public abstract class DynamicObjectAbstract : MonoBehaviour
     {
         public ObjectEvent objectToResetEvent;
         
-        [HideInInspector]
         public bool hasInteract;
         [HideInInspector]
         public Quaternion defaultRotation;
