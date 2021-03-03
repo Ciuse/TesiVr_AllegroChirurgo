@@ -49,6 +49,9 @@ public class PinzareV3 : MonoBehaviour
     private Color startPinza1Color;
     private Color startPinza2Color;
     
+    public GameObject rightHandMesh;
+    public bool pinzaInHand;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -97,7 +100,8 @@ public class PinzareV3 : MonoBehaviour
     {
         if (m_gripDown)
         {
-        
+            rightHandMesh.SetActive(false);
+            pinzaInHand = true;
             float triggerValue = triggerPressing.action.ReadValue<float>();
             // check collision with tweezer and object
             if (triggerValue>0.05f)
@@ -146,6 +150,11 @@ public class PinzareV3 : MonoBehaviour
             }       
         }
         else{
+            if (pinzaInHand)
+            {
+                rightHandMesh.SetActive(true);
+                pinzaInHand = false;
+            }
             ResetPinze();
 
         }
@@ -293,7 +302,7 @@ public class PinzareV3 : MonoBehaviour
         
         _smoothClosePinza1 = 0f;
         _smoothClosePinza2= 0f;
-
+        
     }
 
     public void RemoveObjectPinzato()

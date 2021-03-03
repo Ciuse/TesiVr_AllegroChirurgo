@@ -14,6 +14,8 @@ public class eventsManagement : MonoBehaviour
     public GameEvent objectPickedWithSuccess;
     public float health;
     public bool startDissolveEffect;
+    public GameEvent electricEdgeTouched;
+    public Transform positionObjectAfterSuccess;
     
     private void Start()
     {
@@ -37,11 +39,19 @@ public class eventsManagement : MonoBehaviour
 
     IEnumerator objectPickedWithSuccessWait()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
        objectPickedWithSuccess.Raise();
    
     }
     
+    IEnumerator ResetObjectInHandAndStartDissolve()
+    {
+        yield return new WaitForSeconds(0.1f);
+        objectToPick.transform.position = new Vector3(positionObjectAfterSuccess.position.x,positionObjectAfterSuccess.position.y,positionObjectAfterSuccess.position.z);
+        electricEdgeTouched.Raise();
+        yield return new WaitForSeconds(0.1f);
+        startDissolveEffect = true;
+    }
     
     public void OnTriggerEnter(Collider other)
     {
@@ -53,7 +63,7 @@ public class eventsManagement : MonoBehaviour
             {
                 saveObjectPickedEvent.Raise();
                 objectPinzabili.isActive = false;
-                startDissolveEffect = true;
+                StartCoroutine(ResetObjectInHandAndStartDissolve());
                 StartCoroutine(objectPickedWithSuccessWait());
                 
             }else{
