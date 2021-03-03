@@ -3,7 +3,22 @@ guid: f14400387c99a5149b5267d5cb7ac9b3
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Giuntura
+    second: {fileID: 2100000, guid: 7bf2fb700d435c844a4d1cbf7d996f9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pinza1
+    second: {fileID: 2100000, guid: 91aa514af95ee9d46aeb855682281823, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pinza2
+    second: {fileID: 2100000, guid: 9345e5c324014b040ac489193f32c01e, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
