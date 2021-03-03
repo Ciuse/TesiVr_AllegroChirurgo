@@ -312,7 +312,6 @@ public class PinzareV3 : MonoBehaviour
         {
             objectWithPinza1.gameObject.transform.SetParent(null);
             objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
-
         }
         
         pinza1CollidedOutside = false;
@@ -328,6 +327,27 @@ public class PinzareV3 : MonoBehaviour
 
     }
     
+    public void RemoveObjectSuccess()
+    {
+        resetting = true;
+        if (objectWithPinza1 != null)
+        {
+            objectWithPinza1.gameObject.transform.SetParent(null);
+            objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+        }
+        
+        pinza1CollidedOutside = false;
+        pinza2CollidedOutside = false;
+        pinza1Collided = false;
+        pinza2Collided = false;
+        objectWithPinza1 = null;
+        objectWithPinza2 = null;
+        
+        collided = false;
+        
+        StartCoroutine(WaitReset());
+
+    }
     IEnumerator WaitReset()
     {
         yield return new WaitForSeconds(0.1f);
