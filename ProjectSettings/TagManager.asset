@@ -10,6 +10,10 @@ TagManager:
   - Object2
   - Object3
   - Object4
+  - PinzaRight
+  - PinzaLeft
+  - XrRigRight
+  - XrRigLeft
   layers:
   - Default
   - TransparentFX
