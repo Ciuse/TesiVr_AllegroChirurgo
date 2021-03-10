@@ -14,8 +14,10 @@ public class PinzareV3 : MonoBehaviour
 
     public List<GameObject> sphereOutsideListPinza1;
     public List<GameObject> sphereOutsideListPinza2;
-    
-    
+   
+    public List<GameObject> sphereTableListPinza1;
+    public List<GameObject> sphereTableListPinza2;
+
     public Animator animatorPinza1;
     public Animator animatorPinza2;
     private float _smoothClosePinza1=0f;
@@ -26,12 +28,14 @@ public class PinzareV3 : MonoBehaviour
 
     public Collider[] _colliders = new Collider[10];
     public LayerMask sphereCollisionMask;
+    public LayerMask sphereCollisionTableMask;
     
     public bool pinza1Collided;
     public bool pinza2Collided;
+    
     public bool pinza1CollidedOutside;
     public bool pinza2CollidedOutside;
-    
+
     public GameObject objectWithPinza1 = null;
     public GameObject objectWithPinza2 = null;
     public bool collided;
@@ -111,7 +115,7 @@ public class PinzareV3 : MonoBehaviour
 
                 if(!collided)
                 {
-                    if(!pinza1Collided)
+                    if(!pinza1Collided && !pinza1CollidedOutside)
                     {
                         if (_smoothClosePinza1 <= triggerValue)
                         {
@@ -125,7 +129,7 @@ public class PinzareV3 : MonoBehaviour
                         animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
                     }
                     
-                    if(!pinza2Collided)
+                    if(!pinza2Collided && !pinza2CollidedOutside)
                     {
                         if (_smoothClosePinza2 <= triggerValue)
                         {
@@ -177,7 +181,23 @@ public class PinzareV3 : MonoBehaviour
         return false;
 
     }
-
+    
+    private bool IsPinza2Collided()
+    {
+        foreach (GameObject sphere in sphereListPinza2)
+        {
+            var sphereMovableCollisions =
+                Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
+                    sphereCollisionMask);
+            if (sphereMovableCollisions > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+        
+  
+    }  
     private bool IsPinza1CollidedOutside()
     {
            
@@ -186,6 +206,40 @@ public class PinzareV3 : MonoBehaviour
             var sphereMovableCollisions =
                 Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionOutsideRadius, _colliders,
                     sphereCollisionMask);
+            if (sphereMovableCollisions > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
+    
+    private bool IsPinza2CollidedTable()
+    {
+           
+        foreach (GameObject sphere in sphereTableListPinza2)
+        {
+            var sphereMovableCollisions =
+                Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionOutsideRadius, _colliders,
+                    sphereCollisionTableMask);
+            if (sphereMovableCollisions > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
+    
+    private bool IsPinza1CollidedTable()
+    {
+           
+        foreach (GameObject sphere in sphereTableListPinza1)
+        {
+            var sphereMovableCollisions =
+                Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionOutsideRadius, _colliders,
+                    sphereCollisionTableMask);
             if (sphereMovableCollisions > 0)
             {
                 return true;
@@ -220,7 +274,7 @@ public class PinzareV3 : MonoBehaviour
         {
             pinza1Collided = true;
             if (objectWithPinza1 == null)
-                objectWithPinza1 = _colliders[0].gameObject;
+                objectWithPinza1 = _colliders[0].gameObject.transform.root.gameObject;
         }
         else
         {
@@ -235,7 +289,7 @@ public class PinzareV3 : MonoBehaviour
         {
             pinza2Collided = true;
             if (objectWithPinza2 == null)
-                objectWithPinza2 = _colliders[0].gameObject;
+                objectWithPinza2 = _colliders[0].gameObject.transform.root.gameObject;
         }
         else
         {
@@ -243,10 +297,24 @@ public class PinzareV3 : MonoBehaviour
             objectWithPinza2 = null;
         }
         
-        pinza1CollidedOutside = IsPinza1CollidedOutside(); 
+        if (IsPinza1CollidedOutside() || IsPinza1CollidedTable())
+        {
+            pinza1CollidedOutside = true;
+           
+        }
+        else
+        {
+            pinza1CollidedOutside = false;
+        }
         
-        pinza2CollidedOutside = IsPinza2CollidedOutside();
-  
+        if (IsPinza2CollidedOutside() || IsPinza2CollidedTable())
+        {
+            pinza2CollidedOutside = true;
+        }
+        else
+        {
+            pinza2CollidedOutside = false;
+        }
 
         if (pinza1Collided && pinza2Collided && !pinza1CollidedOutside && !pinza2CollidedOutside)
         {
@@ -263,22 +331,7 @@ public class PinzareV3 : MonoBehaviour
         }
     }
     }
-    private bool IsPinza2Collided()
-    {
-        foreach (GameObject sphere in sphereListPinza2)
-        {
-            var sphereMovableCollisions =
-                Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
-                    sphereCollisionMask);
-            if (sphereMovableCollisions > 0)
-            {
-                return true;
-            }
-        }
-        return false;
-        
-  
-    }  
+
 
     public void ResetPinze()
     {
@@ -379,6 +432,19 @@ public class PinzareV3 : MonoBehaviour
         foreach (GameObject sphere in sphereOutsideListPinza2)
         {
             Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(sphere.transform.position, collisionOutsideRadius);
+        }
+        
+        foreach (GameObject sphere in sphereTableListPinza1)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(sphere.transform.position, collisionOutsideRadius);
+
+        }
+
+        foreach (GameObject sphere in sphereTableListPinza2)
+        {
+            Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(sphere.transform.position, collisionOutsideRadius);
         }
     }

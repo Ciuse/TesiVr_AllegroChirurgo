@@ -19,8 +19,7 @@ public class ObjectPinzabili  : DynamicObjectAbstract
     }
 
 
-
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
@@ -28,6 +27,16 @@ public class ObjectPinzabili  : DynamicObjectAbstract
             Interact();
         }
 
+        if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
+        {
+            ResetState();
+            electricEdgeTouched.Raise();
+
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
         if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
             ResetState();
