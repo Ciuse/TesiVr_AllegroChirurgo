@@ -585,6 +585,8 @@ sysinfo.txt
 InitTestScene*.unity.meta
 InitTestScene*.unity
 
+# Custom ignores
+!*.dll
 
 # End of https://www.toptal.com/developers/gitignore/api/unity,android,csharp,rider
 
