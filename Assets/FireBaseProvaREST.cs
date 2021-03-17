@@ -20,7 +20,7 @@ public class FireBaseProvaREST : MonoBehaviour
 
 
         await firebase2
-            .Child("SONOILVR2").PutAsync("{\"appeared\": -70000000}");
+            .Child("SONOILVR2").PostAsync("{\"appeared\": -70000000}");
 }
     
 
