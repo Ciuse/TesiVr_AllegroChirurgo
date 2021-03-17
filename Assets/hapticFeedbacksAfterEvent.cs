@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class hapticFeedbacksAfterEvent : MonoBehaviour
 {
     public XRBaseController controllerUsedToPickObject;
-    
+    public  AudioClip pinzaTouchedElectricEdgeSound;
     // Start is called before the first frame update
     void Start()
     {
