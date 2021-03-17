@@ -4,23 +4,23 @@ using EventSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartingGameLogic : MonoBehaviour
+public class DrawCardsLogic : MonoBehaviour
 {
     
     public List<Sprite> imagesCards = new List<Sprite>();
     public List<Sprite> imagesCardsSuccess = new List<Sprite>();
     public List<GameEvent> cardsEvents;
+    public ObjectEvent cardHasBeenDrawedEvent;
     public Image imageCard;
     public Sprite wellDoneImage;
     private int numChoosen;
     private Sprite cardPickedPending;
     public GameEvent resetCardsEvent;
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        //drawCard();
         
     }
     
@@ -39,6 +39,8 @@ public class StartingGameLogic : MonoBehaviour
         imageCard.sprite = imagesCards[numChoosen];
         cardsEvents[numChoosen].Raise();
         cardPickedPending = imagesCards[numChoosen];
+        Interactable interactable = new Interactable {id = numChoosen};
+        cardHasBeenDrawedEvent.Raise(interactable);
    
     }
 

@@ -10,6 +10,7 @@ public class ObjectPinzabili  : DynamicObjectAbstract
 
     public bool isActive;
     public GameEvent electricEdgeTouched;
+    public int idObject;
     public void Start()
     {
         StartHash();
@@ -65,6 +66,18 @@ public class ObjectPinzabili  : DynamicObjectAbstract
     {
         print("enter deactivate object");
         isActive = false;
+    }
+    
+    public void ObjectEventCard(Interactable interactable)
+    {
+        int cardId = interactable.id;
+        if (idObject == cardId)
+        {
+            print("è quello giusto"+interactable.id.ToString());
+        }
+        
+        
+
     }
     
 }
