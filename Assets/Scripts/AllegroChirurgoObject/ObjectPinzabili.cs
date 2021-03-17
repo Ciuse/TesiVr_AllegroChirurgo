@@ -70,14 +70,12 @@ public class ObjectPinzabili  : DynamicObjectAbstract
     
     public void ObjectEventCard(Interactable interactable)
     {
-        int cardId = interactable.id;
-        if (idObject == cardId)
+        if (idObject == interactable.id)
         {
-            print("è quello giusto"+interactable.id.ToString());
+            print("activate object");
+            isActive = true;
         }
         
-        
-
     }
     
 }
