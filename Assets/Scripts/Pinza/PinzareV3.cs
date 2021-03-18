@@ -55,6 +55,8 @@ public class PinzareV3 : MonoBehaviour
     
     public GameObject rightHandMesh;
     public bool pinzaInHand;
+    public bool disableHand;
+    public bool activateVisualEffectPinza;
     
     // Start is called before the first frame update
     void Start()
@@ -62,7 +64,7 @@ public class PinzareV3 : MonoBehaviour
         m_InteractableBase = GetComponent<XRGrabInteractable>();
         m_InteractableBase.onSelectEntered.AddListener(GripPulled);
         m_InteractableBase.onSelectExited.AddListener(GripReleased);
-
+        disableHand = true;
         startPinza1Color = pinza1Material.color;
         startPinza2Color = pinza2Material.color;
     }
@@ -81,7 +83,7 @@ public class PinzareV3 : MonoBehaviour
 
     public void Update()
     {
-        if (pinza1CollidedOutside)
+        if (pinza1CollidedOutside && activateVisualEffectPinza)
         {
             pinza1Material.color=Color.red;
         }
@@ -90,7 +92,7 @@ public class PinzareV3 : MonoBehaviour
             pinza1Material.color = startPinza1Color;
         }
         
-        if (pinza2CollidedOutside)
+        if (pinza2CollidedOutside && activateVisualEffectPinza)
         {
             pinza2Material.color=Color.red;
         }
@@ -100,12 +102,26 @@ public class PinzareV3 : MonoBehaviour
         }
     }
 
+    public void ActiveVisualEffectPinza()
+    {
+        activateVisualEffectPinza = !activateVisualEffectPinza;
+    }
+
+    public void DisabledHand()
+    {
+        disableHand = !disableHand;
+    }
+    
     public void FixedUpdate()
     {
         if (m_gripDown)
         {
-            rightHandMesh.SetActive(false);
-            pinzaInHand = true;
+            if (disableHand)
+            {
+                rightHandMesh.SetActive(false);
+                pinzaInHand = true;
+            }
+            
             float triggerValue = triggerPressing.action.ReadValue<float>();
             // check collision with tweezer and object
             if (triggerValue>0.05f)
@@ -154,11 +170,15 @@ public class PinzareV3 : MonoBehaviour
             }       
         }
         else{
-            if (pinzaInHand)
+            if (disableHand)
             {
-                rightHandMesh.SetActive(true);
-                pinzaInHand = false;
+                if (pinzaInHand)
+                {
+                    rightHandMesh.SetActive(true);
+                    pinzaInHand = false;
+                }
             }
+
             ResetPinze();
 
         }
