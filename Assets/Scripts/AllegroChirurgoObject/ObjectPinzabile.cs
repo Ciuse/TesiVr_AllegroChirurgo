@@ -42,7 +42,6 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         {
             foreach (Transform child in parent)
             {
-                print(child);
                 FindLeaves(child, leafArray);
             }
         }
@@ -102,25 +101,22 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         ResetStatePosition();
     }
 
-    public void DeActivateObject()
-    {
-        print("enter deactivate object");
-        isActive = false;
-        ResetMesh();
-        ResetState();
-    }
-    
+
     public void ObjectEventCard(Interactable interactable)
     {
         if (idObject == interactable.id)
         {
-            print("activate object");
             isActive = true;
         }
-        
     }
     
-    
+    public void DeActivateObject()
+    {
+        isActive = false;
+        ResetMesh();
+        ResetState();
+    }
+        
     public void DissolveMesh()
     {
         startDissolveEffect = true;

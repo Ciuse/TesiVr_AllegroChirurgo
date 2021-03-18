@@ -365,7 +365,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -864,7 +864,7 @@ Transform:
   m_Children:
   - {fileID: 2080820120}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &233740324
 BoxCollider:
@@ -1149,7 +1149,7 @@ Transform:
   - {fileID: 1906852312}
   - {fileID: 754244283}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &272097392
 GameObject:
@@ -1162,8 +1162,9 @@ GameObject:
   - component: {fileID: 272097394}
   - component: {fileID: 272097393}
   - component: {fileID: 272097395}
-  m_Layer: 12
-  m_Name: ControllerPickPinza
+  - component: {fileID: 272097396}
+  m_Layer: 0
+  m_Name: ControllerVibrationFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1181,11 +1182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24e480226aac4d4469ff887d64fbb196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerUsed: {fileID: 272097392}
   leftControllerHand: {fileID: 6232745470682200965}
   rightControllerHand: {fileID: 6232745471109905253}
-  isEventLeftSend: 0
-  isEventRightSend: 0
+  enableVibration: 1
 --- !u!4 &272097394
 Transform:
   m_ObjectHideFlags: 0
@@ -1198,7 +1197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &272097395
 MonoBehaviour:
@@ -1218,6 +1217,33 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 272097393}
         m_MethodName: PinzaTouchedElectricEdge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &272097396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272097392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 44b1ee2ffbdc86342946924a95d49bcb, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 272097393}
+        m_MethodName: ActivateVibration
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1289,7 +1315,7 @@ Transform:
   m_Children:
   - {fileID: 1074840563}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &291677241
 BoxCollider:
@@ -1625,7 +1651,7 @@ Transform:
   m_Children:
   - {fileID: 1526528178}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &380872792
 BoxCollider:
@@ -1703,7 +1729,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -1953,7 +1979,7 @@ GameObject:
   - component: {fileID: 437250467}
   - component: {fileID: 437250466}
   m_Layer: 0
-  m_Name: ResetLogic (1)
+  m_Name: ResetLogic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2068,7 +2094,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &444544294
 GameObject:
@@ -2756,7 +2782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &636331137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2910,7 +2936,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -3420,7 +3446,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 963b83450bee48b49b3d155e89f06236,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 963b83450bee48b49b3d155e89f06236,
         type: 3}
@@ -4148,7 +4174,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1004717140
 PrefabInstance:
@@ -4195,7 +4221,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -5298,7 +5324,7 @@ Transform:
   - {fileID: 549450558}
   - {fileID: 454402922}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1160534047
 GameObject:
@@ -5973,7 +5999,7 @@ Transform:
   m_Children:
   - {fileID: 1081363885}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1453896565
 MonoBehaviour:
@@ -6576,7 +6602,7 @@ Transform:
   - {fileID: 711415001}
   - {fileID: 459065919}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1528158739
 MonoBehaviour:
@@ -6910,7 +6936,7 @@ Transform:
   - {fileID: 1512675700}
   - {fileID: 371440262}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1613995489
 BoxCollider:
@@ -7145,7 +7171,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f14400387c99a5149b5267d5cb7ac9b3,
         type: 3}
@@ -7424,8 +7450,8 @@ MonoBehaviour:
   pinza2Material: {fileID: 2100000, guid: 9345e5c324014b040ac489193f32c01e, type: 2}
   rightHandMesh: {fileID: 573763191134881203}
   pinzaInHand: 0
-  disableHand: 0
-  activateVisualEffectPinza: 0
+  disableHand: 1
+  activateVisualEffectPinza: 1
 --- !u!95 &1624222227
 Animator:
   serializedVersion: 3
@@ -8061,7 +8087,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
@@ -8086,7 +8112,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -8195,7 +8221,7 @@ Transform:
   m_Children:
   - {fileID: 444544295}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1718462907
 BoxCollider:
@@ -8297,7 +8323,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Disable Hand
+  m_Text: Hide Hand
 --- !u!222 &1728085746
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8683,7 +8709,7 @@ Transform:
   m_Children:
   - {fileID: 1324955003}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1938550616
 MonoBehaviour:
@@ -9123,7 +9149,7 @@ GameObject:
   - component: {fileID: 2054379432}
   - component: {fileID: 2054379431}
   m_Layer: 8
-  m_Name: GameLogicManage
+  m_Name: StartingHandEventRaise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9155,7 +9181,7 @@ Transform:
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2070174720
 GameObject:
@@ -9169,7 +9195,7 @@ GameObject:
   - component: {fileID: 2070174722}
   - component: {fileID: 2070174721}
   m_Layer: 0
-  m_Name: StartGame (1)
+  m_Name: StartGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11146,9 +11172,6 @@ GameObject:
   - component: {fileID: 6232745470682200962}
   - component: {fileID: 6232745470682200963}
   - component: {fileID: 6232745470682200960}
-  - component: {fileID: 6232745470682200992}
-  - component: {fileID: 6232745470682200991}
-  - component: {fileID: 6232745470682200993}
   m_Layer: 15
   m_Name: LeftBaseController
   m_TagString: ControllerLeft
@@ -11156,77 +11179,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6232745470682200991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6232745470682200990}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: a9348deffb462e34c8beb68427138f96, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6232745470682200992}
-        m_MethodName: hapticFeedbacks
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6232745470682200992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6232745470682200990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53f4456d88f72504988c2b66c2c2edc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controllerUsedToPickObject: {fileID: 6232745470682200965}
-  pinzaTouchedElectricEdgeSound: {fileID: 8300000, guid: 5396cfcb68802784eb82cd3a868e5aa7,
-    type: 3}
-  handLeft: {fileID: 6232745470682200990}
-  handRight: {fileID: 6232745471109905249}
---- !u!114 &6232745470682200993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6232745470682200990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 44b1ee2ffbdc86342946924a95d49bcb, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6232745470682200992}
-        m_MethodName: activateGameEventListenersVibrationLeftHand
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &6232745470729633434
 Transform:
   m_ObjectHideFlags: 0
@@ -11885,9 +11837,6 @@ GameObject:
   - component: {fileID: 6232745471109905253}
   - component: {fileID: 6232745471109905250}
   - component: {fileID: 6232745471109905251}
-  - component: {fileID: 6232745471109905254}
-  - component: {fileID: 6232745471109905252}
-  - component: {fileID: 6232745471109905255}
   m_Layer: 15
   m_Name: RightBaseController
   m_TagString: ControllerRight
@@ -11962,33 +11911,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6232745471109905252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6232745471109905249}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 7c042182ef174e048a37fcd7641d41fc, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6232745471109905254}
-        m_MethodName: hapticFeedbacks
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6232745471109905253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12108,50 +12030,6 @@ MonoBehaviour:
     m_Reference: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_ButtonPressPoint: 0.5
---- !u!114 &6232745471109905254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6232745471109905249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53f4456d88f72504988c2b66c2c2edc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controllerUsedToPickObject: {fileID: 6232745471109905253}
-  pinzaTouchedElectricEdgeSound: {fileID: 8300000, guid: 5396cfcb68802784eb82cd3a868e5aa7,
-    type: 3}
-  handLeft: {fileID: 6232745470682200990}
-  handRight: {fileID: 6232745471109905249}
---- !u!114 &6232745471109905255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6232745471109905249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 44b1ee2ffbdc86342946924a95d49bcb, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6232745471109905254}
-        m_MethodName: activateGameEventListenersVibrationRightHand
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6232745471265545184
 GameObject:
   m_ObjectHideFlags: 0

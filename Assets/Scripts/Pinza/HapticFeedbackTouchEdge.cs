@@ -7,38 +7,29 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR.Haptics;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class ElectricEdgeScript : MonoBehaviour
+public class HapticFeedbackTouchEdge : MonoBehaviour
 {
 
     public GameEvent pinzaTouchElectricEdge;
 
     public int countCollision;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-       
-        if (other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
-        {
-            if (countCollision == 0)
+        
+            if (other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
             {
-                pinzaTouchElectricEdge.Raise();
-                print("bordo elettrico toccato");  
+           
+                if (countCollision == 0)
+                {
+                    pinzaTouchElectricEdge.Raise();
+                    print("bordo elettrico toccato");  
+                }
+                countCollision++;
             }
-
-            countCollision++;
-
-        }
+            
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -50,4 +41,6 @@ public class ElectricEdgeScript : MonoBehaviour
         }
 
     }
+
+
 }
