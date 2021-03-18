@@ -39,7 +39,7 @@ public class DrawCardsLogic : MonoBehaviour
     IEnumerator waitBeforeDraw()
     {
         yield return new WaitForSeconds(0.5f);
-        numChoosen = numbers[Random.Range(0, numbers.Count-1)];
+        numChoosen = numbers[Random.Range(0, numbers.Count)];
         imageCard.sprite = imagesCards[numChoosen];
         cardPickedPending = imagesCards[numChoosen];
         Interactable interactable = new Interactable {id = numChoosen};
@@ -50,7 +50,7 @@ public class DrawCardsLogic : MonoBehaviour
     public void cardPickedWithSuccess()
     {
         imagesCards.RemoveAt(numChoosen);
-        numbers.RemoveAt(numChoosen);
+        numbers.RemoveAt(numbers.Count-1); //se si rimuove anche l immagine la lista delle immagini ora sarà grande 1 in meno, quindi il numero piu grande da pescare va rimosso
         imagesCardsSuccess.Add(cardPickedPending);
         imageCard.sprite = wellDoneImage;
 

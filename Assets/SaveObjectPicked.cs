@@ -25,13 +25,13 @@ public class SaveObjectPicked : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("ObjPinzabili"))
         { 
             print("ha colliso un oggetto pinzabile");
-            ObjectPinzabili objectPinzabili = other.GetComponent<ObjectPinzabili>();
-            if (objectPinzabili != null && objectPinzabili.isActive)
+            ObjectPinzabile objectPinzabile = other.GetComponent<ObjectPinzabile>();
+            if (objectPinzabile != null && objectPinzabile.isActive)
             {
                 print("entrato nella save platform");
                 saveObjectPickedEvent.Raise();
                 other.GetComponent<MeshRenderer>().material.color=Color.green;
-                objectPinzabili.isActive = false;
+                objectPinzabile.isActive = false;
             }
             
         }
