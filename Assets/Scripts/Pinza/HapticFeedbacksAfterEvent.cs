@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class hapticFeedbacksAfterEvent : MonoBehaviour
+public class HapticFeedbacksAfterEvent : MonoBehaviour
 {
     public XRBaseController controllerUsedToPickObject;
     public  AudioClip pinzaTouchedElectricEdgeSound;

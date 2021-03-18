@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class IsUsedController : MonoBehaviour
+public class PinzaHapticFeedback : MonoBehaviour
 {
 
    
