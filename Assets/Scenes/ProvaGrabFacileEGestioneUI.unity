@@ -3225,6 +3225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 677165169}
   - component: {fileID: 677165170}
+  - component: {fileID: 677165171}
   m_Layer: 5
   m_Name: Disable Audio Effect
   m_TagString: Untagged
@@ -3310,7 +3311,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 677165171}
+        m_MethodName: ActivateAudioEffects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &677165171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677165168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb9489ac6024614a8f1faae9605b7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEffectsEvent: {fileID: 11400000, guid: aff261750b3fec6458a6f33b2fc75606, type: 2}
 --- !u!1001 &694094034
 PrefabInstance:
   m_ObjectHideFlags: 0
