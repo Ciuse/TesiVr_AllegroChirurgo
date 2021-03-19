@@ -33,14 +33,14 @@ public class ColliderOverTheObject : MonoBehaviour
     IEnumerator StartDissolve()
     {
         yield return new WaitForSeconds(0.1f);
-        objectPinzabile.DissolveMesh();
+        objectPinzabile.CorrectPickEvents();
     }
     
     public void OnTriggerEnter(Collider other)
     {
         if (!done && other.CompareTag(objectToPick.tag))
         {
-           
+
             if (objectPinzabile != null && objectPinzabile.isActive)
             {
                 done = true;
@@ -51,7 +51,7 @@ public class ColliderOverTheObject : MonoBehaviour
 
             }else{
 
-                objectPinzabile.ErrorMesh();
+                objectPinzabile.WrongPickEvents();
 
             }
         }

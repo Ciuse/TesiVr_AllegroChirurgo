@@ -9,7 +9,10 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
 
     public bool isActive;
-    public GameEvent electricEdgeTouched;
+    public ObjectEvent objectTouchBox;
+    public ObjectEvent objectWrongPickedSound;
+    public ObjectEvent objectCorrectPickedSound;
+
     public int idObject;
     
     private float health=-1;
@@ -22,7 +25,8 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
     private List<Transform> childList = new List<Transform>();
     public bool visualEffectObject;
-    
+    public bool soundEffectObject;
+
     public void Start()
     {
         StartHash();
@@ -53,7 +57,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
     {
         if (startDissolveEffect)
         {
-            health += 0.005f;
+            health += 0.008f;
             foreach (Transform child in childList)
             {
                 child.GetComponent<Renderer>().material.SetFloat(DissolveValue, health);
@@ -78,7 +82,8 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
             ResetState();
-            electricEdgeTouched.Raise();
+            Interactable interactable = new Interactable {id = idObject};
+            objectTouchBox.Raise(interactable);
 
         }
     }
@@ -87,8 +92,9 @@ public class ObjectPinzabile  : DynamicObjectAbstract
     {
         if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
-            ResetState();
-            electricEdgeTouched.Raise();
+            ResetState();        
+            Interactable interactable = new Interactable {id = idObject};
+            objectTouchBox.Raise(interactable);
 
         }
     }
@@ -119,7 +125,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         ResetState();
     }
         
-    public void DissolveMesh()
+    public void CorrectPickEvents()
     {
         if (visualEffectObject)
         {
@@ -130,9 +136,15 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             Destroy(gameObject);
         }
         
+        if (soundEffectObject)
+        {
+            Interactable interactable = new Interactable {id = idObject};
+            objectCorrectPickedSound.Raise(interactable);
+        }
+        
     }
     
-    public void ErrorMesh()
+    public void WrongPickEvents()
     {
         if (visualEffectObject)
         {
@@ -140,6 +152,11 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             {
                 child.GetComponent<MeshRenderer>().material.SetColor(Albedo, Color.red);
             }
+        }
+        if (soundEffectObject)
+        {
+            Interactable interactable = new Interactable {id = idObject};
+            objectWrongPickedSound.Raise(interactable);
         }
         
 
@@ -158,4 +175,8 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         visualEffectObject = !visualEffectObject;
     }
     
+    public void ActivateSoundEffectObjects()
+    {
+        soundEffectObject = !soundEffectObject;
+    }
 }
