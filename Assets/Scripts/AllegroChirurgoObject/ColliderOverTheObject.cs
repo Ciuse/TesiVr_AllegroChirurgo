@@ -12,6 +12,7 @@ public class ColliderOverTheObject : MonoBehaviour
     public GameEvent saveObjectPickedEvent;
     public GameEvent objectPickedWithSuccess;
     public Transform positionObjectAfterSuccess;
+    
 
     private bool done=false;
     private void Start()
@@ -26,6 +27,8 @@ public class ColliderOverTheObject : MonoBehaviour
         Destroy(gameObject);
    
     }
+
+   
     
     IEnumerator StartDissolve()
     {
@@ -47,7 +50,9 @@ public class ColliderOverTheObject : MonoBehaviour
                 StartCoroutine(ObjectPickedWithSuccessWait());
 
             }else{
+
                 objectPinzabile.ErrorMesh();
+
             }
         }
 

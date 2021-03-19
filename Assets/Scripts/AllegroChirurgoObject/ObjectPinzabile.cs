@@ -21,6 +21,8 @@ public class ObjectPinzabile  : DynamicObjectAbstract
     private static readonly int DissolveValue = Shader.PropertyToID("_DissolveValue");
 
     private List<Transform> childList = new List<Transform>();
+    public bool visualEffectObject;
+    
     public void Start()
     {
         StartHash();
@@ -119,15 +121,27 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         
     public void DissolveMesh()
     {
-        startDissolveEffect = true;
+        if (visualEffectObject)
+        {
+            startDissolveEffect = true;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
     }
     
     public void ErrorMesh()
     {
-        foreach (Transform child in childList)
+        if (visualEffectObject)
         {
-            child.GetComponent<MeshRenderer>().material.SetColor(Albedo, Color.red);
+            foreach (Transform child in childList)
+            {
+                child.GetComponent<MeshRenderer>().material.SetColor(Albedo, Color.red);
+            }
         }
+        
 
     }
     
@@ -139,5 +153,9 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         }
     }
 
+    public void ActivateVisualEffectObjects()
+    {
+        visualEffectObject = !visualEffectObject;
+    }
     
 }

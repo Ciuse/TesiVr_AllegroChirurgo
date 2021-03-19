@@ -64,7 +64,6 @@ public class PinzareV3 : MonoBehaviour
         m_InteractableBase = GetComponent<XRGrabInteractable>();
         m_InteractableBase.onSelectEntered.AddListener(GripPulled);
         m_InteractableBase.onSelectExited.AddListener(GripReleased);
-        disableHand = true;
         startPinza1Color = pinza1Material.color;
         startPinza2Color = pinza2Material.color;
     }
