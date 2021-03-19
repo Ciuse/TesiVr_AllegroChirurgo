@@ -1042,9 +1042,9 @@ RectTransform:
   m_Father: {fileID: 1663091420}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &229213469
@@ -2624,9 +2624,9 @@ RectTransform:
   m_Father: {fileID: 1168520327}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 9.8, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537954223
@@ -3021,13 +3021,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Activate visual effect pinza
+  m_Text: Visual Effect Pinza
 --- !u!222 &591005817
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3251,8 +3251,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47, y: -174}
-  m_SizeDelta: {x: 158.67484, y: 24.719376}
+  m_AnchoredPosition: {x: -35.16, y: -183.94}
+  m_SizeDelta: {x: 164.21631, y: 33.671978}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &677165170
 MonoBehaviour:
@@ -4098,8 +4098,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47, y: 110}
-  m_SizeDelta: {x: 158.67484, y: 24.719376}
+  m_AnchoredPosition: {x: -34.65, y: 96.3}
+  m_SizeDelta: {x: 165.06949, y: 37.086823}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &786686783
 MonoBehaviour:
@@ -4579,9 +4579,9 @@ RectTransform:
   m_Father: {fileID: 677165169}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948267970
@@ -5675,8 +5675,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -34, y: 15}
-  m_SizeDelta: {x: 170.7976, y: 45.428764}
+  m_AnchoredPosition: {x: -34.94, y: 5.5}
+  m_SizeDelta: {x: 164.82983, y: 36.901405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1107757457
 MonoBehaviour:
@@ -6159,10 +6159,10 @@ RectTransform:
   m_Father: {fileID: 754244283}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.9, y: -87}
-  m_SizeDelta: {x: 186.64835, y: 39.61582}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -35.38, y: -90.3}
+  m_SizeDelta: {x: -432.3491, y: -420.7336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1168520328
 MonoBehaviour:
@@ -6825,13 +6825,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Activate Vibration
+  m_Text: Controller Vibration
 --- !u!222 &1430116631
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6873,9 +6873,9 @@ RectTransform:
   m_Father: {fileID: 1107757456}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441709766
@@ -7528,9 +7528,9 @@ RectTransform:
   m_Father: {fileID: 786686782}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1563797790
@@ -7668,7 +7668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610029572}
   m_LocalRotation: {x: 0.46127343, y: -0.5359355, z: 0.23977858, w: 0.6652115}
-  m_LocalPosition: {x: 0.0012, y: 0.0313, z: 0.0065}
+  m_LocalPosition: {x: -0.0324, y: 0.0228, z: 0.0144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1624222223}
@@ -8530,8 +8530,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -36, y: 179}
-  m_SizeDelta: {x: 167.34052, y: 24.735893}
+  m_AnchoredPosition: {x: -34.1, y: 190.32}
+  m_SizeDelta: {x: 164.78354, y: 34.92278}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1663091421
 MonoBehaviour:
@@ -8947,7 +8947,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -9248,13 +9248,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Disable audio effects
+  m_Text: Audio Effects
 --- !u!222 &1892617391
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10009,8 +10009,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9, y: -0.5}
-  m_SizeDelta: {x: -28, y: -3}
+  m_AnchoredPosition: {x: 11.925003, y: -0.5}
+  m_SizeDelta: {x: -23.849884, y: -0.869812}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2090731691
 MonoBehaviour:
@@ -10038,13 +10038,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Activate visual effect objects
+  m_Text: Visual Effect Objects
 --- !u!222 &2090731692
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10184,6 +10184,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2105507557}
+  - component: {fileID: 2105507559}
+  - component: {fileID: 2105507558}
   m_Layer: 8
   m_Name: AudioClipManager
   m_TagString: Untagged
@@ -10206,6 +10208,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2105507558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105507556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: aff261750b3fec6458a6f33b2fc75606, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2105507559}
+        m_MethodName: ActivateSoundEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2105507559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105507556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731580194f0fcc34e8439f2823daa970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pinzaSFX: {fileID: 710579290}
+  objectSFX: {fileID: 331642862}
+  UISFX: {fileID: 476882209}
 --- !u!1 &2112905874
 GameObject:
   m_ObjectHideFlags: 0
@@ -13038,7 +13082,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

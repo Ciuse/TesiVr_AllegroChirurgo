@@ -25,7 +25,6 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
     private List<Transform> childList = new List<Transform>();
     public bool visualEffectObject;
-    public bool soundEffectObject;
 
     public void Start()
     {
@@ -136,11 +135,10 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             Destroy(gameObject);
         }
         
-        if (soundEffectObject)
-        {
-            Interactable interactable = new Interactable {id = idObject};
-            objectCorrectPickedSound.Raise(interactable);
-        }
+     
+        Interactable interactable = new Interactable {id = idObject};
+        objectCorrectPickedSound.Raise(interactable);
+
         
     }
     
@@ -153,11 +151,10 @@ public class ObjectPinzabile  : DynamicObjectAbstract
                 child.GetComponent<MeshRenderer>().material.SetColor(Albedo, Color.red);
             }
         }
-        if (soundEffectObject)
-        {
+       
             Interactable interactable = new Interactable {id = idObject};
             objectWrongPickedSound.Raise(interactable);
-        }
+
         
 
     }
@@ -173,10 +170,5 @@ public class ObjectPinzabile  : DynamicObjectAbstract
     public void ActivateVisualEffectObjects()
     {
         visualEffectObject = !visualEffectObject;
-    }
-    
-    public void ActivateSoundEffectObjects()
-    {
-        soundEffectObject = !soundEffectObject;
     }
 }

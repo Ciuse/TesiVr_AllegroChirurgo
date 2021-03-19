@@ -8,43 +8,85 @@ using UnityEngine;
 
 public class ManageJSON : MonoBehaviour
 {
-    public FirebaseClient firebase2;
+    public FirebaseClient firebase;
+    public String sessionCode;
     public String handUsed;
-    public int cardHasBeenDrawed;
+    public bool vibrationSetting;
+    public bool hideHandSetting;
+    public bool visualPinzaSetting;
+    public bool visualObjectSetting;
+    public bool soundObjectSetting;
+
+    public int drawnCardNumber;
     
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
-        firebase2 = new FirebaseClient("https://allegrochirurgovr-default-rtdb.europe-west1.firebasedatabase.app/");
+        DontDestroyOnLoad(gameObject);
+        firebase = new FirebaseClient("https://allegrochirurgovr-default-rtdb.europe-west1.firebasedatabase.app/");
+        sessionCode = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+        SaveStartingSetting();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public async void SceneStartedWithRightHand()
     {
         print("Scene started with right hand");
-        handUsed = "rightHand";
-        /*await firebase2.Child("User entered " + System.DateTime.Now.ToString("yyyy-MM-dd") ).Child("SETTINGS").PatchAsync("{\"hand\": \"right\"}");
-        await firebase2.Child("User entered " + System.DateTime.Now.ToString("yyyy-MM-dd") ).Child("SETTINGS").PatchAsync("{\"mode\": 1}");
-        await firebase2.Child("User entered " + System.DateTime.Now.ToString("yyyy-MM-dd")).Child("ERRORS").PatchAsync("{\"errorHand\": 2}");*/
+        handUsed = "\"rightHand\"";
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"hand\":"+ handUsed+"}");
+
         
     }
     
     public async void SceneStartedWithLeftHand()
     {
         print("Scene started with left hand");
-        handUsed = "leftHand";
-        /*await firebase2.Child("User entered " + System.DateTime.Now.ToString("yyyy-MM-dd") ).Child("SETTINGS").PostAsync("{\"hand\": \"left\"}");*/
+        handUsed = "\"leftHand\"";
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"hand\":"+ handUsed+"}");
     }
     
-    public void CardHasBeenDrawedEvent(Interactable interactable)
+    public void CardHasBeenDrawnEvent(Interactable interactable)
     {
-        cardHasBeenDrawed = interactable.id;
-        print("The card that has been drawed is : "+ interactable.id);
+        drawnCardNumber = interactable.id;
+        print("The card that has been drawn is : "+ interactable.id);
+    }
+    
+    public async void HideHandSetting()
+    {
+        hideHandSetting = !hideHandSetting;
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"hideHand\":"+ hideHandSetting.ToString().ToLower()+"}");
+    }
+    
+    public async void VibrationFeedbackSetting()
+    {
+        vibrationSetting = !vibrationSetting;
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
+    }
+    
+    public async void VisualPinzaSetting()
+    {
+        visualPinzaSetting = !visualPinzaSetting;
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualPinza\":"+ visualPinzaSetting.ToString().ToLower()+"}");
+    }
+    
+    public async void VisualObjectSetting()
+    {
+        visualObjectSetting = !visualObjectSetting;
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
+    }
+    public async void SoundObjectSetting()
+    {
+        soundObjectSetting = !soundObjectSetting;
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
+    }
+
+    public async void SaveStartingSetting()
+    {
+       await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"hideHand\":"+hideHandSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualPinza\":"+ visualPinzaSetting.ToString().ToLower()+"}");
+
     }
 }
