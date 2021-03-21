@@ -11,6 +11,9 @@ TagManager:
   - PinzaLeft
   - XrRigRight
   - XrRigLeft
+  - Object3
+  - Object4
+  - Object2
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - ObjPinzabili
   - Electric Edge
   - Pinza
-  - 
+  - TrackingCollider
   - 
   - ControllerRight
   - ControllerLeft

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using EventSystem;
 using Firebase.Database;
 using Firebase.Database.Query;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class ManageJSON : MonoBehaviour
@@ -17,8 +18,7 @@ public class ManageJSON : MonoBehaviour
     public bool visualObjectSetting;
     public bool soundObjectSetting;
 
-    public int drawnCardNumber;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,11 +45,7 @@ public class ManageJSON : MonoBehaviour
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"hand\":"+ handUsed+"}");
     }
     
-    public void CardHasBeenDrawnEvent(Interactable interactable)
-    {
-        drawnCardNumber = interactable.id;
-        print("The card that has been drawn is : "+ interactable.id);
-    }
+
     
     public async void HideHandSetting()
     {
@@ -87,6 +83,10 @@ public class ManageJSON : MonoBehaviour
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualPinza\":"+ visualPinzaSetting.ToString().ToLower()+"}");
+        TrackObject trackObject = new TrackObject {id = 0};
 
     }
+
+
+
 }

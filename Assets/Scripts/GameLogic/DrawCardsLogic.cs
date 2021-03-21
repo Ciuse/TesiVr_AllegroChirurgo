@@ -12,10 +12,12 @@ public class DrawCardsLogic : MonoBehaviour
     public ObjectEvent cardHasBeenDrawedEvent;
     public Image imageCard;
     public Sprite wellDoneImage;
-    private int numChoosen;
+    private int numChoosen=-1;
     private Sprite cardPickedPending;
     public GameEvent resetCardsEvent;
     public List<int> numbers;
+    public int currentCard=0;
+    public Button startGameButton;
    
 
     // Start is called before the first frame update
@@ -27,16 +29,22 @@ public class DrawCardsLogic : MonoBehaviour
         }
         
     }
-    
-
-    public void drawCard()
+    public void StartFirstDraw()
     {
         resetCardsEvent.Raise();
-        StartCoroutine(waitBeforeDraw());
+        StartCoroutine(WaitSequentialDraw());
+        startGameButton.interactable = false;
+
+    }
+
+    public void DrawCard()
+    {
+        resetCardsEvent.Raise();
+        StartCoroutine(WaitRandomDraw());
        
     }
 
-    IEnumerator waitBeforeDraw()
+    IEnumerator WaitRandomDraw()
     {
         yield return new WaitForSeconds(0.5f);
         numChoosen = numbers[Random.Range(0, numbers.Count)];
@@ -47,13 +55,41 @@ public class DrawCardsLogic : MonoBehaviour
    
     }
 
-    public void cardPickedWithSuccess()
+    IEnumerator WaitSequentialDraw()
     {
-        imagesCards.RemoveAt(numChoosen);
-        numbers.RemoveAt(numbers.Count-1); //se si rimuove anche l immagine la lista delle immagini ora sarà grande 1 in meno, quindi il numero piu grande da pescare va rimosso
+        if (currentCard<imagesCards.Count)
+        {
+            yield return new WaitForSeconds(0.5f);
+            imageCard.sprite = imagesCards[currentCard];
+            cardPickedPending = imagesCards[currentCard];
+            Interactable interactable = new Interactable {id = currentCard};
+            cardHasBeenDrawedEvent.Raise(interactable);
+            currentCard++;
+        }
+        else
+        {
+            print("vinto");
+        }
+        
+    }
+
+    IEnumerator Wait2Sec()
+    {
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(WaitSequentialDraw());
+    }
+    
+    public void CardPickedWithSuccess()
+    {
+        if (numChoosen != -1)
+        {
+            imagesCards.RemoveAt(numChoosen);
+            numbers.RemoveAt(numbers.Count-1); //se si rimuove anche l immagine la lista delle immagini ora sarà grande 1 in meno, quindi il numero piu grande da pescare va rimosso
+        }
+        
         imagesCardsSuccess.Add(cardPickedPending);
         imageCard.sprite = wellDoneImage;
-
+        StartCoroutine(Wait2Sec());
     }
     
 }

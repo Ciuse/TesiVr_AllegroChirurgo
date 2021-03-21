@@ -10299,7 +10299,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2070174722}
-        m_MethodName: drawCard
+        m_MethodName: DrawCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11847,7 +11847,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2070174722}
-        m_MethodName: cardPickedWithSuccess
+        m_MethodName: CardPickedWithSuccess
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
