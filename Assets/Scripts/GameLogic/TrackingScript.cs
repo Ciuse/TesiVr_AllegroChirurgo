@@ -8,32 +8,30 @@ public class TrackingScript : MonoBehaviour
 {
     float elapsed = 0f;
     
-    private int idObject=-1;
-    private bool isRecording=false;
-    private bool isActive=false;
+    public int idObject=-1;
+    public bool isRecording=false;
+    public bool isActive=false;
     private bool errorObject=false;
+    private bool errorPinza = false;
 
     private DateTime lastTime; 
     private JsonObject jsonObjectToSave = new JsonObject();
     private TrackObject trackObject = new TrackObject {id = 0};
     public Transform objectPinzabileTransform;
-    
+
 
 
     public void Update()
-    {     
+    {
         elapsed += Time.deltaTime;
-        if (elapsed >= 1f)
+        if (elapsed >= 0.1f)
         {
-            elapsed = elapsed % 1f;
+            elapsed = elapsed % 0.1f;
             if (isRecording)
             {
-                if (!errorObject)
-                {
-                    trackObject.positionList.Add(objectPinzabileTransform.position);
-                    trackObject.rotationList.Add(objectPinzabileTransform.rotation);
-                }
-                else
+                trackObject.positionList.Add(objectPinzabileTransform.position);
+                trackObject.rotationList.Add(objectPinzabileTransform.rotation);
+                if (errorObject)
                 {
                     jsonObjectToSave.numberOfErrorObject++;
                     DateTime currentTime = DateTime.Now;
@@ -43,6 +41,18 @@ public class TrackingScript : MonoBehaviour
                     lastTime = currentTime;
                     errorObject = false;
                 }
+                else if (errorPinza)
+                {
+                    jsonObjectToSave.numberOfErrorPinza++;
+                    DateTime currentTime = DateTime.Now;
+                    trackObject.duration = currentTime.Subtract(lastTime);
+                    jsonObjectToSave.TrackObjects.Add(trackObject);
+                    trackObject = new TrackObject {id = jsonObjectToSave.TrackObjects.Count};
+                    lastTime = currentTime;
+                    errorPinza = false;
+                }
+
+                
             }
         }
     }
@@ -71,7 +81,11 @@ public class TrackingScript : MonoBehaviour
     {
         errorObject = true;
     }
-    
+   
+    public void SetErrorPinza()
+    {
+        errorPinza = true;
+    }
     
     public void StopRecording()
     {

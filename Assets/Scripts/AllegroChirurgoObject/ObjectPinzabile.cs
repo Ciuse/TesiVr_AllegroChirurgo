@@ -80,7 +80,6 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
         if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
-            ResetState();
             Interactable interactable = new Interactable {id = idObject};
             objectTouchBox.Raise(interactable);
 
@@ -91,7 +90,6 @@ public class ObjectPinzabile  : DynamicObjectAbstract
     {
         if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
-            ResetState();        
             Interactable interactable = new Interactable {id = idObject};
             objectTouchBox.Raise(interactable);
 

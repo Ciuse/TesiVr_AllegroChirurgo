@@ -9,6 +9,8 @@ using Vector3 = UnityEngine.Vector3;
 
 public class PinzareV3 : MonoBehaviour
 {
+    public bool resetObjectAfterPinzaTouch;
+    public bool resetObjectAfterObjectTouch;
     public List<GameObject> sphereListPinza1;
     public List<GameObject> sphereListPinza2;
 
@@ -101,16 +103,7 @@ public class PinzareV3 : MonoBehaviour
         }
     }
 
-    public void ActiveVisualEffectPinza()
-    {
-        activateVisualEffectPinza = !activateVisualEffectPinza;
-    }
 
-    public void DisabledHand()
-    {
-        disableHand = !disableHand;
-    }
-    
     public void FixedUpdate()
     {
         if (m_gripDown)
@@ -377,26 +370,56 @@ public class PinzareV3 : MonoBehaviour
         
     }
 
-    public void RemoveObjectPinzato()
+    public void RemoveObjectPinzatoPinzaTouch()
     {
-        resetting = true;
-        if (objectWithPinza1 != null)
+        if (resetObjectAfterPinzaTouch)
         {
-            objectWithPinza1.gameObject.transform.SetParent(null);
-            objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+            resetting = true;
+            if (objectWithPinza1 != null)
+            {
+                objectWithPinza1.gameObject.transform.SetParent(null);
+                objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+                objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().ResetState();
+            }
+        
+            pinza1CollidedOutside = false;
+            pinza2CollidedOutside = false;
+            pinza1Collided = false;
+            pinza2Collided = false;
+            objectWithPinza1 = null;
+            objectWithPinza2 = null;
+        
+            collided = false;
+        
+            StartCoroutine(WaitReset());
+    
         }
         
-        pinza1CollidedOutside = false;
-        pinza2CollidedOutside = false;
-        pinza1Collided = false;
-        pinza2Collided = false;
-        objectWithPinza1 = null;
-        objectWithPinza2 = null;
+    }
+    
+    public void RemoveObjectPinzatoObjectTouch()
+    {
+        if (resetObjectAfterObjectTouch)
+        {
+            resetting = true;
+            if (objectWithPinza1 != null)
+            {
+                objectWithPinza1.gameObject.transform.SetParent(null);
+                objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+                objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().ResetState();
+            }
         
-        collided = false;
+            pinza1CollidedOutside = false;
+            pinza2CollidedOutside = false;
+            pinza1Collided = false;
+            pinza2Collided = false;
+            objectWithPinza1 = null;
+            objectWithPinza2 = null;
         
-        StartCoroutine(WaitReset());
-
+            collided = false;
+        
+            StartCoroutine(WaitReset());
+        }
     }
     
     public void RemoveObjectSuccess()
@@ -467,4 +490,25 @@ public class PinzareV3 : MonoBehaviour
             Gizmos.DrawWireSphere(sphere.transform.position, collisionOutsideRadius);
         }
     }
+    
+    public void ActiveVisualEffectPinza()
+    {
+        activateVisualEffectPinza = !activateVisualEffectPinza;
+    }
+
+    public void DisabledHand()
+    {
+        disableHand = !disableHand;
+    }
+
+    public void ActiveResetObjectAfterPinzaTouch()
+    {
+        resetObjectAfterPinzaTouch = !resetObjectAfterPinzaTouch;
+    }
+
+    public void ActiveResetObjectAfterObjectTouch()
+    {
+        resetObjectAfterObjectTouch = !resetObjectAfterObjectTouch;
+    }
+
 }
