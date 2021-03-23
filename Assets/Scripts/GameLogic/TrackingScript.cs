@@ -8,29 +8,31 @@ public class TrackingScript : MonoBehaviour
 {
     float elapsed = 0f;
     
-    public int idObject=-1;
+    private int idObject=-1;
     public bool isRecording=false;
-    public bool isActive=false;
     private bool errorObject=false;
     private bool errorPinza = false;
 
     private DateTime lastTime; 
-    private JsonObject jsonObjectToSave = new JsonObject();
+    public JsonObject jsonObjectToSave = new JsonObject();
     private TrackObject trackObject = new TrackObject {id = 0};
-    public Transform objectPinzabileTransform;
+    public Transform handTransform;
+    public Transform pinzaTransform;
+
+    public GameEvent saveJsonObject;
 
 
 
     public void Update()
     {
         elapsed += Time.deltaTime;
-        if (elapsed >= 0.1f)
+        if (elapsed >= 0.2f)
         {
-            elapsed = elapsed % 0.1f;
+            elapsed = elapsed % 0.2f;
             if (isRecording)
             {
-                trackObject.positionList.Add(objectPinzabileTransform.position);
-                trackObject.rotationList.Add(objectPinzabileTransform.rotation);
+                trackObject.positionList.Add(handTransform.position);
+                trackObject.rotationList.Add(handTransform.rotation);
                 if (errorObject)
                 {
                     jsonObjectToSave.numberOfErrorObject++;
@@ -51,16 +53,16 @@ public class TrackingScript : MonoBehaviour
                     lastTime = currentTime;
                     errorPinza = false;
                 }
+                Debug.Log(handTransform.position.x);
 
                 
             }
         }
     }
 
-    // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        if (isActive && !isRecording && other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
+        if (!isRecording && (other.gameObject.layer == LayerMask.NameToLayer("Pinza")))
         {
             jsonObjectToSave.startTime = DateTime.Now;
             lastTime=DateTime.Now;
@@ -70,11 +72,10 @@ public class TrackingScript : MonoBehaviour
     
     public void ActiveCollider(Interactable interactable)
     {
-        if (idObject == interactable.id)
-        {
-            isActive = true;
-            jsonObjectToSave.idObject = interactable.id;
-        }
+        idObject = interactable.id;
+        transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=true;
+        jsonObjectToSave.idObject = idObject;
+   
     }
 
     public void SetErrorObject()
@@ -90,5 +91,7 @@ public class TrackingScript : MonoBehaviour
     public void StopRecording()
     {
         isRecording = false;
+        transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=false;
+        saveJsonObject.Raise();
     }
 }

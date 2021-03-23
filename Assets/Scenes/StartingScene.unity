@@ -5970,13 +5970,12 @@ GameObject:
   - component: {fileID: 1903076132}
   - component: {fileID: 1903076135}
   - component: {fileID: 1903076134}
-  - component: {fileID: 1903076136}
   - component: {fileID: 1903076141}
   - component: {fileID: 1903076140}
   - component: {fileID: 1903076139}
   - component: {fileID: 1903076138}
   - component: {fileID: 1903076137}
-  - component: {fileID: 1903076142}
+  - component: {fileID: 1903076136}
   m_Layer: 8
   m_Name: ManageJsonToSaveDB
   m_TagString: Untagged
@@ -6083,12 +6082,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cf32d97afc498d8bc78d23c97e3d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 628ad80b553c8c4409371d64e82584fe, type: 2}
+  Event: {fileID: 11400000, guid: df5c4160ccfb4c24d97e68f0d288d618, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1903076132}
-        m_MethodName: SetDrawnCardNumber
+        m_MethodName: SaveJsonObject
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6224,33 +6223,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1903076132}
         m_MethodName: SoundObjectSetting
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1903076142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903076131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 2fe26c339270e964bbd0c9c887905cd3, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1903076132}
-        m_MethodName: StartRecorderTime
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using EventSystem;
 using Firebase.Database;
 using Firebase.Database.Query;
@@ -83,9 +81,17 @@ public class ManageJSON : MonoBehaviour
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualPinza\":"+ visualPinzaSetting.ToString().ToLower()+"}");
-        TrackObject trackObject = new TrackObject {id = 0};
-
     }
+
+    public async void SaveJsonObject(Interactable interactable)
+    {
+        JsonObject jsonObjectToSave= interactable.interactedObject.GetComponent<TrackingScript>().jsonObjectToSave;
+//        await firebase.Child(sessionCode).Child("ListOfObject").PostAsync(JsonConvert.SerializeObject(jsonObjectToSave))
+//            .ContinueWith(interactable.interactedObject.GetComponent<TrackingScript>().jsonObjectToSave=new JsonObject());
+//        
+        
+    }
+
 
 
 
