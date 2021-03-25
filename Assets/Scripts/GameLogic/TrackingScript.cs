@@ -15,12 +15,12 @@ public class TrackingScript : MonoBehaviour
 
     private DateTime lastTime; 
     public JsonObject jsonObjectToSave = new JsonObject();
-    private TrackObject trackObject = new TrackObject {id = 0};
+    private TrajectoryObject singleTrajectory = new TrajectoryObject {id = 0};
     public Transform handTransform;
     public Transform pinzaTransform;
 
     public ObjectEvent saveJsonObject;
-
+    private int executionNumber=-1;
 
 
     public void Update()
@@ -31,15 +31,15 @@ public class TrackingScript : MonoBehaviour
             elapsed = elapsed % 0.2f;
             if (isRecording)
             {
-                trackObject.positionList.Add(handTransform.position);
-                trackObject.rotationList.Add(handTransform.rotation);
+                singleTrajectory.positionList.Add(handTransform.position);
+                singleTrajectory.rotationList.Add(handTransform.rotation);
                 if (errorObject)
                 {
                     jsonObjectToSave.numberOfErrorObject++;
                     DateTime currentTime = DateTime.Now;
-                    trackObject.duration = currentTime.Subtract(lastTime);
-                    jsonObjectToSave.TrackObjects.Add(trackObject);
-                    trackObject = new TrackObject {id = jsonObjectToSave.TrackObjects.Count};
+                    singleTrajectory.duration = currentTime.Subtract(lastTime);
+                    jsonObjectToSave.trajectoryList.Add(singleTrajectory);
+                    singleTrajectory = new TrajectoryObject {id = jsonObjectToSave.trajectoryList.Count};
                     lastTime = currentTime;
                     errorObject = false;
                 }
@@ -47,9 +47,9 @@ public class TrackingScript : MonoBehaviour
                 {
                     jsonObjectToSave.numberOfErrorPinza++;
                     DateTime currentTime = DateTime.Now;
-                    trackObject.duration = currentTime.Subtract(lastTime);
-                    jsonObjectToSave.TrackObjects.Add(trackObject);
-                    trackObject = new TrackObject {id = jsonObjectToSave.TrackObjects.Count};
+                    singleTrajectory.duration = currentTime.Subtract(lastTime);
+                    jsonObjectToSave.trajectoryList.Add(singleTrajectory);
+                    singleTrajectory = new TrajectoryObject {id = jsonObjectToSave.trajectoryList.Count};
                     lastTime = currentTime;
                     errorPinza = false;
                 }
@@ -72,11 +72,13 @@ public class TrackingScript : MonoBehaviour
     
     public void ActiveCollider(Interactable interactable)
     {
+        executionNumber++;
         jsonObjectToSave = new JsonObject();
+        singleTrajectory = new TrajectoryObject {id = 0};
         idObject = interactable.id;
         transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=true;
         jsonObjectToSave.idObject = idObject;
-   
+        jsonObjectToSave.executionNumber = executionNumber;
     }
 
     public void SetErrorObject()
@@ -92,6 +94,7 @@ public class TrackingScript : MonoBehaviour
     public void StopRecording()
     {
         isRecording = false;
+        jsonObjectToSave.endTime = DateTime.Now;
         transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=false;
         Interactable objectToSave = new Interactable{ interactedObject= this.gameObject};
         saveJsonObject.Raise(objectToSave);
