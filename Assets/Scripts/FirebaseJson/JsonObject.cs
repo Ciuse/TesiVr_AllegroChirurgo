@@ -11,5 +11,5 @@ public class JsonObject
     public int numberOfErrorObject { get; set; }
     public DateTime startTime  { get; set; }
     public DateTime endTime  { get; set; }
-    public List<TrackObject> TrackObjects = new List<TrackObject>();
+    public List<TrajectoryObject> trajectoryList = new List<TrajectoryObject>();
 }
