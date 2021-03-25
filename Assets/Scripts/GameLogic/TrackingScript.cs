@@ -19,7 +19,7 @@ public class TrackingScript : MonoBehaviour
     public Transform handTransform;
     public Transform pinzaTransform;
 
-    public GameEvent saveJsonObject;
+    public ObjectEvent saveJsonObject;
 
 
 
@@ -72,6 +72,7 @@ public class TrackingScript : MonoBehaviour
     
     public void ActiveCollider(Interactable interactable)
     {
+        jsonObjectToSave = new JsonObject();
         idObject = interactable.id;
         transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=true;
         jsonObjectToSave.idObject = idObject;
@@ -92,6 +93,8 @@ public class TrackingScript : MonoBehaviour
     {
         isRecording = false;
         transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=false;
-        saveJsonObject.Raise();
+        Interactable objectToSave = new Interactable{ interactedObject= this.gameObject};
+        saveJsonObject.Raise(objectToSave);
     }
+    
 }

@@ -86,10 +86,15 @@ public class ManageJSON : MonoBehaviour
     public async void SaveJsonObject(Interactable interactable)
     {
         JsonObject jsonObjectToSave= interactable.interactedObject.GetComponent<TrackingScript>().jsonObjectToSave;
-//        await firebase.Child(sessionCode).Child("ListOfObject").PostAsync(JsonConvert.SerializeObject(jsonObjectToSave))
+        await firebase.Child(sessionCode).Child("ListOfObject")
+            .PostAsync(JsonConvert.SerializeObject(jsonObjectToSave,Formatting.None,
+                new JsonSerializerSettings()
+                { 
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                }));
 //            .ContinueWith(interactable.interactedObject.GetComponent<TrackingScript>().jsonObjectToSave=new JsonObject());
 //        
-        
+
     }
 
 
