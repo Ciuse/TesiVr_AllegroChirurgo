@@ -1,0 +1,59 @@
+Scena principale:
+L'utente può scegliere se pinzare con la mano destra o con la sinistra.
+
+Scena di gioco
+7 settings(sono tutti attivi nel momento in cui si entra nella scena del gioco)
+
+Detect pinza collision: 
+Il sistema individua le collisioni tra la pinza e la buca e simula la caduta dell'oggeto resettandolo alla sua posizione iniziale 
+gli errori vengono salvati nel database remoto di firebase.
+Detect object collision:
+Il sistema individua le collisioni tra l'oggetto pinzato e la buca e simula la caduta dell'oggeto resettandolo alla sua posizione iniziale 
+gli errori vengono salvati nel database remoto di firebase.
+Vibration Pinza:
+E' possibile attivare o rimuovere la vibrazione quando la pinza tocca la buca.  
+Visual effect Pinza:
+E' possibile attivare o rimuovere gli effetti visivi della pinza(diventa rossa quando attraversa 
+l'oggetto da pinzare o il tavolo)
+Visual effect object
+E' possibile attivare o rimuovere gli effetti visivi degli oggetti da pinzare(diventano rossi 
+quando vengono pinzati ma non è il loro turno e quando invece vengono pinzati con successo,
+si dissolvono con un effetto di shaders).
+Sound Effect:
+E' possibile attivare o rimuovere tutti i suoni della scena(suono di vibrazione, 
+suono dell'oggetto quando tocca il bordo elettrico e suono per indicare la buon riuscita
+del pinzaggio.
+Hide hand:
+E' possibile rendere visibile o invisibile la mano quando si pinza. 
+
+
+File Json partita:
+Ogni volta che si entra nella scena di gioco, viene salvato un file json associato ad un
+codice di sessione che corrisponde alla data e all'ora a cui si è fatto accesso.
+Vengono salvati tutti i valori booleani dei settings.
+Inoltre viene salvata una lista di oggetti. Per ogni oggetto che deve essere pinzato, viene
+creato un file in cui vengono salvate tutte le informazioni necessarie per analizzare 
+i movimenti dell'utente nel cercare di pinzare il dato oggetto.
+
+Oggetto da pinzare:
+-start time
+-end time
+-id object
+-number of errors when the object touches the electric edge
+-number of errors when the tweezer touches the electric edge
+-trajectory list : 
+La lista è costituita da tante traiettorie quanti sono gli errori 
+che l'utente fa nel pinzare l'oggetto.
+Ogni singolo oggetto traiettoria è costituito da una durata, un id, dalla lista dei 
+vettori posizione e dalla lista dei vettori rotazione.
+
+
+Domande:
+
+-Servono altri settings?
+-Dobbiamo salvare altre cose nel database? 
+-Al momento salviamo le liste dei vettori di posizione e rotazione della mano,
+dobbiamo salvare anche quelle della punta della pinza?
+-Quante buche dobbiamo fare?
+-Quanti Oggetti diversi dobbiamo realizzare?
+-Va bene spezzare la traiettoria in più traiettorie in base a quanti errori l'utente compie?

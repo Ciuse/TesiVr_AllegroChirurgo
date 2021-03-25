@@ -15,7 +15,8 @@ public class ManageJSON : MonoBehaviour
     public bool visualPinzaSetting;
     public bool visualObjectSetting;
     public bool soundObjectSetting;
-
+    public bool detectObjectCollision;
+    public bool detectPinzaCollision;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +74,18 @@ public class ManageJSON : MonoBehaviour
         soundObjectSetting = !soundObjectSetting;
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
     }
+    
+    
+    public async void DetectPinzaCollisionSetting()
+    {
+        detectPinzaCollision = !detectPinzaCollision;
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"detectPinzaCollision\":"+ detectPinzaCollision.ToString().ToLower()+"}");
+    }
+    public async void DetectObjectCollisionSetting()
+    {
+        detectObjectCollision = !detectObjectCollision;
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"detectObjectCollision\":"+ detectObjectCollision.ToString().ToLower()+"}");
+    }
 
     public async void SaveStartingSetting()
     {
@@ -81,6 +94,9 @@ public class ManageJSON : MonoBehaviour
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualPinza\":"+ visualPinzaSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"detectPinzaCollision\":"+ detectPinzaCollision.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"detectObjectCollision\":"+ detectObjectCollision.ToString().ToLower()+"}");
+
     }
 
     public async void SaveJsonObject(Interactable interactable)
