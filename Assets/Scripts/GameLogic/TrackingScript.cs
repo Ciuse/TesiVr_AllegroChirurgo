@@ -13,6 +13,8 @@ public class TrackingScript : MonoBehaviour
     private bool errorObject=false;
     private bool errorPinza = false;
 
+    public List<GameObject> objectPinzabiliList = new List<GameObject>();
+
     private DateTime lastTime; 
     public JsonObject jsonObjectToSave = new JsonObject();
     private TrajectoryObject singleTrajectory = new TrajectoryObject {id = 0};
@@ -21,6 +23,8 @@ public class TrackingScript : MonoBehaviour
 
     public ObjectEvent saveJsonObject;
     private int executionNumber=-1;
+
+    private Vector3 objectPosition;
 
 
     public void Update()
@@ -31,8 +35,8 @@ public class TrackingScript : MonoBehaviour
             elapsed = elapsed % 0.2f;
             if (isRecording)
             {
-                singleTrajectory.positionList.Add(handTransform.position);
-                singleTrajectory.rotationList.Add(handTransform.rotation);
+                singleTrajectory.positionList.Add(GetNormalizedPinzaPosition());
+                singleTrajectory.rotationList.Add(pinzaTransform.rotation);
                 if (errorObject)
                 {
                     jsonObjectToSave.numberOfErrorObject++;
@@ -53,7 +57,8 @@ public class TrackingScript : MonoBehaviour
                     lastTime = currentTime;
                     errorPinza = false;
                 }
-                Debug.Log(handTransform.position.x);
+                Debug.Log(pinzaTransform.position.y);
+                Debug.Log(GetNormalizedPinzaPosition().y);
 
                 
             }
@@ -79,6 +84,7 @@ public class TrackingScript : MonoBehaviour
         transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=true;
         jsonObjectToSave.idObject = idObject;
         jsonObjectToSave.executionNumber = executionNumber;
+        objectPosition = objectPinzabiliList[idObject].transform.position;
     }
 
     public void SetErrorObject()
@@ -94,10 +100,24 @@ public class TrackingScript : MonoBehaviour
     public void StopRecording()
     {
         isRecording = false;
+        jsonObjectToSave.trajectoryList.Add(singleTrajectory);
         jsonObjectToSave.endTime = DateTime.Now;
         transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=false;
         Interactable objectToSave = new Interactable{ interactedObject= this.gameObject};
         saveJsonObject.Raise(objectToSave);
     }
+
+    private Vector3 GetNormalizedPinzaPosition()
+    {
+        Vector3 pinzaPos = pinzaTransform.position;
+        print("pinza"+pinzaPos);
+        print("obj"+objectPosition);
+        return new Vector3(
+            pinzaPos.x-objectPosition.x, 
+            pinzaPos.y-objectPosition.y, 
+            pinzaPos.z-objectPosition.z);
+        
+    }
+ 
     
 }

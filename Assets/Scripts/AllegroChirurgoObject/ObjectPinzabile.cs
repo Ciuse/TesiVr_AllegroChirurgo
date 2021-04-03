@@ -115,15 +115,20 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         }
     }
     
-    public void DeActivateObject()
+    public void ResetObjectAfterDraw()
     {
-        isActive = false;
-        ResetMesh();
-        ResetState();
+        hasInteract = false;
+        if (isActive == false)
+        {
+            ResetMesh();
+            ResetState();
+        }
+   
     }
         
     public void CorrectPickEvents()
     {
+
         if (visualEffectObject)
         {
             startDissolveEffect = true;

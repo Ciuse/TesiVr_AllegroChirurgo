@@ -1719,7 +1719,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 589226232}
-        m_MethodName: DeActivateObject
+        m_MethodName: ResetObjectAfterDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1951,7 +1951,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 647614009}
-        m_MethodName: DeActivateObject
+        m_MethodName: ResetObjectAfterDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3038,7 +3038,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1080054287}
-        m_MethodName: DeActivateObject
+        m_MethodName: ResetObjectAfterDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5660,7 +5660,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1527259648}
-        m_MethodName: DeActivateObject
+        m_MethodName: ResetObjectAfterDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6709,7 +6709,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1832698622}
-        m_MethodName: DeActivateObject
+        m_MethodName: ResetObjectAfterDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7099,7 +7099,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1998050632}
-        m_MethodName: DeActivateObject
+        m_MethodName: ResetObjectAfterDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11213,7 +11213,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7517549318740370737}
-        m_MethodName: DeActivateObject
+        m_MethodName: ResetObjectAfterDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11475,7 +11475,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7517549318911844859}
-        m_MethodName: DeActivateObject
+        m_MethodName: ResetObjectAfterDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11661,7 +11661,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7517549319938770349}
-        m_MethodName: DeActivateObject
+        m_MethodName: ResetObjectAfterDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -81,12 +81,15 @@ public class DrawCardsLogic : MonoBehaviour
     
     public void CardPickedWithSuccess()
     {
+        
         if (numChoosen != -1)
         {
             imagesCards.RemoveAt(numChoosen);
             numbers.RemoveAt(numbers.Count-1); //se si rimuove anche l immagine la lista delle immagini ora sarà grande 1 in meno, quindi il numero piu grande da pescare va rimosso
         }
         
+        resetCardsEvent.Raise();
+
         imagesCardsSuccess.Add(cardPickedPending);
         imageCard.sprite = wellDoneImage;
         StartCoroutine(Wait2Sec());

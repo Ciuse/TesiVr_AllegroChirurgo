@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoaderScript : MonoBehaviour
 {
 
-    
+    public GameEvent createNewSessionId;
 
     public void LoadSceneRightHandGrab()
     {
@@ -24,6 +24,7 @@ public class SceneLoaderScript : MonoBehaviour
     public void LoadStartScene()
     {
         SceneManager.LoadScene(0);
+        createNewSessionId.Raise();
         
     }
     

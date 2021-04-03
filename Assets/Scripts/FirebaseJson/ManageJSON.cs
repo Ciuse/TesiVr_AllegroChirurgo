@@ -114,6 +114,13 @@ public class ManageJSON : MonoBehaviour
     }
 
 
+    public void CreateNewSessionId()
+    {
+        sessionCode = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+    }
+    
+
+
 
 
 }
