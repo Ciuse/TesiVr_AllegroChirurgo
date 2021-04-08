@@ -1,15 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using HapticPlugin;
+using UnityEngine.Serialization;
 
-
-//! This object can be applied to the stylus of a haptic device. 
-//! It allows you to pick up simulated objects and feel the involved physics.
-//! Optionally, it can also turn off physics interaction when nothing is being held.
-public class HapticGrabber : MonoBehaviour 
+public class Pinzare_Haptic : MonoBehaviour
 {
-	public int buttonID = 0;		//!< index of the button assigned to grabbing.  Defaults to the first button
+    
+    public Animator animatorPinza1;
+    public Animator animatorPinza2;
+    private float _smoothClosePinza1=0f;
+    private float _smoothClosePinza2 = 0f;
+    public bool collided;
+    public bool pinza1Collided;
+    public bool pinza2Collided;
+    public List<GameObject> sphereListPinza1;
+    public List<GameObject> sphereListPinza2;
+    public float collisionRadius;
+    public LayerMask sphereCollisionMask;
+    public Collider[] _colliders = new Collider[10];
+    
+    
+    
+    public int buttonID = 0;		//!< index of the button assigned to grabbing.  Defaults to the first button
 	public bool ButtonActsAsToggle = false;	//!< Toggle button? as opposed to a press-and-hold setup?  Defaults to off.
 	public enum PhysicsToggleStyle{ none, onTouch, onGrab };
 	public PhysicsToggleStyle physicsToggleStyle = PhysicsToggleStyle.none;   //!< Should the grabber script toggle the physics forces on the stylus? 
@@ -21,8 +33,8 @@ public class HapticGrabber : MonoBehaviour
 	private GameObject touching = null;			//!< Reference to the object currently touched
 	private GameObject grabbing = null;			//!< Reference to the object currently grabbed
 	private FixedJoint joint = null;			//!< The Unity physics joint created between the stylus and the object being grabbed.
-
-
+	
+	
 	//! Automatically called for initialization
 	void Start () 
 	{
@@ -81,28 +93,64 @@ public class HapticGrabber : MonoBehaviour
 		bool newButtonStatus = hapticDevice.GetComponent<HapticPlugin>().Buttons [buttonID] == 1;
 		bool oldButtonStatus = buttonStatus;
 		buttonStatus = newButtonStatus;
+		
+		// check collision with tweezer and object
+		if (buttonStatus)
+		{
+			animatorPinza1.SetBool("ClosePinza1", true);
+			animatorPinza2.SetBool("ClosePinza2", true);
 
+			if (!collided)
+			{
+				if (!pinza1Collided)
+				{
+					if (buttonStatus)
+					{
+						_smoothClosePinza1 = _smoothClosePinza1 + 0.02f;
+					}
+					else
+					{
+						_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
+					}
+
+					animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
+				}
+
+				if (!pinza2Collided)
+				{
+					if (buttonStatus)
+					{
+						_smoothClosePinza2 = _smoothClosePinza2 + 0.02f;
+					}
+					else
+					{
+						_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
+					}
+
+					animatorPinza2.SetFloat("TriggerValue", _smoothClosePinza2);
+				}
+				CheckCollidersWhileNoObject();
+			}
+		} else
+		{
+			ResetPinze();
+		}    
+		
+		
 
 		if (oldButtonStatus == false && newButtonStatus == true)
 		{
 			if (ButtonActsAsToggle)
 			{
 				if (grabbing)
-				{
-					print("release con toggle true");
 					release();
-				}
-
 				else
-				{
-					print("grab con toggle true");
 					grab();
-				}
-					
 			} else
 			{
-				print("grab con toggle false");
-				grab();
+				//viene usata solo questa parte del codice 
+				if(collided)
+					grab();
 			}
 		}
 		if (oldButtonStatus == true && newButtonStatus == false)
@@ -112,8 +160,8 @@ public class HapticGrabber : MonoBehaviour
 				//Do Nothing
 			} else
 			{
+				//viene usata solo questa parte del codice
 				release();
-				print("release con toggle false");
 			}
 		}
 
@@ -132,6 +180,83 @@ public class HapticGrabber : MonoBehaviour
 			
 	}
 
+	public void ResetPinze()
+	{
+		animatorPinza1.SetBool("ClosePinza1",false);
+		animatorPinza2.SetBool("ClosePinza2",false);
+		
+		pinza1Collided = false;
+		pinza2Collided = false;
+
+		collided = false;
+        
+		_smoothClosePinza1 = 0f;
+		_smoothClosePinza2= 0f;
+        
+	}
+
+	public void CheckCollidersWhileNoObject()
+	{
+	
+		if (IsPinza1Collided())
+		{
+			pinza1Collided = true;
+		}
+		else
+		{
+			pinza1Collided = false;
+		}
+		
+		if (IsPinza2Collided())
+		{
+			pinza2Collided = true;
+		}
+		else
+		{
+			pinza2Collided = false;
+		}
+		
+		if (pinza1Collided && pinza2Collided)
+		{
+			collided = true;
+		}
+		
+	}
+	
+	private bool IsPinza1Collided()
+	{
+           
+		foreach (GameObject sphere in sphereListPinza1)
+		{
+			var sphereMovableCollisions =
+				Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
+					sphereCollisionMask);
+			if (sphereMovableCollisions > 0)
+			{
+				return true;
+			}
+		}
+		return false;
+
+	}
+    
+	private bool IsPinza2Collided()
+	{
+		foreach (GameObject sphere in sphereListPinza2)
+		{
+			var sphereMovableCollisions =
+				Physics.OverlapSphereNonAlloc(sphere.transform.position, collisionRadius, _colliders,
+					sphereCollisionMask);
+			if (sphereMovableCollisions > 0)
+			{
+				return true;
+			}
+		}
+		return false;
+        
+  
+	}  
+	
 	private void hapticTouchEvent( bool isTouch )
 	{
 		if (physicsToggleStyle == PhysicsToggleStyle.onGrab)
@@ -287,4 +412,21 @@ public class HapticGrabber : MonoBehaviour
 	{
 		return (grabbing != null);
 	}
+
+	private void OnDrawGizmos()
+	{
+		foreach (GameObject sphere in sphereListPinza1)
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawWireSphere(sphere.transform.position, collisionRadius);
+
+		}
+
+		foreach (GameObject sphere in sphereListPinza2)
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawWireSphere(sphere.transform.position, collisionRadius);
+		}
+	}
+
 }

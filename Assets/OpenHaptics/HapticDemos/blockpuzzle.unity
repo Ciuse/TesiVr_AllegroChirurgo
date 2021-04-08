@@ -557,6 +557,11 @@ PrefabInstance:
       propertyPath: DisableUnityCollisionsWithTouchableObjects
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114040887698310022, guid: 7cdb4dbd1f8f22a4a9a363f1a23b8217,
+        type: 3}
+      propertyPath: physicsToggleStyle
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 114312932697678990, guid: 7cdb4dbd1f8f22a4a9a363f1a23b8217,
         type: 3}
       propertyPath: hapticManipulator

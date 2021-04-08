@@ -887,7 +887,7 @@ public class HapticPlugin : MonoBehaviour  {
 			}
 
 			// Draw Stylus!
-			Gizmos.color = Color.white;
+			Gizmos.color = Color.blue;
 			Gizmos.matrix = gameObject.transform.localToWorldMatrix * stylusTransformRaw;
 			Gizmos.DrawWireSphere(Vector3.zero, 10);
 			Gizmos.DrawWireCube(new Vector3 (0, 0, 20), new Vector3 (5, 5, 40));
