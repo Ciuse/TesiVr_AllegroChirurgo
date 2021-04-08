@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EventSystem;
+using EventSystem2;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;

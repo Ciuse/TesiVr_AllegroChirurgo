@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using EventSystem;
+using EventSystem2;
 using UnityEngine;
 
 public abstract class DynamicObjectAbstract : MonoBehaviour
