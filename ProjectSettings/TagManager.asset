@@ -14,6 +14,7 @@ TagManager:
   - Object3
   - Object4
   - Object2
+  - Touchable
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Hands
   - ColliderOverObject
   - Object
-  - ObjectPinzabileBase
+  - 
   - 
   - 
   - 

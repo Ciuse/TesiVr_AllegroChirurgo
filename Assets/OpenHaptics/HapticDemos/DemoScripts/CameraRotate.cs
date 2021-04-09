@@ -19,6 +19,10 @@ public class CameraRotate : MonoBehaviour {
 	public GameObject leftIcon = null;
 	public GameObject rightIcon = null;
 
+	public GameObject topIcon = null;
+	public GameObject bottomIcon = null;
+
+	
 	public Color standardColor = Color.grey;
 	public Color usedColor = Color.red;
 
@@ -42,10 +46,10 @@ public class CameraRotate : MonoBehaviour {
 			
 
 		// Keypress for confused users
-		if (Input.GetKeyDown("c"))
-		{
-			disableSpinner = !disableSpinner;
-		}
+		//if (Input.GetKeyDown("c"))
+		//{
+		//	disableSpinner = !disableSpinner;
+		//}
 
 		// Reset color of icons
 		if (leftIcon != null)
@@ -54,6 +58,12 @@ public class CameraRotate : MonoBehaviour {
 		if (rightIcon != null)
 			rightIcon.GetComponent<Image>().color = standardColor;		
 		
+		if (topIcon != null)
+			topIcon.GetComponent<Image>().color = standardColor;		
+
+		if (bottomIcon != null)
+			bottomIcon.GetComponent<Image>().color = standardColor;		
+
 
 
 		bool isDisabled = disableSpinner;
@@ -78,6 +88,11 @@ public class CameraRotate : MonoBehaviour {
 				isDisabled = true;
 			}
 
+			print(isDisabled);
+			if (isDisabled)
+			{
+				break;
+			}
 
 			// Determine the X value, relative to the screen...
 			float x = 0.0f;
@@ -95,7 +110,8 @@ public class CameraRotate : MonoBehaviour {
 				float delta = (mag - T) * (Mathf.Abs(x) / x);
 				delta /= Screen.width;
 
-				turnTable.transform.Rotate(0, -speed * delta * Time.deltaTime, 0);
+				//.transform.Rotate(0, -speed * delta * Time.deltaTime, 0);
+				turnTable.transform.Translate(speed * delta * Time.deltaTime,0 , 0);
 
 				// Light up the icon
 				if (leftIcon != null && x < 0)
@@ -104,15 +120,44 @@ public class CameraRotate : MonoBehaviour {
 				if (rightIcon != null && x > 0)
 					rightIcon.GetComponent<Image>().color = usedColor;		
 			}
+			
+			float z = 0.0f;
+			z = cam.GetComponent<Camera>().WorldToScreenPoint(hapticDevice.GetComponent<HapticPlugin>().stylusPositionWorld).y;
+			z -= (Screen.height / 2.0f);
+
+			// Determine the threshhold, relative to the screen.
+			float K = (Screen.height / 2.0f) - Screen.height * threshold;
+
+
+			// If the X value is greater than the threshold, rotate the "turnTable" object.
+			if (Mathf.Abs(z) > K && !isDisabled)
+			{
+				float mag = Mathf.Min(Mathf.Abs(z), 10* Screen.height * threshold);
+				float delta = (mag - K) * (Mathf.Abs(z) / z);
+				delta /= Screen.height;
+
+				//.transform.Rotate(0, -speed * delta * Time.deltaTime, 0);
+				turnTable.transform.Translate(0,0 , speed * delta * Time.deltaTime);
+
+				// Light up the icon
+				if (topIcon != null && z > 0)
+					topIcon.GetComponent<Image>().color = usedColor;		
+
+				if (bottomIcon != null && z < 0)
+					bottomIcon.GetComponent<Image>().color = usedColor;		
+			}
 		}
 
 
 		// If rotation is disabled, for any reason, hide the icons.
 		if (leftIcon != null)
 			leftIcon.SetActive(!isDisabled);
-
 		if (rightIcon != null)
 			rightIcon.SetActive(!isDisabled);
+		if (topIcon != null)
+			topIcon.SetActive(!isDisabled);
+		if (bottomIcon != null)
+			bottomIcon.SetActive(!isDisabled);
 
 	}
 }

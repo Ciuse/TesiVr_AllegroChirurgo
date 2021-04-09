@@ -91,18 +91,17 @@ public class Pinzare_Haptic : MonoBehaviour
 	void FixedUpdate () 
 	{
 		bool newButtonStatus = hapticDevice.GetComponent<HapticPlugin>().Buttons [buttonID] == 1;
-		bool oldButtonStatus = buttonStatus;
 		buttonStatus = newButtonStatus;
 		
 		// check collision with tweezer and object
 		if (buttonStatus)
 		{
-			animatorPinza1.SetBool("ClosePinza1", true);
-			animatorPinza2.SetBool("ClosePinza2", true);
+			animatorPinza1.SetBool("ClosePinzaHaptic1", true);
+			animatorPinza2.SetBool("ClosePinzaHaptic2", true);
 
 			if (!collided)
 			{
-				if (!pinza1Collided)
+				if (!pinza1Collided && _smoothClosePinza1<=1)
 				{
 					if (buttonStatus)
 					{
@@ -116,7 +115,7 @@ public class Pinzare_Haptic : MonoBehaviour
 					animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
 				}
 
-				if (!pinza2Collided)
+				if (!pinza2Collided && _smoothClosePinza2<=1)
 				{
 					if (buttonStatus)
 					{
@@ -131,6 +130,10 @@ public class Pinzare_Haptic : MonoBehaviour
 				}
 				CheckCollidersWhileNoObject();
 			}
+			else
+			{
+				print("colliso con entrambe le sfere");
+			}
 		} else
 		{
 			ResetPinze();
@@ -138,31 +141,14 @@ public class Pinzare_Haptic : MonoBehaviour
 		
 		
 
-		if (oldButtonStatus == false && newButtonStatus == true)
-		{
-			if (ButtonActsAsToggle)
-			{
-				if (grabbing)
-					release();
-				else
-					grab();
-			} else
-			{
-				//viene usata solo questa parte del codice 
-				if(collided)
-					grab();
-			}
+		if (buttonStatus)
+		{ 
+			if(collided) 
+				grab();
 		}
-		if (oldButtonStatus == true && newButtonStatus == false)
+		if (!buttonStatus)
 		{
-			if (ButtonActsAsToggle)
-			{
-				//Do Nothing
-			} else
-			{
-				//viene usata solo questa parte del codice
-				release();
-			}
+			release();
 		}
 
 		// Make sure haptics is ON if we're grabbing
@@ -182,17 +168,26 @@ public class Pinzare_Haptic : MonoBehaviour
 
 	public void ResetPinze()
 	{
-		animatorPinza1.SetBool("ClosePinza1",false);
-		animatorPinza2.SetBool("ClosePinza2",false);
+		animatorPinza1.SetBool("ClosePinzaHaptic1",false);
+		animatorPinza2.SetBool("ClosePinzaHaptic2",false);
 		
 		pinza1Collided = false;
 		pinza2Collided = false;
 
 		collided = false;
-        
-		_smoothClosePinza1 = 0f;
-		_smoothClosePinza2= 0f;
-        
+
+		if (_smoothClosePinza1 > 0)
+		{
+			_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
+			animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
+	
+		}
+
+		if (_smoothClosePinza2 > 0)
+		{
+			_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
+			animatorPinza2.SetFloat("TriggerValue", _smoothClosePinza2);
+		}
 	}
 
 	public void CheckCollidersWhileNoObject()
