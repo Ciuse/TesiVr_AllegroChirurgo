@@ -88,7 +88,6 @@ public class CameraRotate : MonoBehaviour {
 				isDisabled = true;
 			}
 
-			print(isDisabled);
 			if (isDisabled)
 			{
 				break;

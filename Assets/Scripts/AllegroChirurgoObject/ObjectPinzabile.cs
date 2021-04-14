@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EventSystem2;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectPinzabile  : DynamicObjectAbstract
 {
@@ -83,6 +84,20 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             Interactable interactable = new Interactable {id = idObject};
             objectTouchBox.Raise(interactable);
 
+        }
+
+        if (SceneManager.GetActiveScene().name == "Haptic_Scene2")
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
+            {
+                Interact();
+            }
+
+            if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Object"))
+            {
+                Interactable interactable = new Interactable {id = idObject};
+                objectTouchBox.Raise(interactable);
+            }
         }
     }
 

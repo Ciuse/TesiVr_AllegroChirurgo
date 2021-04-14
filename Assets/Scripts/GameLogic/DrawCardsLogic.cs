@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using EventSystem2;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class DrawCardsLogic : MonoBehaviour
 {
@@ -29,6 +32,24 @@ public class DrawCardsLogic : MonoBehaviour
         }
         
     }
+
+    private void Update()
+    {
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            StartGameHaptic();
+        }
+
+    }
+
+    public void StartGameHaptic()
+    {
+        resetCardsEvent.Raise();
+        StartCoroutine(WaitSequentialDraw());
+    }
+    
+    
+
     public void StartFirstDraw()
     {
         resetCardsEvent.Raise();
