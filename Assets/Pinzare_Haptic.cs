@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Object = UnityEngine.Object;
 
 public class Pinzare_Haptic : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class Pinzare_Haptic : MonoBehaviour
     public float collisionRadius;
     public LayerMask sphereCollisionMask;
     public Collider[] _colliders = new Collider[10];
-    
+    public bool jointCreated;
     
     
     public int buttonID = 0;		//!< index of the button assigned to grabbing.  Defaults to the first button
@@ -86,13 +88,21 @@ public class Pinzare_Haptic : MonoBehaviour
 
 	}
 
-	
 	//! Update is called once per frame
 	void FixedUpdate () 
 	{
+		if (jointCreated)
+		{
+			if (joint == null)
+			{
+				jointCreated = false;
+				release();
+				ResetPinze();
+			}
+		}
+	
 		bool newButtonStatus = hapticDevice.GetComponent<HapticPlugin>().Buttons [buttonID] == 1;
 		buttonStatus = newButtonStatus;
-		
 		// check collision with tweezer and object
 		if (buttonStatus)
 		{
@@ -140,7 +150,6 @@ public class Pinzare_Haptic : MonoBehaviour
 		}    
 		
 		
-
 		if (buttonStatus)
 		{ 
 			if(collided) 
@@ -372,6 +381,8 @@ public class Pinzare_Haptic : MonoBehaviour
 
 		joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
 		joint.connectedBody = body;
+         		joint.breakForce = 10f;
+		jointCreated = true;
 	}
 	//! changes the layer of an object, and every child of that object.
 	static void SetLayerRecursively(GameObject go, int layerNumber )
@@ -382,24 +393,23 @@ public class Pinzare_Haptic : MonoBehaviour
 	}
 
 	//! Stop grabbing an obhject. (Like opening a claw.) Normally called when the button is released. 
-	void release()
+	public void release()
 	{
 		if( grabbing == null ) //Nothing to release
 			return;
 
+		if (joint != null)
+		{
+			Debug.Assert(joint != null);
 
-		Debug.Assert(joint != null);
-
-		joint.connectedBody = null;
-		Destroy(joint);
-
-
+			joint.connectedBody = null;
+			Destroy(joint);
+		}
 
 		grabbing = null;
 
 		if (physicsToggleStyle != PhysicsToggleStyle.none)
 			hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
-			
 	}
 
 	//! Returns true if there is a current object. 

@@ -71,6 +71,25 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         }
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (SceneManager.GetActiveScene().name == "Haptic_Scene2")
+        {
+
+            if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
+            {
+                Interact();
+            }
+
+            if (hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Object"))
+            {
+                Interactable interactable = new Interactable {id = idObject};
+                objectTouchBox.Raise(interactable);
+            }
+
+        }
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -86,19 +105,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
         }
 
-        if (SceneManager.GetActiveScene().name == "Haptic_Scene2")
-        {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
-            {
-                Interact();
-            }
-
-            if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Object"))
-            {
-                Interactable interactable = new Interactable {id = idObject};
-                objectTouchBox.Raise(interactable);
-            }
-        }
+    
     }
 
     private void OnTriggerStay(Collider other)

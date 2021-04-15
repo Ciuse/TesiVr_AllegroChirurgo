@@ -3,6 +3,7 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
+      <Path>Assets</Path>
       <Path>Library/PackageCache/com.unity.ads@3.5.0</Path>
       <Path>Library/PackageCache/com.unity.analytics@3.3.5</Path>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.0</Path>
@@ -24,6 +25,7 @@
       <Path>Library/PackageCache/com.unity.xr.management@3.2.16</Path>
       <Path>Library/PackageCache/com.unity.xr.oculus@1.5.0</Path>
       <Path>Library/PackageCache/com.unity.xr.windowsmr@2.4.1</Path>
+      <Path>Packages</Path>
       <Path>ProjectSettings</Path>
     </explicitIncludes>
     <explicitExcludes>
@@ -31,6 +33,7 @@
       <Path>.idea</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Temp</Path>
       <Path>obj</Path>
     </explicitExcludes>
   </component>

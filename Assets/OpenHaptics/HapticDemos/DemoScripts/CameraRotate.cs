@@ -42,6 +42,7 @@ public class CameraRotate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		
 		if (turnTable == null)	return;
 			
 
@@ -80,12 +81,18 @@ public class CameraRotate : MonoBehaviour {
 				continue;
 			}
 
+			if (hapticDevice.GetComponent<HapticPlugin>().stylusPositionWorld.y < 0.5f || hapticDevice.GetComponent<HapticPlugin>().stylusPositionWorld.y>0.8f)
+			{
+				return;
+			}
+
 			// Don't rotate if we're picking something up.  
 			// (This seems like it might be useful, but in practice, it's just confusing.)
-			HapticGrabber grabber = hapticDevice.GetComponent<HapticPlugin>().hapticManipulator.GetComponent<HapticGrabber>();
+			Pinzare_Haptic grabber = hapticDevice.GetComponent<HapticPlugin>().hapticManipulator.GetComponent<Pinzare_Haptic>();
 			if (grabber != null && grabber.isGrabbing())
 			{
 				isDisabled = true;
+				
 			}
 
 			if (isDisabled)

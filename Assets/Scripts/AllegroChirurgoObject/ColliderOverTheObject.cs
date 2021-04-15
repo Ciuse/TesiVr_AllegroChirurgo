@@ -44,7 +44,10 @@ public class ColliderOverTheObject : MonoBehaviour
             if (objectPinzabile != null && objectPinzabile.isActive)
             {
                 done = true;
+                objectToPick.GetComponent<Rigidbody>().useGravity = false;
+                objectToPick.GetComponent<Rigidbody>().isKinematic = true;
                 objectToPick.transform.position = new Vector3(positionObjectAfterSuccess.position.x,positionObjectAfterSuccess.position.y,positionObjectAfterSuccess.position.z);
+                
                 saveObjectPickedEvent.Raise();
                 StartCoroutine(StartDissolve());
                 StartCoroutine(ObjectPickedWithSuccessWait());

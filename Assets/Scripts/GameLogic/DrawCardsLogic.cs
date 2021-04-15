@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using EventSystem2;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -21,6 +22,8 @@ public class DrawCardsLogic : MonoBehaviour
     public List<int> numbers;
     public int currentCard=0;
     public Button startGameButton;
+    public bool startGame = false;
+    public TextMeshProUGUI startGameText;
    
 
     // Start is called before the first frame update
@@ -35,9 +38,11 @@ public class DrawCardsLogic : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.qKey.wasPressedThisFrame)
+        if (Keyboard.current.qKey.wasPressedThisFrame && !startGame)
         {
             StartGameHaptic();
+            startGame = true;
+            startGameText.enabled = false;
         }
 
     }
