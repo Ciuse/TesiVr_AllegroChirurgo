@@ -112,6 +112,7 @@ public class HapticEffect : MonoBehaviour {
 			//If the stylus is within the Zone, The ClosestPoint and the Stylus point will be identical.
 			if (delta[ii]  <= Mathf.Epsilon)
 			{
+				print("entrato");
 				inTheZone [ii] = true;
 
 				// Convert from the World coordinates to coordinates relative to the haptic device.
@@ -151,6 +152,7 @@ public class HapticEffect : MonoBehaviour {
 			{
 				if (inTheZone [ii])
 				{
+					print("effetto iniziato");
 					HapticPlugin.effects_startEffect(device.configName, ID );
 				} else
 				{
