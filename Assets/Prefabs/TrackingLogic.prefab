@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 4663507662536346832}
   - component: {fileID: 4663507662536346835}
   - component: {fileID: 4663507662536346834}
+  - component: {fileID: 5054721817634238303}
   m_Layer: 11
   m_Name: TrackingLogic
   m_TagString: Untagged
@@ -201,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRecording: 0
+  objectPinzabiliList: []
   handTransform: {fileID: 0}
   pinzaTransform: {fileID: 0}
   saveJsonObject: {fileID: 11400000, guid: df5c4160ccfb4c24d97e68f0d288d618, type: 2}
@@ -304,6 +306,33 @@ MonoBehaviour:
       - m_Target: {fileID: 4663507662536346839}
         m_MethodName: StopRecording
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5054721817634238303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4663507662536346793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40cf32d97afc498d8bc78d23c97e3d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 3234938dbd20edd4fbbfb886b18c07e2, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4663507662536346839}
+        m_MethodName: SaveWrongObjectPickedNumber
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

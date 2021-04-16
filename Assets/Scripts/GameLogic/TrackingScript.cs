@@ -69,17 +69,26 @@ public class TrackingScript : MonoBehaviour
     {
         if (!isRecording && (other.gameObject.layer == LayerMask.NameToLayer("Pinza")))
         {
+            singleTrajectory = new TrajectoryObject {id = 0};
             jsonObjectToSave.startTime = DateTime.Now;
             lastTime=DateTime.Now;
             isRecording = true;
         }
     }
     
+    private void OnTriggerExit(Collider other)
+    {
+        if (isRecording && (other.gameObject.layer == LayerMask.NameToLayer("Pinza")))
+        {
+            isRecording = false;
+        }
+    }
+
+    
     public void ActiveCollider(Interactable interactable)
     {
         executionNumber++;
         jsonObjectToSave = new JsonObject();
-        singleTrajectory = new TrajectoryObject {id = 0};
         idObject = interactable.id;
         transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=true;
         jsonObjectToSave.idObject = idObject;
@@ -117,6 +126,12 @@ public class TrackingScript : MonoBehaviour
             pinzaPos.y-objectPosition.y, 
             pinzaPos.z-objectPosition.z);
         
+    }
+
+    public void SaveWrongObjectPickedNumber(Interactable interactable)
+    {
+        if(!jsonObjectToSave.wrongObjectPicked.Exists(x=> x == interactable.id)) 
+            jsonObjectToSave.wrongObjectPicked.Add(interactable.id);
     }
  
     

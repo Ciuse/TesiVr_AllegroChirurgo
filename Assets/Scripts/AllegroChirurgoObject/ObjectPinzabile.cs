@@ -11,7 +11,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
     public bool isActive;
     public ObjectEvent objectTouchBox;
-    public ObjectEvent objectWrongPickedSound;
+    public ObjectEvent objectWrongPicked;
     public ObjectEvent objectCorrectPickedSound;
 
     public int idObject;
@@ -178,7 +178,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         }
        
             Interactable interactable = new Interactable {id = idObject};
-            objectWrongPickedSound.Raise(interactable);
+            objectWrongPicked.Raise(interactable);
 
         
 

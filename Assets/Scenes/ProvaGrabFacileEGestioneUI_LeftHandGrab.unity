@@ -2970,6 +2970,8 @@ MonoBehaviour:
   numbers: 
   currentCard: 0
   startGameButton: {fileID: 67810701}
+  startGame: 0
+  startGameText: {fileID: 0}
 --- !u!4 &429172047
 Transform:
   m_ObjectHideFlags: 0
@@ -10354,6 +10356,12 @@ PrefabInstance:
       propertyPath: idObject
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5635215310086973132, guid: e1236924997b680459988e8ee7ab1aef,
+        type: 3}
+      propertyPath: objectWrongPicked
+      value: 
+      objectReference: {fileID: 11400000, guid: 3234938dbd20edd4fbbfb886b18c07e2,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
 --- !u!82 &1292753525 stripped
@@ -10531,6 +10539,12 @@ PrefabInstance:
       propertyPath: idObject
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5635215310086973132, guid: e1236924997b680459988e8ee7ab1aef,
+        type: 3}
+      propertyPath: objectWrongPicked
+      value: 
+      objectReference: {fileID: 11400000, guid: 3234938dbd20edd4fbbfb886b18c07e2,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
 --- !u!1 &1339613454 stripped
@@ -10735,6 +10749,12 @@ PrefabInstance:
       propertyPath: idObject
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5635215310086973132, guid: e1236924997b680459988e8ee7ab1aef,
+        type: 3}
+      propertyPath: objectWrongPicked
+      value: 
+      objectReference: {fileID: 11400000, guid: 3234938dbd20edd4fbbfb886b18c07e2,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
 --- !u!82 &1346002964 stripped
@@ -11295,6 +11315,12 @@ PrefabInstance:
       propertyPath: isActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5635215310086973132, guid: e1236924997b680459988e8ee7ab1aef,
+        type: 3}
+      propertyPath: objectWrongPicked
+      value: 
+      objectReference: {fileID: 11400000, guid: 3234938dbd20edd4fbbfb886b18c07e2,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
 --- !u!82 &1420082113 stripped
