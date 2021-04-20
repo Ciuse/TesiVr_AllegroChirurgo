@@ -113,53 +113,57 @@ public class PinzareV3 : MonoBehaviour
                 rightHandMesh.SetActive(false);
                 pinzaInHand = true;
             }
-            
+
+           
             float triggerValue = triggerPressing.action.ReadValue<float>();
-            // check collision with tweezer and object
-            if (triggerValue>0.05f)
-            {  
-                animatorPinza1.SetBool("ClosePinza1",true);
-                animatorPinza2.SetBool("ClosePinza2",true);
 
-                if(!collided)
+            if (triggerValue > 0.05)
+            {
+                // check collision with tweezer and object
+                animatorPinza1.SetBool("CloseRight", true);
+                animatorPinza2.SetBool("CloseLeft", true);
+            }
+            else
+            {
+                if (_smoothClosePinza1 < 0.05 & _smoothClosePinza2 < 0.05)
                 {
-                    if(!pinza1Collided && !pinza1CollidedOutside)
-                    {
-                        if (_smoothClosePinza1 <= triggerValue)
-                        {
-                            _smoothClosePinza1 = _smoothClosePinza1 + 0.02f;
-                        }
-                        else
-                        {
-                            _smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
-                        }
+                    animatorPinza1.SetBool("CloseRight", false);
+                    animatorPinza2.SetBool("CloseLeft", false);
+                }
+                else
+                {
+                    SmoothMovePinza1(triggerValue);
+                    SmoothMovePinza2(triggerValue);
+                }
 
-                        animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
-                    }
-                    
-                    if(!pinza2Collided && !pinza2CollidedOutside)
-                    {
-                        if (_smoothClosePinza2 <= triggerValue)
-                        {
-                            _smoothClosePinza2 = _smoothClosePinza2 + 0.02f;
-                        }
-                        else
-                        {
-                            _smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
-                        }
+            }
 
-                        animatorPinza2.SetFloat("TriggerValue", _smoothClosePinza2); 
+
+            if (!collided)
+                {
+                    if (!pinza1Collided && !pinza1CollidedOutside)
+                    {
+                        SmoothMovePinza1(triggerValue);
                     }
-                   
+
+                    if (!pinza2Collided && !pinza2CollidedOutside)
+                    {
+                        SmoothMovePinza2(triggerValue);
+                    }
+
                     //animatorPinza1.SetFloat("TriggerValue", Random.Range(0f,1f));    
                     //ClosePinze();
                     CheckCollidersWhileNoObject();
                 }
-            }
-            else
-            {
-                ResetPinze();
-            }       
+          
+                else
+                {
+                    if (triggerValue<0.05)
+                    {
+                        ResetPinze();
+                    }
+                    
+                }
         }
         else{
             if (disableHand)
@@ -176,6 +180,33 @@ public class PinzareV3 : MonoBehaviour
         }
     }
 
+    private void SmoothMovePinza1(float triggerValue)
+    {
+        if (_smoothClosePinza1 <= triggerValue)
+        {
+            _smoothClosePinza1 = _smoothClosePinza1 + 0.02f;
+        }
+        else
+        {
+            _smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
+        }
+
+        animatorPinza1.SetFloat("Right", _smoothClosePinza1);
+    }
+
+    private void SmoothMovePinza2(float triggerValue)
+    {
+        if (_smoothClosePinza2 <= triggerValue)
+        {
+            _smoothClosePinza2 = _smoothClosePinza2 + 0.02f;
+        }
+        else
+        {
+            _smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
+        }
+
+        animatorPinza2.SetFloat("Left", _smoothClosePinza2);
+    }
 
     private bool IsPinza1Collided()
     {
@@ -346,9 +377,12 @@ public class PinzareV3 : MonoBehaviour
 
 
     public void ResetPinze()
-    {
-        animatorPinza1.SetBool("ClosePinza1",false);
-        animatorPinza2.SetBool("ClosePinza2",false);
+    {                        
+        animatorPinza1.SetBool("CloseRight", false);
+        animatorPinza2.SetBool("CloseLeft", false);
+        animatorPinza1.SetFloat("Right", 0f);
+        animatorPinza2.SetFloat("Left", 0f);
+       // animatorPinza2.SetBool("ClosePinza2",false);
         
         if (objectWithPinza1 != null)
         {
