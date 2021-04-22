@@ -12,7 +12,6 @@ public class ResetACObject : MonoBehaviour
         
     public void AddInteractedObjectToCurrentList(Interactable interactable)
     {
-        print("entrato");
         DynamicObjectAbstract dynamicObjectState = interactable.interactedObject.GetComponent<DynamicObjectAbstract>();
         dynamicObjectState.SetHasInteract();
         

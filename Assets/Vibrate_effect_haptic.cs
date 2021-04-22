@@ -46,16 +46,24 @@ public class Vibrate_effect_haptic : MonoBehaviour
 
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
-	    if (IsPinzeCollided())
+	    bool oldCollided = collided;
+
+	    collided = IsPinzeCollided();
+	    
+	    if (oldCollided != collided)
 	    {
-		    TurnEffectOn();
+		    if (collided)
+		    {
+			    TurnEffectOn();
+		    }
+		    else
+		    { 
+			    TurnEffectOff();
+		    }
 	    }
-	    else
-	    {
-		    TurnEffectOff();
-	    }
+	  
     }
 
 

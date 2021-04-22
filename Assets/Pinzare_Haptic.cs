@@ -21,8 +21,8 @@ public class Pinzare_Haptic : MonoBehaviour
     public LayerMask sphereCollisionMask;
     public Collider[] _colliders = new Collider[10];
     public bool jointCreated;
-    
-    
+    public GameObject objectWithPinza1 = null;
+  
     public int buttonID = 0;		//!< index of the button assigned to grabbing.  Defaults to the first button
 	public bool ButtonActsAsToggle = false;	//!< Toggle button? as opposed to a press-and-hold setup?  Defaults to off.
 	public enum PhysicsToggleStyle{ none, onTouch, onGrab };
@@ -97,6 +97,10 @@ public class Pinzare_Haptic : MonoBehaviour
 			{
 				jointCreated = false;
 				release();
+				if (objectWithPinza1 != null &&  objectWithPinza1.CompareTag("HandGrip"))
+				{
+					objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+				}
 				ResetPinze();
 			}
 		}
@@ -106,8 +110,8 @@ public class Pinzare_Haptic : MonoBehaviour
 		// check collision with tweezer and object
 		if (buttonStatus)
 		{
-			animatorPinza1.SetBool("ClosePinzaHaptic1", true);
-			animatorPinza2.SetBool("ClosePinzaHaptic2", true);
+			animatorPinza1.SetBool("CloseLeft", true);
+			animatorPinza2.SetBool("CloseRight", true);
 
 			if (!collided)
 			{
@@ -122,7 +126,7 @@ public class Pinzare_Haptic : MonoBehaviour
 						_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
 					}
 
-					animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
+					animatorPinza1.SetFloat("Left", _smoothClosePinza1);
 				}
 
 				if (!pinza2Collided && _smoothClosePinza2<=1)
@@ -136,13 +140,9 @@ public class Pinzare_Haptic : MonoBehaviour
 						_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
 					}
 
-					animatorPinza2.SetFloat("TriggerValue", _smoothClosePinza2);
+					animatorPinza2.SetFloat("Right", _smoothClosePinza2);
 				}
 				CheckCollidersWhileNoObject();
-			}
-			else
-			{
-				print("colliso con entrambe le sfere");
 			}
 		} else
 		{
@@ -154,6 +154,7 @@ public class Pinzare_Haptic : MonoBehaviour
 		{ 
 			if(collided) 
 				grab();
+			
 		}
 		if (!buttonStatus)
 		{
@@ -177,8 +178,8 @@ public class Pinzare_Haptic : MonoBehaviour
 
 	public void ResetPinze()
 	{
-		animatorPinza1.SetBool("ClosePinzaHaptic1",false);
-		animatorPinza2.SetBool("ClosePinzaHaptic2",false);
+		animatorPinza1.SetBool("CloseLeft",false);
+		animatorPinza2.SetBool("CloseRight",false);
 		
 		pinza1Collided = false;
 		pinza2Collided = false;
@@ -188,14 +189,14 @@ public class Pinzare_Haptic : MonoBehaviour
 		if (_smoothClosePinza1 > 0)
 		{
 			_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
-			animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
+			animatorPinza1.SetFloat("Left", _smoothClosePinza1);
 	
 		}
 
 		if (_smoothClosePinza2 > 0)
 		{
 			_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
-			animatorPinza2.SetFloat("TriggerValue", _smoothClosePinza2);
+			animatorPinza2.SetFloat("Right", _smoothClosePinza2);
 		}
 	}
 
@@ -205,10 +206,13 @@ public class Pinzare_Haptic : MonoBehaviour
 		if (IsPinza1Collided())
 		{
 			pinza1Collided = true;
+			if (objectWithPinza1 == null)
+				objectWithPinza1 = _colliders[0].gameObject.transform.root.gameObject;
 		}
 		else
 		{
 			pinza1Collided = false;
+			objectWithPinza1 = null;
 		}
 		
 		if (IsPinza2Collided())
@@ -223,6 +227,11 @@ public class Pinzare_Haptic : MonoBehaviour
 		if (pinza1Collided && pinza2Collided)
 		{
 			collided = true;
+			if (objectWithPinza1 != null &&  objectWithPinza1.CompareTag("HandGrip"))
+			{
+				objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+			}
+			
 		}
 		
 	}
@@ -336,22 +345,29 @@ public class Pinzare_Haptic : MonoBehaviour
 	//! Begin grabbing an object. (Like closing a claw.) Normally called when the button is pressed. 
 	void grab()
 	{
+		
 		GameObject touchedObject = touching;
+		
+		
 		if (touchedObject == null) // No Unity Collision? 
 		{
 			// Maybe there's a Haptic Collision
 			touchedObject = hapticDevice.GetComponent<HapticPlugin>().touching;
 		}
+		print("grabbato1");
 
 		if (grabbing != null) // Already grabbing
 			return;
+		print("grabbato2");
 		if (touchedObject == null) // Nothing to grab
 			return;
+		print("grabbato3");
 
 		// Grabbing a grabber is bad news.
 		if (touchedObject.tag =="Gripper")
 			return;
 
+		print("grabbato4");
 		Debug.Log( " Object : " + touchedObject.name + "  Tag : " + touchedObject.tag );
 
 		grabbing = touchedObject;
@@ -379,9 +395,21 @@ public class Pinzare_Haptic : MonoBehaviour
 			body = grabbing.GetComponent<Rigidbody>();
 		}
 
+		
+		
 		joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
 		joint.connectedBody = body;
-         		joint.breakForce = 10f;
+		if (grabbing.transform.gameObject.CompareTag("HandGrip"))
+		{
+			
+		}
+		else
+		{
+			joint.breakForce = 10f;
+		}
+		
+		
+		
 		jointCreated = true;
 	}
 	//! changes the layer of an object, and every child of that object.
