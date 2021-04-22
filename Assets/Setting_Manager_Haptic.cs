@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Setting_Manager_Haptic : MonoBehaviour
 {
-    public Scene_Loader_Haptic sceneLoaderHaptic;
+    private Scene_Loader_Haptic sceneLoaderHaptic;
     void Start()
     {
         sceneLoaderHaptic = GameObject.Find ("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
