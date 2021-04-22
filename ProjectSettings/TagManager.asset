@@ -15,6 +15,7 @@ TagManager:
   - Object4
   - Object2
   - Touchable
+  - HandGrip
   layers:
   - Default
   - TransparentFX
