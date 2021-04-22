@@ -106,8 +106,8 @@ public class Pinzare_Haptic : MonoBehaviour
 		// check collision with tweezer and object
 		if (buttonStatus)
 		{
-			animatorPinza1.SetBool("ClosePinzaHaptic1", true);
-			animatorPinza2.SetBool("ClosePinzaHaptic2", true);
+			animatorPinza1.SetBool("CloseLeft", true);
+			animatorPinza2.SetBool("CloseRight", true);
 
 			if (!collided)
 			{
@@ -122,7 +122,7 @@ public class Pinzare_Haptic : MonoBehaviour
 						_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
 					}
 
-					animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
+					animatorPinza1.SetFloat("Left", _smoothClosePinza1);
 				}
 
 				if (!pinza2Collided && _smoothClosePinza2<=1)
@@ -136,13 +136,9 @@ public class Pinzare_Haptic : MonoBehaviour
 						_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
 					}
 
-					animatorPinza2.SetFloat("TriggerValue", _smoothClosePinza2);
+					animatorPinza2.SetFloat("Right", _smoothClosePinza2);
 				}
 				CheckCollidersWhileNoObject();
-			}
-			else
-			{
-				print("colliso con entrambe le sfere");
 			}
 		} else
 		{
@@ -177,8 +173,8 @@ public class Pinzare_Haptic : MonoBehaviour
 
 	public void ResetPinze()
 	{
-		animatorPinza1.SetBool("ClosePinzaHaptic1",false);
-		animatorPinza2.SetBool("ClosePinzaHaptic2",false);
+		animatorPinza1.SetBool("CloseLeft",false);
+		animatorPinza2.SetBool("CloseRight",false);
 		
 		pinza1Collided = false;
 		pinza2Collided = false;
@@ -188,14 +184,14 @@ public class Pinzare_Haptic : MonoBehaviour
 		if (_smoothClosePinza1 > 0)
 		{
 			_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
-			animatorPinza1.SetFloat("TriggerValue", _smoothClosePinza1);
+			animatorPinza1.SetFloat("Left", _smoothClosePinza1);
 	
 		}
 
 		if (_smoothClosePinza2 > 0)
 		{
 			_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
-			animatorPinza2.SetFloat("TriggerValue", _smoothClosePinza2);
+			animatorPinza2.SetFloat("Right", _smoothClosePinza2);
 		}
 	}
 
