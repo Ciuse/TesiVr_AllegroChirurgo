@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EventSystem2;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +14,7 @@ public class Scene_Loader_Haptic : MonoBehaviour
     public bool soundObjectSetting;
     public bool detectObjectCollision;
     public bool detectPinzaCollision;
-
+   
     public void Start()
     {
        
@@ -24,6 +25,7 @@ public class Scene_Loader_Haptic : MonoBehaviour
     public void LoadSceneOnlyHaptic()
     {
         SceneManager.LoadScene(4);
+   
     }
     
     

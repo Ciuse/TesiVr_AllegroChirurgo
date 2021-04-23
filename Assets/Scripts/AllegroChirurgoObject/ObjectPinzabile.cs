@@ -34,6 +34,11 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         isActive = false;
         FindLeaves(transform, childList);
         defaultMeshColor = childList[0].GetComponent<MeshRenderer>().material.GetColor(Albedo);
+        if (GameObject.Find ("SceneLoader_Haptic")!=null)
+        {
+            Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find ("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
+            visualEffectObject = sceneLoaderHaptic.visualObjectSetting;
+        }
 
     }
     
