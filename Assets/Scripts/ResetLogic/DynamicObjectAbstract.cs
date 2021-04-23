@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using EventSystem2;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class DynamicObjectAbstract : MonoBehaviour
 
@@ -52,15 +53,16 @@ public abstract class DynamicObjectAbstract : MonoBehaviour
 
         public void SaveStatePosition()
         {
+    
             Transform gameObjectTransform = gameObject.transform;
-            defaultRotation = new Quaternion(gameObjectTransform.rotation.x,gameObjectTransform.rotation.y,gameObjectTransform.rotation.z,gameObjectTransform.rotation.w);;
-            defaultPosition = new Vector3(gameObjectTransform.position.x,gameObjectTransform.position.y,gameObjectTransform.position.z);
-                
+            defaultRotation = new Quaternion(gameObjectTransform.localRotation.x, gameObjectTransform.localRotation.y, gameObjectTransform.localRotation.z, gameObjectTransform.localRotation.w); ;
+            defaultPosition = new Vector3(gameObjectTransform.localPosition.x, gameObjectTransform.localPosition.y, gameObjectTransform.localPosition.z);
+        
         }
         public void ResetStatePosition()
         {
-            gameObject.transform.position = new Vector3(defaultPosition.x,defaultPosition.y,defaultPosition.z);
-            gameObject.transform.rotation = new Quaternion(defaultRotation.x,defaultRotation.y,defaultRotation.z, defaultRotation.w);
+            gameObject.transform.localPosition = new Vector3(defaultPosition.x,defaultPosition.y,defaultPosition.z);
+            gameObject.transform.localRotation = new Quaternion(defaultRotation.x,defaultRotation.y,defaultRotation.z, defaultRotation.w);
             print("pos resettata");
         }
 
