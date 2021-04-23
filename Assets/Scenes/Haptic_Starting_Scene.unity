@@ -1836,11 +1836,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vibrationSetting: 1
+  hideHandSetting: 1
+  visualPinzaSetting: 1
   visualObjectSetting: 1
   soundObjectSetting: 1
   detectObjectCollision: 1
   detectPinzaCollision: 1
-  device: Haptic
 --- !u!4 &1138815672
 Transform:
   m_ObjectHideFlags: 0

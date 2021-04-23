@@ -20,14 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Haptic_Scene2.unity
     guid: bc3f69d6cbf17bd46b718be6d679a81c
-  - enabled: 1
-    path: Assets/Scenes/HapticAndVR_Starting_Scene.unity
-    guid: 47f6e58d3f8a85c44912a93fce8c6a70
-  - enabled: 1
-    path: Assets/Scenes/Haptic_Scene_And_Oculus.unity
-    guid: 892393e8afe23ea4f87c5afd2457a90a
   - enabled: 0
-    path: 
+    path: Assets/Scenes/StartingScene_Haptic.unity
     guid: 56158e8df0ab7754bac06f03f7f0ea5f
   - enabled: 0
     path: Assets/WorldInteractionDemo.unity

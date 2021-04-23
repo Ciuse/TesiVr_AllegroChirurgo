@@ -8,7 +8,7 @@ using UnityEngine;
 public class ManageJSON : MonoBehaviour
 {
     public FirebaseClient firebase;
-    private String sessionCode;
+    public String sessionCode;
     public String handUsed;
     public bool vibrationSetting;
     public bool hideHandSetting;
@@ -25,16 +25,8 @@ public class ManageJSON : MonoBehaviour
         firebase = new FirebaseClient("https://allegrochirurgovr-default-rtdb.europe-west1.firebasedatabase.app/");
         sessionCode = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
         SaveStartingSetting();
-        GameStartedWithVR();
-
-
     }
-
-    public async void GameStartedWithVR()
-    {
-        String deviceUsed = "\"Oculus_VR\"";
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
-    }
+    
 
     public async void SceneStartedWithRightHand()
     {

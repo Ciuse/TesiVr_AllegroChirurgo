@@ -1,47 +1,27 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using EventSystem2;
-using Firebase.Database;
-using Firebase.Database.Query;
-using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Scene_Loader_Haptic : MonoBehaviour
 {
     public bool vibrationSetting;
+    public bool hideHandSetting;
+    public bool visualPinzaSetting;
     public bool visualObjectSetting;
     public bool soundObjectSetting;
     public bool detectObjectCollision;
     public bool detectPinzaCollision;
-    public FirebaseClient firebase;
-    private String sessionCode;
-    public String device;
-    
+   
     public void Start()
     {
        
         DontDestroyOnLoad(this);
-        firebase = new FirebaseClient("https://allegrochirurgovr-default-rtdb.europe-west1.firebasedatabase.app/");
-        sessionCode = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
-        SaveStartingSetting();
-        GameStartedWithHaptic();
     }
 
-    public async void GameStartedWithHaptic()
-    {
-        String deviceUsed = "\""+device+"\"";
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
-    }
-    
-    public async void SaveStartingSetting()
-    {
-        //await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"hideHand\":"+hideHandSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
-       
-    }
-    
+
     public void LoadSceneOnlyHaptic()
     {
         SceneManager.LoadScene(4);
@@ -50,29 +30,35 @@ public class Scene_Loader_Haptic : MonoBehaviour
     
     
     
-    public void LoadSceneHapticAndVR()
+    public void LoadStartScene()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(3);
 
     }
 
-    public async void Vibration()
+    public void Vibration()
     {
         vibrationSetting = !vibrationSetting;
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
     }
     
+    public void HideHand()
+    {
+        hideHandSetting = !hideHandSetting;
+    }
     
-    public async void VisualObject()
+    public void VisualPinza()
+    {
+        visualPinzaSetting = !visualPinzaSetting;
+    }
+    
+    public void VisualObject()
     {
         visualObjectSetting = !visualObjectSetting;
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
     }
     
-    public async void SoundObject()
+    public void SoundObject()
     {
         soundObjectSetting = !soundObjectSetting;
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
     }
     
     public void DetectObjectCollision()
@@ -84,19 +70,4 @@ public class Scene_Loader_Haptic : MonoBehaviour
     {
         detectPinzaCollision = !detectPinzaCollision;
     }
-    
-    public async void SaveJsonObject(Interactable interactable)
-    {
-        JsonObject jsonObjectToSave= interactable.interactedObject.GetComponent<TrackingScript>().jsonObjectToSave;
-        await firebase.Child(sessionCode).Child("ListOfObject")
-            .PostAsync(JsonConvert.SerializeObject(jsonObjectToSave,Formatting.None,
-                new JsonSerializerSettings()
-                { 
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                }));
-//            .ContinueWith(interactable.interactedObject.GetComponent<TrackingScript>().jsonObjectToSave=new JsonObject());
-//        
-
-    }
-
 }
