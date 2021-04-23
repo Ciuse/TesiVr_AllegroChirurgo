@@ -44,11 +44,10 @@ public class Vibrate_effect_haptic : MonoBehaviour
 
 	    collided = false;
 	    print(HapticPlugin.effects_assignEffect(device.configName));
-	   
-	    if (GameObject.Find("SceneLoader_Haptic") != null)
+	    Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find ("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
+	    if (sceneLoaderHaptic != null)
 	    {
-            Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
-            vibrationEffect = sceneLoaderHaptic.vibrationSetting;
+		    vibrationEffect = sceneLoaderHaptic.vibrationSetting;
 	    }
 
     }
