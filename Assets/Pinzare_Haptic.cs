@@ -151,9 +151,13 @@ public class Pinzare_Haptic : MonoBehaviour
 		
 		
 		if (buttonStatus)
-		{ 
-			if(collided) 
-				grab();
+		{
+            if (collided)
+            {
+                grab();
+
+               
+            }
 			
 		}
 		if (!buttonStatus)
@@ -183,6 +187,8 @@ public class Pinzare_Haptic : MonoBehaviour
 		
 		pinza1Collided = false;
 		pinza2Collided = false;
+
+        //objectWithPinza1 = null;
 
 		collided = false;
 
@@ -341,9 +347,24 @@ public class Pinzare_Haptic : MonoBehaviour
 			touching = null;
 		}
 	}
-		
-	//! Begin grabbing an object. (Like closing a claw.) Normally called when the button is pressed. 
-	void grab()
+
+    void grabGrip()
+    {
+        if (jointCreated == false)
+
+        {
+
+            joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
+            joint.connectedBody = objectWithPinza1.gameObject.GetComponent<Rigidbody>();
+            joint.breakForce = 10f;
+            jointCreated = true;
+        }
+       
+
+    }
+
+    //! Begin grabbing an object. (Like closing a claw.) Normally called when the button is pressed. 
+    void grab()
 	{
 		
 		GameObject touchedObject = touching;
@@ -354,20 +375,16 @@ public class Pinzare_Haptic : MonoBehaviour
 			// Maybe there's a Haptic Collision
 			touchedObject = hapticDevice.GetComponent<HapticPlugin>().touching;
 		}
-		print("grabbato1");
 
 		if (grabbing != null) // Already grabbing
 			return;
-		print("grabbato2");
 		if (touchedObject == null) // Nothing to grab
 			return;
-		print("grabbato3");
 
 		// Grabbing a grabber is bad news.
 		if (touchedObject.tag =="Gripper")
 			return;
 
-		print("grabbato4");
 		Debug.Log( " Object : " + touchedObject.name + "  Tag : " + touchedObject.tag );
 
 		grabbing = touchedObject;
