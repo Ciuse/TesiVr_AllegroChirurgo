@@ -32,6 +32,7 @@ public class Vibrate_effect_haptic : MonoBehaviour
     public float collisionRadius;
     public LayerMask sphereCollisionMask;
     public Collider[] _colliders = new Collider[10];
+    public bool vibrationEffect;
     
     void Start () 
     {
@@ -43,26 +44,35 @@ public class Vibrate_effect_haptic : MonoBehaviour
 
 	    collided = false;
 	    print(HapticPlugin.effects_assignEffect(device.configName));
+	    Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find ("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
+	    if (sceneLoaderHaptic != null)
+	    {
+		    vibrationEffect = sceneLoaderHaptic.vibrationSetting;
+	    }
 
     }
 
     public void Update()
     {
-	    bool oldCollided = collided;
-
-	    collided = IsPinzeCollided();
-	    
-	    if (oldCollided != collided)
+	    if (vibrationEffect)
 	    {
-		    if (collided)
+		    bool oldCollided = collided;
+
+		    collided = IsPinzeCollided();
+	    
+		    if (oldCollided != collided)
 		    {
-			    TurnEffectOn();
-		    }
-		    else
-		    { 
-			    TurnEffectOff();
+			    if (collided)
+			    {
+				    TurnEffectOn();
+			    }
+			    else
+			    { 
+				    TurnEffectOff();
+			    }
 		    }
 	    }
+	    
 	  
     }
 

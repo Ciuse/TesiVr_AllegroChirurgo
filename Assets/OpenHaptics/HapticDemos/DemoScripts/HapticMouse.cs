@@ -93,6 +93,19 @@ public class HapticMouse : MonoBehaviour {
 					B.Invoke("OnPointerUp",0.0f);
 				}
 			}
+			
+			// If we've found a toggle, we can click on it.
+			Toggle T = go.GetComponent<Toggle>();
+			if (T != null)
+			{
+				print("toggle find");
+				if (click)
+				{
+					T.isOn = !T.isOn;
+					print("toggle is on");
+					
+				}
+			}
 
 		}
 
