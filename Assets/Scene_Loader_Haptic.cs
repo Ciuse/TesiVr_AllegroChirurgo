@@ -19,7 +19,6 @@ public class Scene_Loader_Haptic : MonoBehaviour
     
     public void Start()
     {
-       
         DontDestroyOnLoad(this);
         firebase = new FirebaseClient("https://allegrochirurgovr-default-rtdb.europe-west1.firebasedatabase.app/");
         sessionCode = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
