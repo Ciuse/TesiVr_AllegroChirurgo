@@ -11,6 +11,7 @@ public class HapticFeedbackTouchEdge : MonoBehaviour
 {
 
     public GameEvent pinzaTouchElectricEdge;
+    public GameEvent pinzaStopTouchElectricEdge;
 
     public int countCollision;
 
@@ -24,7 +25,6 @@ public class HapticFeedbackTouchEdge : MonoBehaviour
                 if (countCollision == 0)
                 {
                     pinzaTouchElectricEdge.Raise();
-                    print("bordo elettrico toccato");  
                 }
                 countCollision++;
             }
@@ -37,8 +37,13 @@ public class HapticFeedbackTouchEdge : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
         {
             countCollision--;
-
+            if (countCollision == 0)
+            {
+                pinzaStopTouchElectricEdge.Raise();
+            }
         }
+
+       
 
     }
 

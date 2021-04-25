@@ -103,11 +103,16 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             Interact();
         }
 
-        if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
+        if(hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")) )
         {
             Interactable interactable = new Interactable {id = idObject};
             objectTouchBox.Raise(interactable);
 
+        }
+
+        if (!hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
+        {
+            ResetState();
         }
 
     
@@ -115,12 +120,24 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
     private void OnTriggerStay(Collider other)
     {
-        if(hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Electric Edge"))
+        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
+        {
+            Interact();
+        }
+
+        if(hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")) )
         {
             Interactable interactable = new Interactable {id = idObject};
             objectTouchBox.Raise(interactable);
 
         }
+
+        if (!hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
+        {
+            ResetState();
+        }
+
     }
 
     public override void SaveState()
@@ -131,6 +148,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
     public override void ResetState()
     {
         ResetStatePosition();
+        ResetHasInteracted();
     }
 
 

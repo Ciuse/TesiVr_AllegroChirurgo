@@ -34,7 +34,6 @@ public abstract class DynamicObjectAbstract : MonoBehaviour
             StartHash();
             if (!hasInteract)
             {
-                SaveState();
                 Interactable interactable = new Interactable {interactedObject = gameObject, id = GetHashCode()};
                 objectToResetEvent.Raise(interactable);
             }

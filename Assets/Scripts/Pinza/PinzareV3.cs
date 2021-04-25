@@ -368,6 +368,7 @@ public class PinzareV3 : MonoBehaviour
                     collided = true;
                     objectWithPinza1.gameObject.transform.SetParent(transform);
                     objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().SetHasInteract();
 
                 }
             }
@@ -388,6 +389,7 @@ public class PinzareV3 : MonoBehaviour
         {
             objectWithPinza1.gameObject.transform.SetParent(null);
             objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+            objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().ResetHasInteracted();
         }
 
         pinza1CollidedOutside = false;
