@@ -16,9 +16,17 @@ public class PinzaSFX : MonoBehaviour
     public void VibrationTouchElectricEdge()
     {
         var rand = Random.Range(0, vibrationClips.Length);
-        var randPitch = Random.Range(0.9f, 1.1f);
+        var randPitch = Random.Range(0.95f, 1.1f);
         PinzaAudioSource.pitch = randPitch;
         PinzaAudioSource.Stop();
-        PinzaAudioSource.PlayOneShot(vibrationClips[rand]);    
+        PinzaAudioSource.volume = 0.7f;
+        PinzaAudioSource.loop = true;
+        PinzaAudioSource.clip=vibrationClips[rand];    
+        PinzaAudioSource.Play();
+    }
+
+    public void VibrationStopTouchElectricEdge()
+    {
+        PinzaAudioSource.Stop();
     }
 }
