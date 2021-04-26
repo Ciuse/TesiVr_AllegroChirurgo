@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: ElectricEdge
+    second: {fileID: 2100000, guid: 793768db17e91f04189bfd60f8323e04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Material.001
     second: {instanceID: 0}
   materials:

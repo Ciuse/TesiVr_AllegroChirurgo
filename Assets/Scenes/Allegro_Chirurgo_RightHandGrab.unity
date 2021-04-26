@@ -4777,8 +4777,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3247637, y: 0.032476388, z: 0.06655799}
-  m_Center: {x: 0, y: 0.14614365, z: 0}
+  m_Size: {x: 0.28931007, y: 0.014116939, z: 0.07055443}
+  m_Center: {x: 0, y: 0.13759533, z: 0.0041385395}
 --- !u!65 &712492964
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4790,8 +4790,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.032476377, y: 0.32476363, z: 0.06655799}
-  m_Center: {x: -0.14614366, y: -0.000000007450579, z: 0}
+  m_Size: {x: 0.014418974, y: 0.28931004, z: 0.07055443}
+  m_Center: {x: -0.13744555, y: -0.000001236796, z: 0.0041385395}
 --- !u!65 &712492965
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4803,8 +4803,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32476372, y: 0.032476388, z: 0.06655799}
-  m_Center: {x: 0.00000001490116, y: -0.14614365, z: 0}
+  m_Size: {x: 0.28931007, y: 0.014116939, z: 0.07055443}
+  m_Center: {x: 0.00000000745058, y: -0.13759778, z: 0.0041385395}
 --- !u!65 &712492966
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4816,8 +4816,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.032476407, y: 0.32476363, z: 0.06655799}
-  m_Center: {x: 0.14614366, y: 0.000000007450579, z: 0}
+  m_Size: {x: 0.014419003, y: 0.28931004, z: 0.07055443}
+  m_Center: {x: 0.13744555, y: -0.0000012218949, z: 0.0041385395}
 --- !u!65 &712492967
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4842,8 +4842,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32476372, y: 0.32476366, z: 0.0059178164}
-  m_Center: {x: 0.00000001490116, y: -8.617489e-16, z: -0.030320087}
+  m_Size: {x: 0.28931007, y: 0.28931004, z: 0.008641377}
+  m_Center: {x: 0.00000000745058, y: -0.0000012293455, z: -0.026817987}
 --- !u!1001 &722870874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4928,8 +4928,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4095518498362066708, guid: f2c81956477729244953825eb59e9328,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.011400223
+      objectReference: {fileID: 0}
+    - target: {fileID: -4095518498362066708, guid: f2c81956477729244953825eb59e9328,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3983353918920824184, guid: f2c81956477729244953825eb59e9328,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0114
       objectReference: {fileID: 0}
     - target: {fileID: -3983353918920824184, guid: f2c81956477729244953825eb59e9328,
         type: 3}
@@ -4940,6 +4950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 775860812567988916, guid: f2c81956477729244953825eb59e9328,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.011400223
       objectReference: {fileID: 0}
     - target: {fileID: 775860812567988916, guid: f2c81956477729244953825eb59e9328,
         type: 3}
@@ -5008,6 +5023,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273688025888378429, guid: f2c81956477729244953825eb59e9328,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.011400223
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273688025888378429, guid: f2c81956477729244953825eb59e9328,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -5057,8 +5077,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0121971145, y: 0.11335037, z: 0.011768665}
-  m_Center: {x: -0.050724994, y: -0.00014835595, z: 0.00018422303}
+  m_Size: {x: 0.014748666, y: 0.11335037, z: 0.011768665}
+  m_Center: {x: -0.04944922, y: -0.00014835595, z: 0.00018422303}
 --- !u!65 &722870880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5070,8 +5090,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.11335039, y: 0.012197116, z: 0.011768665}
-  m_Center: {x: 0.00014835782, y: -0.050724983, z: 0.00018422303}
+  m_Size: {x: 0.11335039, y: 0.014748665, z: 0.011768665}
+  m_Center: {x: 0.00014835782, y: -0.049449205, z: 0.00018422303}
 --- !u!65 &722870881
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5083,8 +5103,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.012197126, y: 0.11335038, z: 0.011768665}
-  m_Center: {x: 0.05072499, y: 0.00014836153, z: 0.00018422303}
+  m_Size: {x: 0.014748678, y: 0.11335038, z: 0.011768665}
+  m_Center: {x: 0.049449217, y: 0.00014836153, z: 0.00018422303}
 --- !u!65 &722870882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5096,8 +5116,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.113350384, y: 0.01219712, z: 0.011768665}
-  m_Center: {x: -0.00014835969, y: 0.050724987, z: 0.00018422303}
+  m_Size: {x: 0.113350384, y: 0.014748672, z: 0.011768665}
+  m_Center: {x: -0.00014835969, y: 0.049449213, z: 0.00018422303}
 --- !u!1 &734766660
 GameObject:
   m_ObjectHideFlags: 0
@@ -6947,7 +6967,7 @@ GameObject:
   - component: {fileID: 931944297}
   - component: {fileID: 931944296}
   m_Layer: 0
-  m_Name: volume
+  m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8521,7 +8541,7 @@ PrefabInstance:
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.082
+      value: 2.0871
       objectReference: {fileID: 0}
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
@@ -18545,7 +18565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6232745471082383299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.34, z: -1.022}
+  m_LocalPosition: {x: 0, y: 1.36144, z: -1.022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6232745470178263711}

@@ -3,7 +3,22 @@ guid: 8e57847ed5975d644a18ecae24fbf79a
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CubeV2
+    second: {fileID: 2100000, guid: 7006af102a76c91408ae339f9a8afef2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ElectricEdge
+    second: {fileID: 2100000, guid: 88f01ea8259d879408e3ebc49d2a15b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ElectricEdge.001
+    second: {fileID: 2100000, guid: 6d9096c972d9fbb40afcb0e170bf7ae4, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

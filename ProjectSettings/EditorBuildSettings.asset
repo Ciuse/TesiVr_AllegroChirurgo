@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Haptic_Starting_Scene.unity
     guid: 72121a8dd95d479489ca17fd7525e956
   - enabled: 0
-    path: Assets/Scenes/Haptic_Scene2.unity
+    path: Assets/Haptic_Scene2.unity
     guid: bc3f69d6cbf17bd46b718be6d679a81c
   - enabled: 0
     path: Assets/Scenes/HapticAndVR_Starting_Scene.unity
