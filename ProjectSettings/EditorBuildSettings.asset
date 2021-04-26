@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/StartingScene.unity
     guid: 1dc610165ae15b845a13043cc6975705
   - enabled: 1
-    path: Assets/Scenes/ProvaGrabFacileEGestioneUI.unity
+    path: Assets/Scenes/Allegro_Chirurgo_RightHandGrab.unity
     guid: 0a6f899f503a8514aa42c67011f3eee7
   - enabled: 1
+    path: Assets/Scenes/Allegro_Chirurgo_LeftHandGrab.unity
+    guid: 5ee1646855e55384d8f8079f775fb371
+  - enabled: 0
     path: Assets/Scenes/ProvaGrabFacileEGestioneUI_LeftHandGrab.unity
     guid: 520e8a0a1f8185643b6ecaf1ebd78106
   - enabled: 0
@@ -39,8 +42,8 @@ EditorBuildSettings:
     path: Assets/Scenes/ProvaGioco.unity
     guid: 42e07dd9060c1874f992d6fdc2a2a084
   - enabled: 0
-    path: Assets/VR Examples/Scenes/UI Interaction.unity
-    guid: 9c5cf6044c0ff274cb6c603a307e995e
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/ProvaGrabFacile.unity
     guid: 6b355baf1a39cf84f900e07c3e36a7aa

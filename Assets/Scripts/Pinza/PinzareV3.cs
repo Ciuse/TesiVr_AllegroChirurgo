@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using EventSystem2;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using Vector3 = UnityEngine.Vector3;
 
@@ -55,7 +56,7 @@ public class PinzareV3 : MonoBehaviour
     private Color startPinza1Color;
     private Color startPinza2Color;
     
-    public GameObject rightHandMesh;
+    public GameObject handMesh;
     public bool pinzaInHand;
     public bool disableHand;
     public bool activateVisualEffectPinza;
@@ -110,7 +111,7 @@ public class PinzareV3 : MonoBehaviour
         {
             if (disableHand)
             {
-                rightHandMesh.SetActive(false);
+                handMesh.SetActive(false);
                 pinzaInHand = true;
             }
 
@@ -170,7 +171,7 @@ public class PinzareV3 : MonoBehaviour
             {
                 if (pinzaInHand)
                 {
-                    rightHandMesh.SetActive(true);
+                    handMesh.SetActive(true);
                     pinzaInHand = false;
                 }
             }
