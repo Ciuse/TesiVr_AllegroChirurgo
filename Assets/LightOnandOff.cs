@@ -24,12 +24,14 @@ public class LightOnandOff : MonoBehaviour
 
     public void OnLight()
     {
-        nosePatient.GetComponent<MeshRenderer>().material.color=Color.red;
+        //nosePatient.GetComponent<MeshRenderer>().material.color=Color.red;
+        nosePatient.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
     }
     
     public void OffLight()
     {
-        nosePatient.GetComponent<MeshRenderer>().material.color=colorDefault;
+       // nosePatient.GetComponent<MeshRenderer>().material.color=colorDefault;
+        nosePatient.GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
     }
 
     
