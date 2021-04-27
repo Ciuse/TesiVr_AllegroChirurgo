@@ -550,8 +550,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169082078}
   m_LocalRotation: {x: -0, y: 0.70703536, z: -0, w: 0.7071782}
-  m_LocalPosition: {x: 5.04, y: 2.157, z: -8.826001}
-  m_LocalScale: {x: 0.035568587, y: 0.07, z: 0.065550074}
+  m_LocalPosition: {x: 5.043, y: 2.157, z: -8.825}
+  m_LocalScale: {x: 0.033375073, y: 0.07, z: 0.064167626}
   m_Children:
   - {fileID: 291297596}
   m_Father: {fileID: 0}
@@ -1412,6 +1412,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!137 &275488415 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3774002983950727147, guid: 4dfbe1b09ca0e9d4f94e490b941d849c,
+    type: 3}
+  m_PrefabInstance: {fileID: 212944714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &276463864 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3133498875991405556, guid: 8fef76de1ad81284c89a3e62057e4337,
@@ -2121,7 +2127,7 @@ PrefabInstance:
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.098
+      value: 2.0919
       objectReference: {fileID: 0}
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
@@ -3593,7 +3599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &636331137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4909,7 +4915,7 @@ PrefabInstance:
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.0614
+      value: 2.0942
       objectReference: {fileID: 0}
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
@@ -6235,6 +6241,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &1152180238 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3774002983950727147, guid: 55884421ae42c1e4f83953930faf046e,
+    type: 3}
+  m_PrefabInstance: {fileID: 591683275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1153342570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7998903532022272545, guid: 8fef76de1ad81284c89a3e62057e4337,
@@ -6319,7 +6331,7 @@ PrefabInstance:
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.0611
+      value: 2.1239
       objectReference: {fileID: 0}
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
@@ -7280,7 +7292,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.438928
+      value: 0.9348571
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -7295,7 +7307,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.097
+      value: 2.1172
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -8868,14 +8880,15 @@ MonoBehaviour:
   m_gripDown: 0
   triggerPressing: {fileID: 3411308250165419798, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  pinza1Material: {fileID: -902349551361352994, guid: 55884421ae42c1e4f83953930faf046e,
-    type: 3}
-  pinza2Material: {fileID: -902349551361352994, guid: 4c700c6a0657fa14a90eb7249b322d4a,
-    type: 3}
+  pinza1MateriaMeshRender: {fileID: 275488415}
+  pinza2MateriaMeshRender: {fileID: 1152180238}
   handMesh: {fileID: 573763191134881203}
   pinzaInHand: 0
   disableHand: 1
   activateVisualEffectPinza: 1
+  pinzaIsCollideElectricEdge: 0
+  pinza1ColorChanged: 0
+  pinza2ColorChanged: 0
 --- !u!114 &1624222231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9195,6 +9208,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1624222226}
         m_TargetAssemblyTypeName: 
         m_MethodName: RemoveObjectPinzatoPinzaTouch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1624222226}
+        m_TargetAssemblyTypeName: PinzareV3, Assembly-CSharp
+        m_MethodName: SetPinzaColorError
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9832,7 +9857,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -11661,7 +11686,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997543718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.7766, y: 2.1787, z: -8.8235}
+  m_LocalPosition: {x: 4.8315, y: 2.157, z: -8.8235}
   m_LocalScale: {x: 0.05, y: 0.07, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
@@ -11785,7 +11810,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8e57847ed5975d644a18ecae24fbf79a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.708727
+      value: 1.1101428
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e57847ed5975d644a18ecae24fbf79a,
         type: 3}
@@ -11800,7 +11825,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8e57847ed5975d644a18ecae24fbf79a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.0774999
+      value: 2.1056998
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e57847ed5975d644a18ecae24fbf79a,
         type: 3}
@@ -12094,7 +12119,7 @@ PrefabInstance:
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.0369
+      value: 2.1009
       objectReference: {fileID: 0}
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
@@ -12184,7 +12209,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.528861
+      value: 0.9932857
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -12199,7 +12224,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.0931
+      value: 2.1133
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -12612,7 +12637,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.438928
+      value: 0.9348571
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -12627,17 +12652,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.0970001
+      value: 2.1172001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.9231
+      value: -8.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98504275
+      value: 0.9869782
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -12647,7 +12672,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17231062
+      value: 0.16085424
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -12662,7 +12687,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 19.844
+      value: 18.513
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -14409,17 +14434,18 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652084456930}
   - component: {fileID: 1624222235}
-  - component: {fileID: 1624222225}
   - component: {fileID: 1624222226}
   - component: {fileID: 1624222231}
   - component: {fileID: 1624222232}
   - component: {fileID: 1624222233}
+  - component: {fileID: 1624222225}
   - component: {fileID: 1624222237}
   - component: {fileID: 1624222238}
   - component: {fileID: 1624222239}
   - component: {fileID: 1624222240}
   - component: {fileID: 1624222241}
   - component: {fileID: 1624222250}
+  - component: {fileID: 919132147556718425}
   m_Layer: 10
   m_Name: Pinza
   m_TagString: Untagged
@@ -14427,6 +14453,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132147556718425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147556718424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: aad7032b8add08d4e87090b5fe434a5c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1624222226}
+        m_TargetAssemblyTypeName: PinzareV3, Assembly-CSharp
+        m_MethodName: RemoveSetPinzaColorError
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2729717239048661147
 MonoBehaviour:
   m_ObjectHideFlags: 0

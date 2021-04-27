@@ -55,69 +55,77 @@ public class Vibrate_effect_haptic : MonoBehaviour
 
     public void Update()
     {
-	    if (vibrationEffect)
-	    {
-		    bool oldCollided = collided;
-
-		    collided = IsPinzeCollided();
-	    
-		    if (oldCollided != collided)
-		    {
-			    if (collided)
-			    {
-				    TurnEffectOn();
-			    }
-			    else
-			    { 
-				    TurnEffectOff();
-			    }
-		    }
-	    }
+//	    if (vibrationEffect)
+//	    {
+//		    bool oldCollided = collided;
+//
+//		    collided = IsPinzeCollided();
+//	    
+//		    if (oldCollided != collided)
+//		    {
+//			    if (collided)
+//			    {
+//				    TurnEffectOn();
+//			    }
+//			    else
+//			    { 
+//				    TurnEffectOff();
+//			    }
+//		    }
+//	    }
 	    
 	  
     }
 
 
-    void TurnEffectOn()
+    public void TurnEffectOn()
     {
-	    if (device == null) return; 		//If there is no device, bail out early.
-
-	    // If a haptic effect has not been assigned through Open Haptics, assign one now.
-	    if (FXID == -1)
+	    if (vibrationEffect)
 	    {
-		    FXID = HapticPlugin.effects_assignEffect(device.configName);
 
-		    if (FXID == -1) // Still broken?
+
+		    if (device == null) return; //If there is no device, bail out early.
+
+		    // If a haptic effect has not been assigned through Open Haptics, assign one now.
+		    if (FXID == -1)
 		    {
-			    return;
+			    FXID = HapticPlugin.effects_assignEffect(device.configName);
+
+			    if (FXID == -1) // Still broken?
+			    {
+				    return;
+			    }
 		    }
+
+		    // Send the effect settings to OpenHaptics.
+		    double[] pos = {0.0, 0.0, 0.0}; // Position (not used for vibration)
+		    double[] dir = {0.0, 1.0, 0.0}; // Direction of vibration
+
+
+		    HapticPlugin.effects_settings(
+			    device.configName,
+			    FXID,
+			    0.33, // Gain
+			    0.33, // Magnitude
+			    300, // Frequency
+			    pos, // Position (not used for vibration)
+			    dir); //Direction.
+
+		    HapticPlugin.effects_type(device.configName, FXID, 4); // Vibration effect == 4
+
+		    HapticPlugin.effects_startEffect(device.configName, FXID);
 	    }
-
-	    // Send the effect settings to OpenHaptics.
-	    double[] pos = {0.0, 0.0, 0.0}; // Position (not used for vibration)
-	    double[] dir = {0.0, 1.0, 0.0}; // Direction of vibration
-	    
-
-	    HapticPlugin.effects_settings(
-		    device.configName,
-		    FXID,
-		    0.33, // Gain
-		    0.33, // Magnitude
-		    300,  // Frequency
-		    pos,  // Position (not used for vibration)
-		    dir); //Direction.
-		
-	    HapticPlugin.effects_type( device.configName,	FXID,4 ); // Vibration effect == 4
-
-	    HapticPlugin.effects_startEffect(device.configName, FXID );
     }
 
-    void TurnEffectOff()
+    public void TurnEffectOff()
     {
-	    if (device == null) return; 		//If there is no device, bail out early.
-	    if (FXID == -1)	return;  				//If there is no effect, bail out early.
+	    if (vibrationEffect)
+	    {
+		    if (device == null) return; //If there is no device, bail out early.
+		    if (FXID == -1) return; //If there is no effect, bail out early.
 
-	    HapticPlugin.effects_stopEffect(device.configName, FXID );
+		    HapticPlugin.effects_stopEffect(device.configName, FXID);
+	    }
     }
 
     

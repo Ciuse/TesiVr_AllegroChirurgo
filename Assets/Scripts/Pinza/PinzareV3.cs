@@ -49,9 +49,9 @@ public class PinzareV3 : MonoBehaviour
     public InputActionReference triggerPressing;
     private bool resetting;
 
-    public Material pinza1Material;
+    public SkinnedMeshRenderer pinza1MateriaMeshRender;
+    public SkinnedMeshRenderer pinza2MateriaMeshRender;
 
-    public Material pinza2Material;
 
     private Color startPinza1Color;
     private Color startPinza2Color;
@@ -60,6 +60,10 @@ public class PinzareV3 : MonoBehaviour
     public bool pinzaInHand;
     public bool disableHand;
     public bool activateVisualEffectPinza;
+
+    public bool pinzaIsCollideElectricEdge;
+    public bool pinza1ColorChanged = false;
+    public bool pinza2ColorChanged = false;
     
     // Start is called before the first frame update
     void Start()
@@ -67,8 +71,8 @@ public class PinzareV3 : MonoBehaviour
         m_InteractableBase = GetComponent<XRGrabInteractable>();
         m_InteractableBase.onSelectEntered.AddListener(GripPulled);
         m_InteractableBase.onSelectExited.AddListener(GripReleased);
-        startPinza1Color = pinza1Material.color;
-        startPinza2Color = pinza2Material.color;
+        startPinza1Color = pinza1MateriaMeshRender.material.color;
+        startPinza2Color = pinza2MateriaMeshRender.material.color;
     }
 
   
@@ -85,22 +89,37 @@ public class PinzareV3 : MonoBehaviour
 
     public void Update()
     {
-        if (pinza1CollidedOutside && activateVisualEffectPinza)
+        if (!pinzaIsCollideElectricEdge)
         {
-            pinza1Material.color=Color.red;
-        }
-        else
-        {
-            pinza1Material.color = startPinza1Color;
-        }
-        
-        if (pinza2CollidedOutside && activateVisualEffectPinza)
-        {
-            pinza2Material.color=Color.red;
-        }
-        else
-        {
-            pinza2Material.color = startPinza2Color;
+            if (pinza1CollidedOutside && activateVisualEffectPinza)
+            {
+                pinza1MateriaMeshRender.material.color = Color.yellow;
+                pinza1ColorChanged=true;
+            }
+            else
+            {
+                if(pinza1ColorChanged)
+                {
+                    pinza1MateriaMeshRender.material.color = startPinza1Color;
+                    pinza1ColorChanged=false;
+
+                }            
+            }
+
+            if (pinza2CollidedOutside && activateVisualEffectPinza)
+            {
+                pinza2MateriaMeshRender.material.color = Color.yellow;
+                pinza2ColorChanged=true;
+
+            }
+            else
+            {
+                if(pinza2ColorChanged)
+                {
+                    pinza2MateriaMeshRender.material.color = startPinza2Color;
+                    pinza2ColorChanged=false;
+                }            
+            }
         }
     }
 
@@ -548,4 +567,24 @@ public class PinzareV3 : MonoBehaviour
         resetObjectAfterObjectTouch = !resetObjectAfterObjectTouch;
     }
 
+    public void SetPinzaColorError()
+    {
+        if (activateVisualEffectPinza)
+        {
+            pinzaIsCollideElectricEdge = true;
+            pinza1MateriaMeshRender.material.color=Color.red;
+            pinza2MateriaMeshRender.material.color=Color.red;
+        }
+    }
+    
+    public void RemoveSetPinzaColorError()
+    {
+        if (activateVisualEffectPinza)
+        {
+            pinza1MateriaMeshRender.material.color = startPinza1Color;
+            pinza2MateriaMeshRender.material.color = startPinza2Color;
+            pinzaIsCollideElectricEdge = false;
+
+        }
+    }
 }

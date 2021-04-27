@@ -30,8 +30,8 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Allegro_Chirurgo_Haptic_Scene.unity
-    guid: a43498a955159cf40be6e5443f276e29
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/ProvaGrabFacileEGestioneUI_LeftHandGrab.unity
     guid: 520e8a0a1f8185643b6ecaf1ebd78106
