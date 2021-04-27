@@ -25,7 +25,7 @@ Material:
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -33,30 +33,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _DissolveMap:
+    - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
+    - unity_LightmapsInd:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NormalMap:
+    - unity_ShadowMasks:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _DissolveAmount: 0
-    - _DissolveEmission: 1
     - _DissolveValue: -1
-    - _DissolveWidth: 0.05
     - _EdgeWidth: 0.01
-    - _Glossiness: 0.5
-    - _Metallic: 0
     - _NoiseScale: 30
-    - _NormalStrenght: 0.5
     m_Colors:
     - _Albedo: {r: 0.116812, g: 0.1181261, b: 0.7075472, a: 0.4745098}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EdgeColor: {r: 0.1663781, g: 0.7653391, b: 1.608321, a: 0}
+  m_BuildTextureStacks: []

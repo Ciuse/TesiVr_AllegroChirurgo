@@ -16,14 +16,8 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
     public int idObject;
     
-    private float health=-1;
-    private bool startDissolveEffect;
-
     private Color defaultMeshColor;
     
-    private static readonly int Albedo = Shader.PropertyToID("_Albedo");
-    private static readonly int DissolveValue = Shader.PropertyToID("_DissolveValue");
-
     private List<Transform> childList = new List<Transform>();
     public bool visualEffectObject;
 
@@ -33,7 +27,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         SaveState();
         isActive = false;
         FindLeaves(transform, childList);
-        defaultMeshColor = childList[0].GetComponent<MeshRenderer>().material.GetColor(Albedo);
+        defaultMeshColor = childList[0].GetComponent<MeshRenderer>().material.color;
         if (GameObject.Find ("SceneLoader_Haptic")!=null)
         {
             Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find ("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
@@ -57,24 +51,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             }
         }
     }
-
-    public void Update()
-    {
-        if (startDissolveEffect)
-        {
-            health += 0.008f;
-            foreach (Transform child in childList)
-            {
-                child.GetComponent<Renderer>().material.SetFloat(DissolveValue, health);
-                if (child.GetComponent<Renderer>().material.GetFloat(DissolveValue) >= 1)
-                {
-                    startDissolveEffect = false;
-                    Destroy(gameObject);
-                }
-            }
-               
-        }
-    }
+    
 
     private void OnCollisionEnter(Collision other)
     {
@@ -170,17 +147,30 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         }
    
     }
+    
+    IEnumerator WaitXSec()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(gameObject);
+
+    }
         
     public void CorrectPickEvents()
     {
 
         if (visualEffectObject)
         {
-            startDissolveEffect = true;
+            foreach (Transform child in childList)
+            {
+                child.GetComponent<MeshRenderer>().material.color= Color.green;
+                
+                StartCoroutine(WaitXSec());
+
+            }
         }
         else
         {
-            Destroy(gameObject);
+            StartCoroutine(WaitXSec());
         }
         
      
@@ -190,13 +180,14 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         
     }
     
+    
     public void WrongPickEvents()
     {
         if (visualEffectObject)
         {
             foreach (Transform child in childList)
             {
-                child.GetComponent<MeshRenderer>().material.SetColor(Albedo, Color.red);
+                child.GetComponent<MeshRenderer>().material.color= Color.red;
             }
         }
        
@@ -211,7 +202,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
     {
         foreach (Transform child in childList)
         {
-            child.GetComponent<MeshRenderer>().material.SetColor(Albedo, defaultMeshColor);
+            child.GetComponent<MeshRenderer>().material.color= defaultMeshColor;
         }
     }
 
