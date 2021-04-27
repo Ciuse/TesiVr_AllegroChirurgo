@@ -5362,12 +5362,12 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766031856}
-  m_Material: {fileID: 13400000, guid: c1d7b08c5b379e64eb4a290d5655a929, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.25708354, y: 0.8674009, z: 0.026197223}
-  m_Center: {x: -0.009194582, y: 0.07496951, z: -0.03720055}
+  m_Size: {x: 0.13337605, y: 0.13337605, z: 0.015321066}
+  m_Center: {x: 0.00000000745058, y: -0.00000023841858, z: -0.042638715}
 --- !u!4 &766031867 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
@@ -11886,7 +11886,7 @@ PrefabInstance:
         type: 3}
       propertyPath: pinzaTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1040151602}
     - target: {fileID: 4663507662536346839, guid: c21d7775e6913294f8ac0d706a95540e,
         type: 3}
       propertyPath: objectPinzabiliList.Array.size
