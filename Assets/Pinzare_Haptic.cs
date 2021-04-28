@@ -96,7 +96,7 @@ public class Pinzare_Haptic : MonoBehaviour
 			if (joint == null)
 			{
 				jointCreated = false;
-				release();
+				Release();
 				if (objectWithPinza1 != null &&  objectWithPinza1.CompareTag("HandGrip"))
 				{
 					objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
@@ -162,7 +162,7 @@ public class Pinzare_Haptic : MonoBehaviour
 		}
 		if (!buttonStatus)
 		{
-			release();
+			Release();
 		}
 
 		// Make sure haptics is ON if we're grabbing
@@ -438,7 +438,7 @@ public class Pinzare_Haptic : MonoBehaviour
 	}
 
 	//! Stop grabbing an obhject. (Like opening a claw.) Normally called when the button is released. 
-	public void release()
+	public void Release()
 	{
 		if( grabbing == null ) //Nothing to release
 			return;
