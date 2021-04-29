@@ -51,7 +51,7 @@ public class Scene_Loader_Haptic : MonoBehaviour
     
     public void LoadSceneHapticAndVR()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene("Allegro_Chirurgo_Training_Haptic_VR");
 
     }
 
