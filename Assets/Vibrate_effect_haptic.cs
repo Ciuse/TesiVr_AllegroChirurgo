@@ -23,7 +23,7 @@ public class Vibrate_effect_haptic : MonoBehaviour
     private Vector3 directionWorld = Vector3.up;
 
     public bool collided = false;
-    public int countCollision;
+    public bool electricEdgeTouched;
     public HapticPlugin device;
     public int FXID = -1;
 
@@ -33,7 +33,8 @@ public class Vibrate_effect_haptic : MonoBehaviour
     public LayerMask sphereCollisionMask;
     public Collider[] _colliders = new Collider[10];
     public bool vibrationEffect;
-    
+    float elapsed = 0f;
+  
     void Start () 
     {
 	    if (device == null)
@@ -55,26 +56,32 @@ public class Vibrate_effect_haptic : MonoBehaviour
 
     public void Update()
     {
-//	    if (vibrationEffect)
-//	    {
-//		    bool oldCollided = collided;
-//
-//		    collided = IsPinzeCollided();
-//	    
-//		    if (oldCollided != collided)
-//		    {
-//			    if (collided)
-//			    {
-//				    TurnEffectOn();
-//			    }
-//			    else
-//			    { 
-//				    TurnEffectOff();
-//			    }
-//		    }
-//	    }
-	    
-	  
+	    elapsed += Time.deltaTime;
+	    if (elapsed >= 0.1f)
+	    {
+		    elapsed = elapsed % 0.1f;
+		    if (vibrationEffect)
+		    {
+			    bool oldCollided = collided;
+
+			    collided = electricEdgeTouched;
+
+			    if (oldCollided != collided)
+			    {
+				    if (collided)
+				    {
+					    TurnEffectOn();
+					    print("on");
+				    }
+				    else
+				    {
+					    TurnEffectOff();
+					    print("off");
+				    }
+			    }
+		    }
+	    }
+
     }
 
 
@@ -217,4 +224,5 @@ public class Vibrate_effect_haptic : MonoBehaviour
 	    }
 	    
     }
+
 }

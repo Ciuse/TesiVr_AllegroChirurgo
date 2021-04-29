@@ -13,6 +13,7 @@ public class HapticFeedbackTouchEdge : MonoBehaviour
     public GameEvent pinzaTouchElectricEdge;
     public GameEvent pinzaStopTouchElectricEdge;
 
+    public Vibrate_effect_haptic VibrateEffectHaptic;
     public int countCollision;
 
 
@@ -24,6 +25,7 @@ public class HapticFeedbackTouchEdge : MonoBehaviour
            
                 if (countCollision == 0)
                 {
+                    VibrateEffectHaptic.electricEdgeTouched = true;
                     pinzaTouchElectricEdge.Raise();
                 }
                 countCollision++;
@@ -38,7 +40,8 @@ public class HapticFeedbackTouchEdge : MonoBehaviour
         {
             countCollision--;
             if (countCollision == 0)
-            {
+            {                   
+                VibrateEffectHaptic.electricEdgeTouched = false;
                 pinzaStopTouchElectricEdge.Raise();
             }
         }
