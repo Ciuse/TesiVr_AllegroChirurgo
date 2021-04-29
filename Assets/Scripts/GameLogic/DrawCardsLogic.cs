@@ -24,6 +24,7 @@ public class DrawCardsLogic : MonoBehaviour
     public Button startGameButton;
     public bool startGame = false;
     public TextMeshProUGUI startGameText;
+    public bool startTraining = false;
    
 
     // Start is called before the first frame update
@@ -44,9 +45,21 @@ public class DrawCardsLogic : MonoBehaviour
             startGame = true;
             startGameText.enabled = false;
         }
+        if (startTraining && !startGame)
+        {
+            StartGameHaptic();
+            startGame = true;
+            startGameText.enabled = false;
+            startTraining = false;
+        }
 
     }
 
+    public void StartTrainingAfterVocal()
+    {
+        startTraining = true;
+    }
+    
     public void StartGameHaptic()
     {
         resetCardsEvent.Raise();
