@@ -34,8 +34,8 @@ public class Pinzare_Haptic : MonoBehaviour
 	private bool buttonStatus = false;			//!< Is the button currently pressed?
 	private GameObject touching = null;			//!< Reference to the object currently touched
 	private GameObject grabbing = null;			//!< Reference to the object currently grabbed
-	private FixedJoint joint = null;			//!< The Unity physics joint created between the stylus and the object being grabbed.
-	
+	private FixedJoint joint = null;            //!< The Unity physics joint created between the stylus and the object being grabbed.
+    public bool waitGrabClickAfterRelease = false;
 	
 	//! Automatically called for initialization
 	void Start () 
@@ -106,6 +106,12 @@ public class Pinzare_Haptic : MonoBehaviour
 		}
 	
 		bool newButtonStatus = hapticDevice.GetComponent<HapticPlugin>().Buttons [buttonID] == 1;
+
+        if (newButtonStatus != buttonStatus)
+        {
+            waitGrabClickAfterRelease = false;
+        }
+
 		buttonStatus = newButtonStatus;
 		// check collision with tweezer and object
 		if (buttonStatus)
@@ -154,9 +160,9 @@ public class Pinzare_Haptic : MonoBehaviour
 		{
             if (collided)
             {
-                grab();
-
-               
+                if (waitGrabClickAfterRelease)
+                    return;
+                grab();            
             }
 			
 		}
@@ -455,7 +461,9 @@ public class Pinzare_Haptic : MonoBehaviour
 
 		if (physicsToggleStyle != PhysicsToggleStyle.none)
 			hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
-	}
+        waitGrabClickAfterRelease = true;
+
+    }
 
 	//! Returns true if there is a current object. 
 	public bool isGrabbing()
