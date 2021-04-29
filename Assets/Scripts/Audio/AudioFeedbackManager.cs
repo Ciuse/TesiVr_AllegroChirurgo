@@ -18,12 +18,14 @@ public class AudioFeedbackManager : MonoBehaviour
             objectSFX.SetActive(sceneLoaderHaptic.soundObjectSetting);
            
         }
+        if (GameObject.Find("ManageJsonToSaveDB") != null)
+        {
+            ManageJsonAndSettingsVR manageJsonAndSettings = GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>();
+            pinzaSFX.SetActive(manageJsonAndSettings.soundObjectSetting);
+            objectSFX.SetActive(manageJsonAndSettings.soundObjectSetting);
+        }
         
     }
 
-    public void ActivateSoundEffect()
-    {
-        pinzaSFX.SetActive(!pinzaSFX.activeSelf);
-        objectSFX.SetActive(!objectSFX.activeSelf);
-    }
+    
 }

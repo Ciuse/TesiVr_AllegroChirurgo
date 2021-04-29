@@ -5,7 +5,7 @@ using Firebase.Database.Query;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class ManageJSON : MonoBehaviour
+public class ManageJsonAndSettingsVR : MonoBehaviour
 {
     public FirebaseClient firebase;
     private String sessionCode;

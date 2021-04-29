@@ -33,6 +33,11 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find ("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
             visualEffectObject = sceneLoaderHaptic.visualObjectSetting;
         }
+        if (GameObject.Find("ManageJsonToSaveDB") != null)
+        {
+            ManageJsonAndSettingsVR manageJsonAndSettings = GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>();
+            visualEffectObject= manageJsonAndSettings.visualObjectSetting;
+        }
 
     }
     
@@ -205,9 +210,5 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             child.GetComponent<MeshRenderer>().material.color= defaultMeshColor;
         }
     }
-
-    public void ActivateVisualEffectObjects()
-    {
-        visualEffectObject = !visualEffectObject;
-    }
+    
 }

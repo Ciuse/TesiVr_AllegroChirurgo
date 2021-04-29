@@ -58,6 +58,7 @@ public class PinzareV3 : MonoBehaviour
     
     public GameObject handMesh;
     public bool pinzaInHand;
+   
     public bool disableHand;
     public bool activateVisualEffectPinza;
 
@@ -73,6 +74,14 @@ public class PinzareV3 : MonoBehaviour
         m_InteractableBase.onSelectExited.AddListener(GripReleased);
         startPinza1Color = pinza1MateriaMeshRender.material.color;
         startPinza2Color = pinza2MateriaMeshRender.material.color;
+        if (GameObject.Find("ManageJsonToSaveDB") != null)
+        {
+            ManageJsonAndSettingsVR manageJsonAndSettings = GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>();
+            activateVisualEffectPinza = manageJsonAndSettings.visualPinzaSetting;
+            disableHand = manageJsonAndSettings.hideHandSetting;
+            resetObjectAfterPinzaTouch = manageJsonAndSettings.detectPinzaCollision;
+            resetObjectAfterObjectTouch = manageJsonAndSettings.detectObjectCollision;
+        }
     }
 
   
@@ -552,20 +561,7 @@ public class PinzareV3 : MonoBehaviour
         activateVisualEffectPinza = !activateVisualEffectPinza;
     }
 
-    public void DisabledHand()
-    {
-        disableHand = !disableHand;
-    }
-
-    public void ActiveResetObjectAfterPinzaTouch()
-    {
-        resetObjectAfterPinzaTouch = !resetObjectAfterPinzaTouch;
-    }
-
-    public void ActiveResetObjectAfterObjectTouch()
-    {
-        resetObjectAfterObjectTouch = !resetObjectAfterObjectTouch;
-    }
+   
 
     public void SetPinzaColorError()
     {

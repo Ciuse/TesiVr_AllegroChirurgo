@@ -809,7 +809,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.15
+  MinDistance: 0.3818295
   MaxDistance: 0.8
   Pan2D: 0
   rolloffMode: 0
@@ -1413,7 +1413,6 @@ GameObject:
   - component: {fileID: 272097394}
   - component: {fileID: 272097393}
   - component: {fileID: 272097395}
-  - component: {fileID: 272097396}
   - component: {fileID: 272097397}
   m_Layer: 0
   m_Name: ControllerVibrationFeedback
@@ -1471,34 +1470,6 @@ MonoBehaviour:
       - m_Target: {fileID: 272097393}
         m_TargetAssemblyTypeName: 
         m_MethodName: PinzaTouchedElectricEdge
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &272097396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272097392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 44b1ee2ffbdc86342946924a95d49bcb, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 272097393}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ActivateVibration
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2224,7 +2195,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3234938dbd20edd4fbbfb886b18c07e2,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5635215310086973122, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
 --- !u!1 &409269623 stripped
 GameObject:
@@ -3812,7 +3784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &636331137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4664,7 +4636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &754244283
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5251,7 +5223,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3234938dbd20edd4fbbfb886b18c07e2,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5635215310086973122, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
 --- !u!4 &842199288 stripped
 Transform:
@@ -6672,7 +6645,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3234938dbd20edd4fbbfb886b18c07e2,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5635215310086973122, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
 --- !u!1 &1168520326
 GameObject:
@@ -9312,23 +9286,6 @@ MonoBehaviour:
   pinzaIsCollideElectricEdge: 0
   pinza1ColorChanged: 0
   pinza2ColorChanged: 0
---- !u!114 &1624222231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147556718424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22687307decd1e34580661aa0a44fea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pinzaTouchElectricEdge: {fileID: 11400000, guid: 2fd01a8fa5c93974189d6c073fd1a2d1,
-    type: 2}
-  pinzaStopTouchElectricEdge: {fileID: 11400000, guid: aad7032b8add08d4e87090b5fe434a5c,
-    type: 2}
-  countCollision: 0
 --- !u!114 &1624222232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9491,118 +9448,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1624222226}
         m_TargetAssemblyTypeName: 
         m_MethodName: RemoveObjectSuccess
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1624222238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147556718424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 757bd4059153bf241add3f296fbdf2da, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1624222226}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: DisabledHand
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1624222239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147556718424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 2e6b6a8f76ef7954eb9b6245dff0ce79, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1624222226}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ActiveVisualEffectPinza
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1624222240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147556718424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: dfc81e697d6589c4d8be147534881a72, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1624222226}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ActiveResetObjectAfterPinzaTouch
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1624222241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147556718424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 76e059f3d36639a4a87f982d33d3b34c, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1624222226}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ActiveResetObjectAfterObjectTouch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10305,7 +10150,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -13040,7 +12885,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3234938dbd20edd4fbbfb886b18c07e2,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5635215310086973122, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1236924997b680459988e8ee7ab1aef, type: 3}
 --- !u!1001 &2033215412
 PrefabInstance:
@@ -14058,6 +13904,7 @@ MonoBehaviour:
   startGameButton: {fileID: 566134814}
   startGame: 0
   startGameText: {fileID: 0}
+  startTraining: 0
 --- !u!4 &2070174723
 Transform:
   m_ObjectHideFlags: 0
@@ -14279,7 +14126,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2105507557}
   - component: {fileID: 2105507559}
-  - component: {fileID: 2105507558}
   m_Layer: 8
   m_Name: AudioClipManager
   m_TagString: Untagged
@@ -14302,34 +14148,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2105507558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105507556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: aff261750b3fec6458a6f33b2fc75606, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2105507559}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ActivateSoundEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2105507559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15558,17 +15376,13 @@ GameObject:
   - component: {fileID: 543450652084456930}
   - component: {fileID: 1624222235}
   - component: {fileID: 1624222226}
-  - component: {fileID: 1624222231}
   - component: {fileID: 1624222232}
   - component: {fileID: 1624222233}
   - component: {fileID: 1624222225}
   - component: {fileID: 1624222237}
-  - component: {fileID: 1624222238}
-  - component: {fileID: 1624222239}
-  - component: {fileID: 1624222240}
-  - component: {fileID: 1624222241}
   - component: {fileID: 1624222250}
   - component: {fileID: 919132147556718425}
+  - component: {fileID: 919132147556718426}
   m_Layer: 10
   m_Name: Pinza
   m_TagString: Untagged
@@ -15604,6 +15418,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &919132147556718426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147556718424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368161a108f70f34dbf0150fc4edf73b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pinzaTouchElectricEdge: {fileID: 11400000, guid: 2fd01a8fa5c93974189d6c073fd1a2d1,
+    type: 2}
+  pinzaStopTouchElectricEdge: {fileID: 11400000, guid: aad7032b8add08d4e87090b5fe434a5c,
+    type: 2}
+  countCollision: 0
 --- !u!114 &2729717239048661147
 MonoBehaviour:
   m_ObjectHideFlags: 0

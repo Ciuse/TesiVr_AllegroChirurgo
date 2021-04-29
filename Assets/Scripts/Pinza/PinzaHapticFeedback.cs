@@ -17,6 +17,15 @@ public class PinzaHapticFeedback : MonoBehaviour
     public bool startVibration;
     private float elapsed=0f;
 
+    private void Start()
+    {
+        if (GameObject.Find("ManageJsonToSaveDB") != null)
+        {
+            ManageJsonAndSettingsVR manageJsonAndSettings = GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>();
+            enableVibration = manageJsonAndSettings.vibrationSetting;
+        }
+    }
+
     private void Update()
     {
         elapsed += Time.deltaTime;
@@ -57,8 +66,4 @@ public class PinzaHapticFeedback : MonoBehaviour
         }
     }
     
-    public void ActivateVibration()
-    {
-        enableVibration = !enableVibration;
-    }
 }
