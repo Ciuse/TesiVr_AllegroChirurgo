@@ -5,6 +5,7 @@ using EventSystem2;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -25,7 +26,7 @@ public class DrawCardsLogic : MonoBehaviour
     public bool startGame = false;
     public TextMeshProUGUI startGameText;
     public bool startTraining = false;
-   
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,7 @@ public class DrawCardsLogic : MonoBehaviour
             StartGameHaptic();
             startGame = true;
             startGameText.enabled = false;
-            startTraining = false;
+            
         }
 
     }
@@ -58,6 +59,7 @@ public class DrawCardsLogic : MonoBehaviour
     public void StartTrainingAfterVocal()
     {
         startTraining = true;
+        
     }
     
     public void StartGameHaptic()
@@ -108,6 +110,10 @@ public class DrawCardsLogic : MonoBehaviour
         else
         {
             print("vinto");
+            if (startTraining)
+            {
+                SceneManager.LoadScene("Allegro_Chirurgo_Haptic_VR");
+            }
         }
         
     }
