@@ -112,12 +112,22 @@ public class DrawCardsLogic : MonoBehaviour
             print("vinto");
             if (startTraining)
             {
-                SceneManager.LoadScene("Allegro_Chirurgo_Haptic_VR");
+                StartCoroutine(WaitBeforeStartGame());
             }
         }
         
     }
 
+    
+    IEnumerator WaitBeforeStartGame()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Allegro_Chirurgo_Haptic_VR");
+        
+    }
+
+    
+    
     IEnumerator Wait2Sec()
     {
         yield return new WaitForSeconds(2f);
