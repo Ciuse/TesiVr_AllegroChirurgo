@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -25,7 +26,9 @@ public class DrawCardsLogic : MonoBehaviour
     public Button startGameButton;
     public bool startGame = false;
     public TextMeshProUGUI startGameText;
-    public bool startTraining = false;
+    public bool startTrainingHaptic = false;
+    public bool startTrainingVrRightHand = false;
+    public bool startTrainingVrLeftHand = false;
 
 
     // Start is called before the first frame update
@@ -46,7 +49,7 @@ public class DrawCardsLogic : MonoBehaviour
             startGame = true;
             startGameText.enabled = false;
         }
-        if (startTraining && !startGame)
+        if (startTrainingHaptic && !startGame)
         {
             StartGameHaptic();
             startGame = true;
@@ -58,7 +61,19 @@ public class DrawCardsLogic : MonoBehaviour
 
     public void StartTrainingAfterVocal()
     {
-        startTraining = true;
+        startTrainingHaptic = true;
+        
+    }
+    
+    public void StartTrainingVrRightHandAfterVocal()
+    {
+        startTrainingVrRightHand = true;
+        
+    }
+    
+    public void StartTrainingVrLeftHandAfterVocal()
+    {
+        startTrainingVrLeftHand = true;
         
     }
     
@@ -69,7 +84,13 @@ public class DrawCardsLogic : MonoBehaviour
     }
     
     
+    public void StartFirstDrawTraining()
+    {
+        resetCardsEvent.Raise();
+        StartCoroutine(WaitSequentialDraw());
+        
 
+    } 
     public void StartFirstDraw()
     {
         resetCardsEvent.Raise();
@@ -110,9 +131,17 @@ public class DrawCardsLogic : MonoBehaviour
         else
         {
             print("vinto");
-            if (startTraining)
+            if (startTrainingHaptic)
             {
                 StartCoroutine(WaitBeforeStartGame());
+            }
+            if (startTrainingVrRightHand)
+            {
+                StartCoroutine(WaitBeforeStartGameVrRightHand());
+            }
+            if (startTrainingVrLeftHand)
+            {
+                StartCoroutine(WaitBeforeStartGameVrLeftHand());
             }
         }
         
@@ -126,7 +155,19 @@ public class DrawCardsLogic : MonoBehaviour
         
     }
 
+    IEnumerator WaitBeforeStartGameVrRightHand()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Allegro_Chirurgo_RightHandGrab");
+        
+    }
     
+    IEnumerator WaitBeforeStartGameVrLeftHand()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Allegro_Chirurgo_LeftHandGrab");
+        
+    }
     
     IEnumerator Wait2Sec()
     {

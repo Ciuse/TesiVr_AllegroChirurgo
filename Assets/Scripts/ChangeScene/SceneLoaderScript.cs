@@ -11,13 +11,13 @@ public class SceneLoaderScript : MonoBehaviour
 
     public void LoadSceneRightHandGrab()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Allegro_Chirurgo_Training_RightHandGrab");
     }
     
     public void LoadSceneLeftHandGrab()
     {
        
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Allegro_Chirurgo_Training_LeftHandGrab");
         
     }
     
