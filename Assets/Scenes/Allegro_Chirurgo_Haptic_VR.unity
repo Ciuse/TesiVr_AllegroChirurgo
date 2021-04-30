@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44077837, g: 0.4894591, b: 0.5695772, a: 1}
+  m_IndirectSpecularColor: {r: 0.4407786, g: 0.48945916, b: 0.5695775, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3069,6 +3069,12 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 661787542}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &661787549 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3774002983950727147, guid: 55884421ae42c1e4f83953930faf046e,
+    type: 3}
+  m_PrefabInstance: {fileID: 661787542}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &662103029
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,6 +3494,12 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 711586432}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &711586439 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3774002983950727147, guid: 4dfbe1b09ca0e9d4f94e490b941d849c,
+    type: 3}
+  m_PrefabInstance: {fileID: 711586432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &712116619
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,7 +3720,19 @@ MonoBehaviour:
   Event: {fileID: 11400000, guid: aad7032b8add08d4e87090b5fe434a5c, type: 2}
   Response:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 756864801}
+        m_TargetAssemblyTypeName: Pinzare_Haptic, Assembly-CSharp
+        m_MethodName: RemoveSetPinzaColorError
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &756864797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3728,6 +3752,18 @@ MonoBehaviour:
       - m_Target: {fileID: 756864801}
         m_TargetAssemblyTypeName: Pinzare_Haptic, Assembly-CSharp
         m_MethodName: Release
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 756864801}
+        m_TargetAssemblyTypeName: Pinzare_Haptic, Assembly-CSharp
+        m_MethodName: SetPinzaColorError
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3888,6 +3924,10 @@ MonoBehaviour:
   ButtonActsAsToggle: 0
   physicsToggleStyle: 1
   DisableUnityCollisionsWithTouchableObjects: 0
+  waitGrabClickAfterRelease: 0
+  pinza1MateriaMeshRender: {fileID: 711586439}
+  pinza2MateriaMeshRender: {fileID: 661787549}
+  activateVisualEffectPinza: 0
 --- !u!54 &756864802
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9953,6 +9993,7 @@ MonoBehaviour:
   startGameButton: {fileID: 0}
   startGame: 0
   startGameText: {fileID: 1926831350}
+  startTraining: 0
 --- !u!4 &1830174321
 Transform:
   m_ObjectHideFlags: 0

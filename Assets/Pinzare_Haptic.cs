@@ -37,6 +37,14 @@ public class Pinzare_Haptic : MonoBehaviour
 	private FixedJoint joint = null;            //!< The Unity physics joint created between the stylus and the object being grabbed.
     public bool waitGrabClickAfterRelease = false;
 	
+    public SkinnedMeshRenderer pinza1MateriaMeshRender;
+    public SkinnedMeshRenderer pinza2MateriaMeshRender;
+    
+    private Color startPinza1Color;
+    private Color startPinza2Color;
+    
+    public bool activateVisualEffectPinza;
+    
 	//! Automatically called for initialization
 	void Start () 
 	{
@@ -53,12 +61,20 @@ public class Pinzare_Haptic : MonoBehaviour
 			}
 
 		}
-
+		if (GameObject.Find("SceneLoader_Haptic") != null)
+		{
+			Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
+			activateVisualEffectPinza = sceneLoaderHaptic.activateVisualEffectPinza;
+		}
+		
 		if ( physicsToggleStyle != PhysicsToggleStyle.none)
 			hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
 
 		if (DisableUnityCollisionsWithTouchableObjects)
 			disableUnityCollisions();
+		
+		startPinza1Color = pinza1MateriaMeshRender.material.color;
+		startPinza2Color = pinza2MateriaMeshRender.material.color;
 	}
 
 	void disableUnityCollisions()
@@ -470,6 +486,27 @@ public class Pinzare_Haptic : MonoBehaviour
 	{
 		return (grabbing != null);
 	}
+	
+	
+	public void SetPinzaColorError()
+	{
+		if (activateVisualEffectPinza)
+		{
+			pinza1MateriaMeshRender.material.color=Color.red;
+			pinza2MateriaMeshRender.material.color=Color.red;
+		}
+	}
+    
+	public void RemoveSetPinzaColorError()
+	{
+		if (activateVisualEffectPinza)
+		{
+			pinza1MateriaMeshRender.material.color = startPinza1Color;
+			pinza2MateriaMeshRender.material.color = startPinza2Color;
+
+		}
+	}
+	
 
 	private void OnDrawGizmos()
 	{
