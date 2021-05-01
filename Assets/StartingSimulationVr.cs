@@ -6,9 +6,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class StartingSimulationVrRightHand : MonoBehaviour
+public class StartingSimulationVr : MonoBehaviour
 {
     public InputActionReference pressingA;
+    public InputActionReference pressingX;
     public GameEvent startingVocalTrainingVR;
     public bool isStarted = false;
     public GameObject objectToPick;
@@ -19,9 +20,10 @@ public class StartingSimulationVrRightHand : MonoBehaviour
 
     private void Update()
     {
-        float buttonValue = pressingA.action.ReadValue<float>();
-        //if (buttonValue > 0.5f && !isStarted)
-        if (Keyboard.current.aKey.wasPressedThisFrame && !isStarted)
+        float buttonValueA = pressingA.action.ReadValue<float>();
+        float buttonValueX = pressingX.action.ReadValue<float>();
+        //if ((buttonValueA > 0.5f || buttonValueX > 0.5f ) && !isStarted)
+        if ((Keyboard.current.aKey.wasPressedThisFrame||Keyboard.current.xKey.wasPressedThisFrame )&& !isStarted)
         {
             startingVocalTrainingVR.Raise();
             textStart.SetActive(false);
