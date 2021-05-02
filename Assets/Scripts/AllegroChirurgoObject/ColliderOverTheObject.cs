@@ -52,6 +52,7 @@ public class ColliderOverTheObject : MonoBehaviour
                 StartCoroutine(StartDissolve());
                 StartCoroutine(ObjectPickedWithSuccessWait());
 
+                
             }else{
 
                 objectPinzabile.WrongPickEvents();
