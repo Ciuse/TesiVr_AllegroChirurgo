@@ -69,14 +69,14 @@ public class StartingSimulationVr : MonoBehaviour
     }
     IEnumerator WaitBeforeShowGripButton()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(6f);
         imageMappingButton.sprite = gripButton;
         text.text = "PRESS AND HOLD GRIP";
 
     }
     IEnumerator WaitBeforeShowTriggerButton()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(4f);
         imageMappingButton.sprite = triggerButton;
         text.text = "PRESS AND HOLD TRIGGER";
     }
