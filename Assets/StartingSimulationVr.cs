@@ -31,8 +31,8 @@ public class StartingSimulationVr : MonoBehaviour
         valueTrigger = pressingTrigger.action.ReadValue<float>();
         float buttonValueA = pressingA.action.ReadValue<float>();
         float buttonValueX = pressingX.action.ReadValue<float>();
-        //if ((buttonValueA > 0.5f || buttonValueX > 0.5f ) && !isStarted)
-        if ((Keyboard.current.aKey.wasPressedThisFrame||Keyboard.current.xKey.wasPressedThisFrame )&& !isStarted)
+        if ((buttonValueA > 0.5f || buttonValueX > 0.5f ) && !isStarted)
+        //if ((Keyboard.current.aKey.wasPressedThisFrame||Keyboard.current.xKey.wasPressedThisFrame )&& !isStarted)
         {
             startingVocalTrainingVR.Raise();
             text.enabled = false;

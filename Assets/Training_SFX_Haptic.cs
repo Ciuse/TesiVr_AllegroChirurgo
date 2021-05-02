@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using EventSystem2;
 using UnityEngine;
 
-public class TRaining_SFX_Haptic : MonoBehaviour
+public class Training_SFX_Haptic : MonoBehaviour
 {
     
     public AudioSource trainingAudioSource;

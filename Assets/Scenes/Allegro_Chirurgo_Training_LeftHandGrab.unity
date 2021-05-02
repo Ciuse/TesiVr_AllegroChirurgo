@@ -2879,7 +2879,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -3654,7 +3654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &756731126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4859,14 +4859,19 @@ MonoBehaviour:
     type: 3}
   pressingX: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  pressingGrip: {fileID: 0}
+  pressingTrigger: {fileID: 0}
   startingVocalTrainingVR: {fileID: 11400000, guid: 11fceffe302ce694681f91cd5c8951eb,
     type: 2}
   isStarted: 0
   objectToPick: {fileID: 178351721}
   collider: {fileID: 1370062443}
   box: {fileID: 47157966}
-  textStart: {fileID: 1676306195}
+  text: {fileID: 0}
+  imageMappingButton: {fileID: 0}
   startingTraining: {fileID: 11400000, guid: 519dd26375c65604e901232610ca380e, type: 2}
+  valueGrip: 0
+  valueTrigger: 0
 --- !u!4 &961601145
 Transform:
   m_ObjectHideFlags: 0
@@ -8766,9 +8771,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainingAudioSource: {fileID: 1429685559}
-  trainingClip: {fileID: 8300000, guid: 500a5bac87cddeb4e9c41c9ffbf5b2b2, type: 3}
+  trainingClip1: {fileID: 0}
+  trainingClip2: {fileID: 0}
+  trainingClip3: {fileID: 0}
   endTrainingVocal: {fileID: 11400000, guid: 6736a8b96cd3cd6418a1ada801a24148, type: 2}
-  startedVocal: 0
+  startedVocals: 0
+  startedVocal1: 0
+  startedVocal2: 0
+  startedVocal3: 0
+  startingSimulationVr: {fileID: 0}
 --- !u!1 &2032698202
 GameObject:
   m_ObjectHideFlags: 0
