@@ -38,7 +38,20 @@ public class DrawCardsLogic : MonoBehaviour
         {
             numbers.Add(i);
         }
+
+        if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_RightHandGrab" ||
+            SceneManager.GetActiveScene().name == "Allegro_Chirurgo_LeftHandGrab")
+        {
+            StartCoroutine(WaitBeforeStartGameVr());
+        }
         
+    }
+    
+    IEnumerator WaitBeforeStartGameVr()
+    {
+        yield return new WaitForSeconds(0.5f);
+        StartFirstDraw();
+   
     }
 
     private void Update()
@@ -59,6 +72,7 @@ public class DrawCardsLogic : MonoBehaviour
 
     }
 
+    //è il training del haptic
     public void StartTrainingAfterVocal()
     {
         startTrainingHaptic = true;
@@ -95,7 +109,11 @@ public class DrawCardsLogic : MonoBehaviour
     {
         resetCardsEvent.Raise();
         StartCoroutine(WaitSequentialDraw());
-        startGameButton.interactable = false;
+        if (startGameButton != null)
+        {
+            startGameButton.interactable = false;
+        }
+        
 
     }
 

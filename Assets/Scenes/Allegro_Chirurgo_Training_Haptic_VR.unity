@@ -802,8 +802,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453377000}
-  - component: {fileID: 453376999}
   - component: {fileID: 453377001}
+  - component: {fileID: 453376999}
   m_Layer: 10
   m_Name: TrainingSFX
   m_TagString: Untagged
@@ -820,11 +820,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 453376998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d50c1b62fef05b14baa9b06d0809f86d, type: 3}
+  m_Script: {fileID: 11500000, guid: 94185f4e8ab88cd4f971e0747344da5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   trainingAudioSource: {fileID: 1034993965}
-  trainingClip: {fileID: 8300000, guid: 500a5bac87cddeb4e9c41c9ffbf5b2b2, type: 3}
+  trainingClip1: {fileID: 8300000, guid: 500a5bac87cddeb4e9c41c9ffbf5b2b2, type: 3}
   endTrainingVocal: {fileID: 11400000, guid: 6736a8b96cd3cd6418a1ada801a24148, type: 2}
   startedVocal: 0
 --- !u!4 &453377000
@@ -858,7 +858,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 453376999}
-        m_TargetAssemblyTypeName: Training_SFX, Assembly-CSharp
+        m_TargetAssemblyTypeName: TRaining_SFX_Haptic, Assembly-CSharp
         m_MethodName: StartVocalTrainingHaptic
         m_Mode: 1
         m_Arguments:
@@ -1794,7 +1794,7 @@ MonoBehaviour:
   Position: {x: 0, y: 0, z: 0}
   Direction: {x: 0, y: 1, z: 0}
   collided: 0
-  countCollision: 0
+  electricEdgeTouched: 0
   device: {fileID: 0}
   FXID: -1
   sphereListPinze:
@@ -1872,6 +1872,7 @@ MonoBehaviour:
     type: 2}
   pinzaStopTouchElectricEdge: {fileID: 11400000, guid: aad7032b8add08d4e87090b5fe434a5c,
     type: 2}
+  VibrateEffectHaptic: {fileID: 0}
   countCollision: 0
 --- !u!114 &756864801
 MonoBehaviour:
@@ -1925,6 +1926,10 @@ MonoBehaviour:
   ButtonActsAsToggle: 0
   physicsToggleStyle: 1
   DisableUnityCollisionsWithTouchableObjects: 0
+  waitGrabClickAfterRelease: 0
+  pinza1MateriaMeshRender: {fileID: 0}
+  pinza2MateriaMeshRender: {fileID: 0}
+  activateVisualEffectPinza: 0
 --- !u!54 &756864802
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4403,7 +4408,9 @@ MonoBehaviour:
   startGameButton: {fileID: 0}
   startGame: 0
   startGameText: {fileID: 1926831350}
-  startTraining: 0
+  startTrainingHaptic: 0
+  startTrainingVrRightHand: 0
+  startTrainingVrLeftHand: 0
 --- !u!4 &1830174321
 Transform:
   m_ObjectHideFlags: 0

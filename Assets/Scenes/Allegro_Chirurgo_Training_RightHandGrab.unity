@@ -258,8 +258,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 124473463}
-        m_TargetAssemblyTypeName: Training_SFX, Assembly-CSharp
-        m_MethodName: StartVocalTrainingHaptic
+        m_TargetAssemblyTypeName: Training_VR_SFX, Assembly-CSharp
+        m_MethodName: StartVocal1TrainingVR
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -282,9 +282,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainingAudioSource: {fileID: 1644186685}
-  trainingClip: {fileID: 8300000, guid: 500a5bac87cddeb4e9c41c9ffbf5b2b2, type: 3}
+  trainingClip1: {fileID: 8300000, guid: 500a5bac87cddeb4e9c41c9ffbf5b2b2, type: 3}
+  trainingClip2: {fileID: 8300000, guid: ef5476a48231edc439033ff6c27c6d13, type: 3}
+  trainingClip3: {fileID: 8300000, guid: 6ba12cb6bdef9f541a68865a714e8096, type: 3}
   endTrainingVocal: {fileID: 11400000, guid: 6736a8b96cd3cd6418a1ada801a24148, type: 2}
-  startedVocal: 0
+  startedVocals: 0
+  startedVocal1: 0
+  startedVocal2: 0
+  startedVocal3: 0
+  startingSimulationVr: {fileID: 894836635}
 --- !u!1 &132628882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2818,9 +2824,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68579d0a01901a5439966031fcbd049d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressingA: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f,
+  pressingA: {fileID: -4094373799867114750, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  pressingX: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f,
+  pressingX: {fileID: 7561396394030901668, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  pressingGrip: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  pressingTrigger: {fileID: 3411308250165419798, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   startingVocalTrainingVR: {fileID: 11400000, guid: 11fceffe302ce694681f91cd5c8951eb,
     type: 2}
@@ -2828,8 +2838,11 @@ MonoBehaviour:
   objectToPick: {fileID: 257388768}
   collider: {fileID: 149084736}
   box: {fileID: 426175406}
-  textStart: {fileID: 543109333}
+  text: {fileID: 482410122}
+  imageMappingButton: {fileID: 672823087}
   startingTraining: {fileID: 11400000, guid: 519dd26375c65604e901232610ca380e, type: 2}
+  valueGrip: 0
+  valueTrigger: 0
 --- !u!4 &894836636
 Transform:
   m_ObjectHideFlags: 0
