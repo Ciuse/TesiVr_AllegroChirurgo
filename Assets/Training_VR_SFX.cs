@@ -26,13 +26,14 @@ public class Training_VR_SFX : MonoBehaviour
     {
         if (!trainingAudioSource.isPlaying && startedVocals && startedVocal1 && startingSimulationVr.valueGrip>0.5f)
         {
-           //endTrainingVocal.Raise();
+           
            startedVocal1 = false;
            StartVocal2TrainingVR();
         }
-        if (!trainingAudioSource.isPlaying && startedVocals && startedVocal2 && startingSimulationVr.valueTrigger>0.5f)
+        if (!trainingAudioSource.isPlaying && startedVocals && startedVocal2 && startingSimulationVr.valueGrip>0.5f
+            && startingSimulationVr.valueTrigger>0.5f)
         {
-            //endTrainingVocal.Raise();
+          
             startedVocal2 = false;
             StartVocal3TrainingVR();
         }
