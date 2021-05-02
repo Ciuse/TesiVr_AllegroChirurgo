@@ -162,6 +162,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "PrimaryButton",
+                    "type": "Button",
+                    "id": "e5adc0aa-5297-44ae-958e-645b52bd7277",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -351,6 +359,17 @@
                     "action": "TriggerPressing",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f67ad3b2-d1ef-41cf-b770-496585353088",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "PrimaryButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -475,6 +494,14 @@
                     "type": "Value",
                     "id": "234e90db-92cd-4743-8649-5a1ee2b1f6c7",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PrimaryButton",
+                    "type": "Button",
+                    "id": "76c81164-32af-412f-b7af-e7dba7f1f906",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -664,6 +691,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TriggerPressing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc401716-2f48-4ce1-ba85-09851180d52a",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "PrimaryButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

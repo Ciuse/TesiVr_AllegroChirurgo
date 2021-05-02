@@ -2,31 +2,41 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using EventSystem2;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class StartingSimulationVr : MonoBehaviour
 {
     public InputActionReference pressingA;
     public InputActionReference pressingX;
+    public InputActionReference pressingGrip;
+    public InputActionReference pressingTrigger;
     public GameEvent startingVocalTrainingVR;
     public bool isStarted = false;
     public GameObject objectToPick;
     public GameObject collider;
     public GameObject box;
-    public GameObject textStart;
+    public TextMeshProUGUI text;
+    public Image imageMappingButton;
     public GameEvent startingTraining;
+    public float valueGrip;
+    public float valueTrigger;
 
     private void Update()
     {
+        valueGrip = pressingGrip.action.ReadValue<float>();
+        valueTrigger = pressingTrigger.action.ReadValue<float>();
         float buttonValueA = pressingA.action.ReadValue<float>();
         float buttonValueX = pressingX.action.ReadValue<float>();
         //if ((buttonValueA > 0.5f || buttonValueX > 0.5f ) && !isStarted)
         if ((Keyboard.current.aKey.wasPressedThisFrame||Keyboard.current.xKey.wasPressedThisFrame )&& !isStarted)
         {
             startingVocalTrainingVR.Raise();
-            textStart.SetActive(false);
+            text.enabled = false;
+            imageMappingButton.enabled = false;
             isStarted = true;
         }
     }
