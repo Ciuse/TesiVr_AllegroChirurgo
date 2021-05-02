@@ -9,12 +9,12 @@ public class SceneLoaderScript : MonoBehaviour
 
     public GameEvent createNewSessionId;
 
-    public void LoadSceneRightHandGrab()
+    public void LoadSceneRightHandTraining()
     {
         SceneManager.LoadScene("Allegro_Chirurgo_Training_RightHandGrab");
     }
     
-    public void LoadSceneLeftHandGrab()
+    public void LoadSceneLeftHandTraining()
     {
        
         SceneManager.LoadScene("Allegro_Chirurgo_Training_LeftHandGrab");
@@ -27,5 +27,18 @@ public class SceneLoaderScript : MonoBehaviour
         createNewSessionId.Raise();
         
     }
+    
+    public void LoadSceneRightHandGrab()
+    {
+        SceneManager.LoadScene("Allegro_Chirurgo_RightHandGrab");
+    }
+    
+    public void LoadSceneLeftHandGrab()
+    {
+       
+        SceneManager.LoadScene("Allegro_Chirurgo_LeftHandGrab");
+        
+    }
+
     
 }

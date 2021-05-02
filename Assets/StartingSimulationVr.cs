@@ -27,6 +27,14 @@ public class StartingSimulationVr : MonoBehaviour
     public float valueGrip;
     public float valueTrigger;
     public Training_VR_SFX trainingVRSfx;
+    public Canvas infoTraining;
+    public Canvas objectCanvas;
+
+    private void Start()
+    {
+        objectCanvas.enabled = false;
+        infoTraining.enabled = true;
+    }
 
     private void Update()
     {
@@ -38,8 +46,8 @@ public class StartingSimulationVr : MonoBehaviour
         //if ((Keyboard.current.aKey.wasPressedThisFrame||Keyboard.current.xKey.wasPressedThisFrame )&& !isStarted)
         {
             startingVocalTrainingVR.Raise();
-            text.enabled = false;
-            imageMappingButton.enabled = false;
+            text.text = "";
+            imageMappingButton.sprite = null;
             isStarted = true;
         }
 
@@ -56,9 +64,11 @@ public class StartingSimulationVr : MonoBehaviour
     public void BoxActivate()
     {
         objectToPick.SetActive(true);
-        box.SetActive(true);
-       collider.SetActive(true);
-       StartCoroutine(WaitBeforeStartTraining());
+        box.SetActive(true); 
+        collider.SetActive(true);
+        infoTraining.enabled = false;
+        objectCanvas.enabled = true;
+        StartCoroutine(WaitBeforeStartTraining());
     }
     
     IEnumerator WaitBeforeStartTraining()
@@ -71,6 +81,7 @@ public class StartingSimulationVr : MonoBehaviour
     {
         yield return new WaitForSeconds(6f);
         imageMappingButton.sprite = gripButton;
+        imageMappingButton.preserveAspect = true;
         text.text = "PRESS AND HOLD GRIP";
 
     }
@@ -78,6 +89,9 @@ public class StartingSimulationVr : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         imageMappingButton.sprite = triggerButton;
+        imageMappingButton.preserveAspect = true;
         text.text = "PRESS AND HOLD TRIGGER";
     }
+    
+    
 }
