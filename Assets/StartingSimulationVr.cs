@@ -21,9 +21,12 @@ public class StartingSimulationVr : MonoBehaviour
     public GameObject box;
     public TextMeshProUGUI text;
     public Image imageMappingButton;
+    public Sprite gripButton;
+    public Sprite triggerButton;
     public GameEvent startingTraining;
     public float valueGrip;
     public float valueTrigger;
+    public Training_VR_SFX trainingVRSfx;
 
     private void Update()
     {
@@ -38,6 +41,15 @@ public class StartingSimulationVr : MonoBehaviour
             text.enabled = false;
             imageMappingButton.enabled = false;
             isStarted = true;
+        }
+
+        if (trainingVRSfx.startedVocal1)
+        {
+            StartCoroutine(WaitBeforeShowGripButton());
+        }
+        if (trainingVRSfx.startedVocal2)
+        {
+            StartCoroutine(WaitBeforeShowTriggerButton());
         }
     }
 
@@ -54,5 +66,18 @@ public class StartingSimulationVr : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         startingTraining.Raise();
         
+    }
+    IEnumerator WaitBeforeShowGripButton()
+    {
+        yield return new WaitForSeconds(0.6f);
+        imageMappingButton.sprite = gripButton;
+        text.text = "PRESS AND HOLD GRIP";
+
+    }
+    IEnumerator WaitBeforeShowTriggerButton()
+    {
+        yield return new WaitForSeconds(0.4f);
+        imageMappingButton.sprite = triggerButton;
+        text.text = "PRESS AND HOLD TRIGGER";
     }
 }
