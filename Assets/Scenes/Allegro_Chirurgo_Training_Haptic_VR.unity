@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainingAudioSource: {fileID: 1034993965}
-  trainingClip1: {fileID: 8300000, guid: 500a5bac87cddeb4e9c41c9ffbf5b2b2, type: 3}
+  trainingClip1: {fileID: 8300000, guid: ea901a69d4ab96e4b928be366b9841ae, type: 3}
   endTrainingVocal: {fileID: 11400000, guid: 6736a8b96cd3cd6418a1ada801a24148, type: 2}
   startedVocal: 0
 --- !u!4 &453377000
