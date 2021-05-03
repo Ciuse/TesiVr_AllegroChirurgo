@@ -10,16 +10,9 @@ public class CardsPickedWithSuccess : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
-            imageCard.enabled = false;
-        
+        imageCard.enabled = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void activateImageCard()
     {

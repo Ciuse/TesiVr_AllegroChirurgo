@@ -388,7 +388,7 @@ public class PinzareV3 : MonoBehaviour
             pinza2CollidedOutside = false;
         }
 
-        if (pinza1Collided && pinza2Collided && !pinza1CollidedOutside && !pinza2CollidedOutside)
+        if (pinza1Collided && pinza2Collided && !pinza1CollidedOutside && !pinza2CollidedOutside && !pinzaIsCollideElectricEdge)
         {
             if (objectWithPinza1 != null && objectWithPinza2 != null)
             {
@@ -489,6 +489,7 @@ public class PinzareV3 : MonoBehaviour
     
     public void RemoveObjectSuccess()
     {
+  
         resetting = true;
         if (objectWithPinza1 != null)
         {

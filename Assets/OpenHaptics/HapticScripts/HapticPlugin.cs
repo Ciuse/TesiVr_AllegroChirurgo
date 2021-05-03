@@ -164,9 +164,7 @@ public class HapticPlugin : MonoBehaviour  {
 
 	[System.NonSerialized] public double[] max_extents = new double[6];
 	[System.NonSerialized] public double[] usable_extents = new double[6];
-
-	private double scale = 1.0f;
-
+	
 	// "Cooked" values. Raw position data multiplied by this object's transform.
 	// Updated every frame.
 	Matrix4x4 stylusMatrixWorld;

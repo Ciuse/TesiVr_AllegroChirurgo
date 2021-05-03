@@ -13,7 +13,7 @@ public class Scene_Loader_Haptic : MonoBehaviour
     public bool soundObjectSetting;
     public bool detectObjectCollision;
     public bool detectPinzaCollision;
-    public bool activateVisualEffectPinza;
+    public bool visualPinzaSetting;
     public FirebaseClient firebase;
     private String sessionCode;
     public String device;
@@ -38,7 +38,7 @@ public class Scene_Loader_Haptic : MonoBehaviour
         //await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"hideHand\":"+hideHandSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualPinza\":"+ activateVisualEffectPinza.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualPinza\":"+ visualPinzaSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
        
     }
@@ -72,8 +72,8 @@ public class Scene_Loader_Haptic : MonoBehaviour
     
     public async void VisualPinza()
     {
-        activateVisualEffectPinza = !activateVisualEffectPinza;
-        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualPinza\":"+ activateVisualEffectPinza.ToString().ToLower()+"}");
+        visualPinzaSetting = !visualPinzaSetting;
+        await firebase.Child(sessionCode).Child("SETTINGS").PatchAsync("{\"visualPinza\":"+ visualPinzaSetting.ToString().ToLower()+"}");
     }
     
     public async void SoundObject()
