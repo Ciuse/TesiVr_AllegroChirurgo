@@ -10,7 +10,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class PinzareV3 : MonoBehaviour
 {
-    public bool resetObjectAfterPinzaTouch;
+    public bool detectPinzaCollisions;
     public bool resetObjectAfterObjectTouch;
     public List<GameObject> sphereListPinza1;
     public List<GameObject> sphereListPinza2;
@@ -79,7 +79,7 @@ public class PinzareV3 : MonoBehaviour
             ManageJsonAndSettingsVR manageJsonAndSettings = GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>();
             activateVisualEffectPinza = manageJsonAndSettings.visualPinzaSetting;
             disableHand = manageJsonAndSettings.hideHandSetting;
-            resetObjectAfterPinzaTouch = manageJsonAndSettings.detectPinzaCollision;
+            detectPinzaCollisions = manageJsonAndSettings.detectPinzaCollision;
             resetObjectAfterObjectTouch = manageJsonAndSettings.detectObjectCollision;
         }
     }
@@ -337,72 +337,81 @@ public class PinzareV3 : MonoBehaviour
         return false;
 
     }
-    
+
     public void CheckCollidersWhileNoObject()
     {
         if (!resetting)
         {
             if (IsPinza1Collided())
-        {
-            pinza1Collided = true;
-            if (objectWithPinza1 == null)
-                objectWithPinza1 = _colliders[0].gameObject.transform.root.gameObject;
-        }
-        else
-        {
-            pinza1Collided = false;
-            objectWithPinza1 = null;
-
-        }
-
-
-
-        if (IsPinza2Collided())
-        {
-            pinza2Collided = true;
-            if (objectWithPinza2 == null)
-                objectWithPinza2 = _colliders[0].gameObject.transform.root.gameObject;
-        }
-        else
-        {
-            pinza2Collided = false;
-            objectWithPinza2 = null;
-        }
-        
-        if (IsPinza1CollidedOutside() || IsPinza1CollidedTable())
-        {
-            pinza1CollidedOutside = true;
-           
-        }
-        else
-        {
-            pinza1CollidedOutside = false;
-        }
-        
-        if (IsPinza2CollidedOutside() || IsPinza2CollidedTable())
-        {
-            pinza2CollidedOutside = true;
-        }
-        else
-        {
-            pinza2CollidedOutside = false;
-        }
-
-        if (pinza1Collided && pinza2Collided && !pinza1CollidedOutside && !pinza2CollidedOutside && !pinzaIsCollideElectricEdge)
-        {
-            if (objectWithPinza1 != null && objectWithPinza2 != null)
             {
-                if (objectWithPinza1 == objectWithPinza2)
-                {
-                    collided = true;
-                    objectWithPinza1.gameObject.transform.SetParent(transform);
-                    objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().SetHasInteract();
+                pinza1Collided = true;
+                if (objectWithPinza1 == null)
+                    objectWithPinza1 = _colliders[0].gameObject.transform.root.gameObject;
+            }
+            else
+            {
+                pinza1Collided = false;
+                objectWithPinza1 = null;
 
+            }
+
+
+
+            if (IsPinza2Collided())
+            {
+                pinza2Collided = true;
+                if (objectWithPinza2 == null)
+                    objectWithPinza2 = _colliders[0].gameObject.transform.root.gameObject;
+            }
+            else
+            {
+                pinza2Collided = false;
+                objectWithPinza2 = null;
+            }
+
+            if (detectPinzaCollisions)
+            {
+
+
+                if (IsPinza1CollidedOutside() || IsPinza1CollidedTable())
+                {
+                    pinza1CollidedOutside = true;
+
+                }
+                else
+                {
+                    pinza1CollidedOutside = false;
+                }
+
+                if (IsPinza2CollidedOutside() || IsPinza2CollidedTable())
+                {
+                    pinza2CollidedOutside = true;
+                }
+                else
+                {
+                    pinza2CollidedOutside = false;
+                }
+            }
+
+            if (pinza1Collided && pinza2Collided && !pinza1CollidedOutside && !pinza2CollidedOutside &&
+                !pinzaIsCollideElectricEdge)
+            {
+                if (objectWithPinza1 != null && objectWithPinza2 != null)
+                {
+                    if (objectWithPinza1 == objectWithPinza2)
+                    {
+                        if(!objectWithPinza1.GetComponent<ObjectPinzabile>().objectPicked)
+                        {
+                            collided = true;
+                            objectWithPinza1.gameObject.transform.SetParent(transform);
+                            objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+                            objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().SetHasInteract();
+                        }
+
+                    }
                 }
             }
         }
-    }
     }
 
 
@@ -437,29 +446,24 @@ public class PinzareV3 : MonoBehaviour
 
     public void RemoveObjectPinzatoPinzaTouch()
     {
-        if (resetObjectAfterPinzaTouch)
+        resetting = true;
+        if (objectWithPinza1 != null)
         {
-            resetting = true;
-            if (objectWithPinza1 != null)
-            {
-                objectWithPinza1.gameObject.transform.SetParent(null);
-                objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
-                objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().ResetState();
-            }
-        
-            pinza1CollidedOutside = false;
-            pinza2CollidedOutside = false;
-            pinza1Collided = false;
-            pinza2Collided = false;
-            objectWithPinza1 = null;
-            objectWithPinza2 = null;
-        
-            collided = false;
-        
-            StartCoroutine(WaitReset());
-    
+            objectWithPinza1.gameObject.transform.SetParent(null);
+            objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+            objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().ResetState();
         }
         
+        pinza1CollidedOutside = false;
+        pinza2CollidedOutside = false;
+        pinza1Collided = false;
+        pinza2Collided = false;
+        objectWithPinza1 = null;
+        objectWithPinza2 = null;
+        
+        collided = false;
+        
+        StartCoroutine(WaitReset());
     }
     
     public void RemoveObjectPinzatoObjectTouch()

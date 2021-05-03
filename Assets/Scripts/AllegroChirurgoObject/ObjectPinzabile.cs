@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class ObjectPinzabile  : DynamicObjectAbstract
 {
-
-
     public bool isActive;
     public ObjectEvent objectTouchBox;
     public ObjectEvent objectWrongPicked;
@@ -20,6 +18,8 @@ public class ObjectPinzabile  : DynamicObjectAbstract
     
     private List<Transform> childList = new List<Transform>();
     public bool visualEffectObject;
+
+    public bool objectPicked;
 
     public void Start()
     {
@@ -131,6 +131,8 @@ public class ObjectPinzabile  : DynamicObjectAbstract
     {
         ResetStatePosition();
         ResetHasInteracted();
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
 
@@ -162,7 +164,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         
     public void CorrectPickEvents()
     {
-
+        objectPicked = true;
         if (visualEffectObject)
         {
             foreach (Transform child in childList)
