@@ -128,5 +128,8 @@ public class TrackingScript : MonoBehaviour
             jsonObjectToSave.wrongObjectPicked.Add(interactable.id);
     }
  
-    
+    public void AddWarningPinza()
+    {
+        jsonObjectToSave.numberOfWarningPinza++;
+    }
 }

@@ -65,6 +65,8 @@ public class PinzareV3 : MonoBehaviour
     public bool pinzaIsCollideElectricEdge;
     public bool pinza1ColorChanged = false;
     public bool pinza2ColorChanged = false;
+
+    public GameEvent pinzaWarningEvent;
     
     // Start is called before the first frame update
     void Start()
@@ -100,10 +102,11 @@ public class PinzareV3 : MonoBehaviour
     {
         if (!pinzaIsCollideElectricEdge)
         {
-            if (pinza1CollidedOutside && activateVisualEffectPinza)
+            if (pinza1CollidedOutside && activateVisualEffectPinza )
             {
                 pinza1MateriaMeshRender.material.color = Color.yellow;
                 pinza1ColorChanged=true;
+                
             }
             else
             {
@@ -115,7 +118,7 @@ public class PinzareV3 : MonoBehaviour
                 }            
             }
 
-            if (pinza2CollidedOutside && activateVisualEffectPinza)
+            if (pinza2CollidedOutside && activateVisualEffectPinza )
             {
                 pinza2MateriaMeshRender.material.color = Color.yellow;
                 pinza2ColorChanged=true;
@@ -149,15 +152,15 @@ public class PinzareV3 : MonoBehaviour
             if (triggerValue > 0.05)
             {
                 // check collision with tweezer and object
-                animatorPinza1.SetBool("CloseRight", true);
-                animatorPinza2.SetBool("CloseLeft", true);
+                animatorPinza1.SetBool("Close", true);
+                animatorPinza2.SetBool("Close", true);
             }
             else
             {
                 if (_smoothClosePinza1 < 0.05 & _smoothClosePinza2 < 0.05)
                 {
-                    animatorPinza1.SetBool("CloseRight", false);
-                    animatorPinza2.SetBool("CloseLeft", false);
+                    animatorPinza1.SetBool("Close", false);
+                    animatorPinza2.SetBool("Close", false);
                 }
                 else
                 {
@@ -170,12 +173,12 @@ public class PinzareV3 : MonoBehaviour
 
             if (!collided)
                 {
-                    if (!pinza1Collided && !pinza1CollidedOutside)
+                    if (!pinza1Collided && !pinza1CollidedOutside && !pinzaIsCollideElectricEdge)
                     {
                         SmoothMovePinza1(triggerValue);
                     }
 
-                    if (!pinza2Collided && !pinza2CollidedOutside)
+                    if (!pinza2Collided && !pinza2CollidedOutside && !pinzaIsCollideElectricEdge)
                     {
                         SmoothMovePinza2(triggerValue);
                     }
@@ -220,7 +223,7 @@ public class PinzareV3 : MonoBehaviour
             _smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
         }
 
-        animatorPinza1.SetFloat("Right", _smoothClosePinza1);
+        animatorPinza1.SetFloat("ValueClose", _smoothClosePinza1);
     }
 
     private void SmoothMovePinza2(float triggerValue)
@@ -234,7 +237,7 @@ public class PinzareV3 : MonoBehaviour
             _smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
         }
 
-        animatorPinza2.SetFloat("Left", _smoothClosePinza2);
+        animatorPinza2.SetFloat("ValueClose", _smoothClosePinza2);
     }
 
     private bool IsPinza1Collided()
@@ -386,6 +389,7 @@ public class PinzareV3 : MonoBehaviour
                 if (IsPinza2CollidedOutside() || IsPinza2CollidedTable())
                 {
                     pinza2CollidedOutside = true;
+
                 }
                 else
                 {
@@ -417,10 +421,10 @@ public class PinzareV3 : MonoBehaviour
 
     public void ResetPinze()
     {                        
-        animatorPinza1.SetBool("CloseRight", false);
-        animatorPinza2.SetBool("CloseLeft", false);
-        animatorPinza1.SetFloat("Right", 0f);
-        animatorPinza2.SetFloat("Left", 0f);
+        animatorPinza1.SetBool("Close", false);
+        animatorPinza2.SetBool("Close", false);
+        animatorPinza1.SetFloat("ValueClose", 0f);
+        animatorPinza2.SetFloat("ValueClose", 0f);
        // animatorPinza2.SetBool("ClosePinza2",false);
         
         if (objectWithPinza1 != null)

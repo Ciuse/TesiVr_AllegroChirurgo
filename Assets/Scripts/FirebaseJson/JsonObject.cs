@@ -6,11 +6,12 @@ using UnityEngine;
 [Serializable] 
 public class JsonObject
 {
-    public int idObject;
-    public int executionNumber;
-    public int numberOfErrorPinza;
-    public int numberOfErrorObject;
-    
+    public int idObject=-1;
+    public int executionNumber=0;
+    public int numberOfErrorPinza=0;
+    public int numberOfErrorObject=0;
+    public int numberOfWarningPinza=0;
+
     public List<int> wrongObjectPicked = new List<int>();
     [NonSerialized]
     public DateTime startTime;
