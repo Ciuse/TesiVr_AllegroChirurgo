@@ -6323,8 +6323,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
-  field of view: 100
+  far clip plane: 10
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -7595,6 +7595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createNewSessionId: {fileID: 11400000, guid: 24c7d8ed173bd39469d5f609ca6fcdbf, type: 2}
+  createNewMatchId: {fileID: 0}
 --- !u!4 &1769038874
 Transform:
   m_ObjectHideFlags: 0
@@ -9146,7 +9147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e74836659957946ab709d44d9b8020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetObjectAfterPinzaTouch: 1
+  detectPinzaCollisions: 0
   resetObjectAfterObjectTouch: 1
   sphereListPinza1:
   - {fileID: 627074347}
@@ -9227,6 +9228,7 @@ MonoBehaviour:
   pinzaIsCollideElectricEdge: 0
   pinza1ColorChanged: 0
   pinza2ColorChanged: 0
+  pinzaWarningEvent: {fileID: 0}
 --- !u!54 &2033680132
 Rigidbody:
   m_ObjectHideFlags: 0

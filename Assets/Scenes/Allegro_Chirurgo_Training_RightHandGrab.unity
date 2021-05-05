@@ -4252,6 +4252,7 @@ MonoBehaviour:
   pinzaIsCollideElectricEdge: 0
   pinza1ColorChanged: 0
   pinza2ColorChanged: 0
+  pinzaWarningEvent: {fileID: 0}
 --- !u!114 &1624222232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4630,7 +4631,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 10
   field of view: 60
   orthographic: 0
   orthographic size: 5

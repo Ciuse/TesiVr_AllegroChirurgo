@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4407786, g: 0.48945916, b: 0.5695775, a: 1}
+  m_IndirectSpecularColor: {r: 0.17588812, g: 0.2201085, b: 0.302437, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1929,7 +1929,7 @@ MonoBehaviour:
   waitGrabClickAfterRelease: 0
   pinza1MateriaMeshRender: {fileID: 0}
   pinza2MateriaMeshRender: {fileID: 0}
-  activateVisualEffectPinza: 0
+  visualPinzaSetting: 0
 --- !u!54 &756864802
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2071,6 +2071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createNewSessionId: {fileID: 11400000, guid: 24c7d8ed173bd39469d5f609ca6fcdbf, type: 2}
+  createNewMatchId: {fileID: 0}
 --- !u!4 &866019168
 Transform:
   m_ObjectHideFlags: 0
@@ -2359,8 +2360,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.05
-  far clip plane: 100
-  field of view: 95
+  far clip plane: 10
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
