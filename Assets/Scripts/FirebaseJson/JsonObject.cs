@@ -7,6 +7,7 @@ using UnityEngine;
 public class JsonObject
 {
     public int idObject=-1;
+    [NonSerialized]
     public int executionNumber=0;
     public int numberOfErrorPinza=0;
     public int numberOfErrorObject=0;

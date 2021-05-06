@@ -116,7 +116,7 @@ public class PinzareV3 : MonoBehaviour
                 {
                     pinza1MateriaMeshRender.material.color = startPinza1Color;
                     pinza1ColorChanged=false;
-
+                    pinzaWarningEvent.Raise();
                 }            
             }
 
@@ -132,6 +132,8 @@ public class PinzareV3 : MonoBehaviour
                 {
                     pinza2MateriaMeshRender.material.color = startPinza2Color;
                     pinza2ColorChanged=false;
+                    pinzaWarningEvent.Raise();
+
                 }            
             }
         }

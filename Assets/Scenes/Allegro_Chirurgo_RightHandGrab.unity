@@ -6022,6 +6022,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c21d7775e6913294f8ac0d706a95540e, type: 3}
+--- !u!1 &1229853836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4663507662536346793, guid: c21d7775e6913294f8ac0d706a95540e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1229853835}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1229853837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4663507662536346839, guid: c21d7775e6913294f8ac0d706a95540e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1229853835}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229853836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505c854c0a3a52b43945a34624bc9383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1229853838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229853836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 3ac86196d49f17b4daba63f7869372b2, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1229853837}
+        m_TargetAssemblyTypeName: TrackingScript, Assembly-CSharp
+        m_MethodName: AddWarningPinza
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1260705599
 GameObject:
   m_ObjectHideFlags: 0
@@ -7640,7 +7686,7 @@ MonoBehaviour:
   pinzaIsCollideElectricEdge: 0
   pinza1ColorChanged: 0
   pinza2ColorChanged: 0
-  pinzaWarningEvent: {fileID: 0}
+  pinzaWarningEvent: {fileID: 11400000, guid: 3ac86196d49f17b4daba63f7869372b2, type: 2}
 --- !u!114 &1624222232
 MonoBehaviour:
   m_ObjectHideFlags: 0

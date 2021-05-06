@@ -6,6 +6,7 @@ using Firebase.Database.Query;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Scene_Loader_Haptic : MonoBehaviour
 {
@@ -18,9 +19,13 @@ public class Scene_Loader_Haptic : MonoBehaviour
     public bool detectPinzaCollision;
     public FirebaseClient firebase;
     private String sessionCode;
+    private string complex="complexData";  
+    private string simple="simpleData";
+    private string userId = "-1";
     public String device;
     public int matchId=0;   
     private String currentMatchId;
+    public Text text;
     
     public bool showRightHand;
     public bool showLeftHand;
@@ -40,16 +45,17 @@ public class Scene_Loader_Haptic : MonoBehaviour
     public async void GameStartedWithHaptic()
     {
         String deviceUsed = "\""+device+"\"";
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
+        await firebase.Child(sessionCode).Child(simple).Child("Settings").PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
     }
     
     public async void SaveStartingSetting()
     {
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualObject\":"+ visualCorrectObjectSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualPinza\":"+ visualErrorSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"showHand\":"+ showHandSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"visualObject\":"+ visualCorrectObjectSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"visualPinza\":"+ visualErrorSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"showHand\":"+ showHandSetting.ToString().ToLower()+"}");
 
     }
     
@@ -58,18 +64,28 @@ public class Scene_Loader_Haptic : MonoBehaviour
         SceneManager.LoadScene(4);
    
     }
-    
+
+    public async void CheckUserIdAndStart()
+    {
+        userId = text.text;
+        if(!userId.Equals("-1")&&!userId.Equals(""))
+        {
+            await firebase.Child(sessionCode).Child(complex).PatchAsync("{\"userId\":"+ userId.ToLower()+"}");
+            await firebase.Child(sessionCode).Child(simple).PatchAsync("{\"userId\":"+ userId.ToLower()+"}");
+            SceneManager.LoadScene("Allegro_Chirurgo_Training_Haptic_VR");
+        }
+
+    }
     
     
     public void LoadSceneHapticAndVR()
     {
         if (!showHandSetting)
         {
-            SceneManager.LoadScene("Allegro_Chirurgo_Training_Haptic_VR");
+            CheckUserIdAndStart();
         }
         else
         {
-            //TODO aprire un altro pannello e chiedere quale mano mostrare
             optionCanvas.enabled = false;
             selectHandCanvas.enabled = true;
         }
@@ -79,50 +95,50 @@ public class Scene_Loader_Haptic : MonoBehaviour
     {
         showRightHand = true;
         SetJsonRightHand();
-        SceneManager.LoadScene("Allegro_Chirurgo_Training_Haptic_VR");
+        CheckUserIdAndStart();
     
     }
     public void LoadSceneHapticAndVRLeftHandShow()
     {
         showLeftHand = true;
         SetJsonLeftHand();
-        SceneManager.LoadScene("Allegro_Chirurgo_Training_Haptic_VR");
+        CheckUserIdAndStart();
 
     }
 
     public async void Vibration()
     {
         vibrationSetting = !vibrationSetting;
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
     }
     
     
     public async void VisualCorrectObject()
     {
         visualCorrectObjectSetting = !visualCorrectObjectSetting;
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualObject\":"+ visualCorrectObjectSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"visualCorrectObject\":"+ visualCorrectObjectSetting.ToString().ToLower()+"}");
     }
     
     public async void VisualError()
     {
         visualErrorSetting = !visualErrorSetting;
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualPinza\":"+ visualErrorSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"visualError\":"+ visualErrorSetting.ToString().ToLower()+"}");
     }
     public async void SoundObject()
     {
         soundObjectSetting = !soundObjectSetting;
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
     }
     
     public async void ShowHand()
     {
         showHandSetting = !showHandSetting;
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"showHand\":"+ showHandSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"showHand\":"+ showHandSetting.ToString().ToLower()+"}");
     }
     public async void SetJsonRightHand()
     {
         string handUsed = "\"rightHand\"";
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"hand\":"+ handUsed+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"hand\":"+ handUsed+"}");
 
         
     }
@@ -130,7 +146,7 @@ public class Scene_Loader_Haptic : MonoBehaviour
     public async void SetJsonLeftHand()
     {
         string handUsed = "\"leftHand\"";
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"hand\":"+ handUsed+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"hand\":"+ handUsed+"}");
     }
     
     public void DetectObjectCollision()
@@ -146,19 +162,14 @@ public class Scene_Loader_Haptic : MonoBehaviour
     public void SaveJsonObject(Interactable interactable)
     {       
         JsonObject jsonObjectToSave= interactable.interactedObject.GetComponent<TrackingScript>().jsonObjectToSave;
-        
-            
         StartCoroutine(AsyncData(jsonObjectToSave));
-//            .ContinueWith(interactable.interactedObject.GetComponent<TrackingScript>().jsonObjectToSave=new JsonObject());
-//        
+        
+        JsonObject jsonObjectSimple = jsonObjectToSave;
+        jsonObjectSimple.trajectoryList = null;
+        StartCoroutine(AsyncData2(jsonObjectSimple));
     }
     IEnumerator AsyncData(JsonObject jsonObjectToSave)
     {
-//        string data= JsonConvert.SerializeObject(jsonObjectToSave, Formatting.None,
-//            new JsonSerializerSettings()
-//            {
-//                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-//            });      
         string data = JsonUtility.ToJson(jsonObjectToSave);
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(AsyncSave(data));
@@ -167,7 +178,23 @@ public class Scene_Loader_Haptic : MonoBehaviour
     
     IEnumerator AsyncSave (String data)
     { 
-        firebase.Child(sessionCode).Child("listOfMatch").Child(currentMatchId).Child("listOfObject")
+        firebase.Child(sessionCode).Child(complex).Child("listOfMatch").Child(currentMatchId).Child("listOfObject")
+            .PostAsync(data);
+        yield return null; 
+    }
+    
+    IEnumerator AsyncData2(JsonObject jsonObjectSimple)
+    {
+     
+        string data = JsonUtility.ToJson(jsonObjectSimple);
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(AsyncSave2(data));
+        yield return null; 
+    }
+    
+    IEnumerator AsyncSave2 (String data)
+    { 
+        firebase.Child(sessionCode).Child(simple).Child("listOfMatch").Child(currentMatchId).Child("listOfObject")
             .PostAsync(data);
         yield return null; 
     }
@@ -181,7 +208,7 @@ public class Scene_Loader_Haptic : MonoBehaviour
     public async void SaveMatchDuration(int duration)
     {
         print("{\"duration\":"+ duration.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("listOfMatch").Child(currentMatchId).PatchAsync("{\"duration\":"+ duration.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(complex).Child("listOfMatch").Child(currentMatchId).PatchAsync("{\"duration\":"+ duration.ToString().ToLower()+"}");
     }
 
 
