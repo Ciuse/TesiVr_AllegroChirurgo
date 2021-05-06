@@ -41,7 +41,8 @@ public class DrawCardsLogic : MonoBehaviour
         }
 
         if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_RightHandGrab" ||
-            SceneManager.GetActiveScene().name == "Allegro_Chirurgo_LeftHandGrab")
+            SceneManager.GetActiveScene().name == "Allegro_Chirurgo_LeftHandGrab" || 
+            SceneManager.GetActiveScene().name =="Allegro_Chirurgo_Haptic_VR")
         {
             StartCoroutine(WaitBeforeStartGameVr());
             matchStartTime=DateTime.Now;;
@@ -142,13 +143,22 @@ public class DrawCardsLogic : MonoBehaviour
         }
         else
         {
+            print("vinto");
             if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_RightHandGrab" ||
                 SceneManager.GetActiveScene().name == "Allegro_Chirurgo_LeftHandGrab")
             {
-                print("vinto");
+               
 
                 int matchDuration = (int) DateTime.Now.Subtract(matchStartTime).TotalMilliseconds;
                 GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>()
+                    .SaveMatchDuration(matchDuration);
+                return;
+            }
+
+            if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Haptic_VR")
+            {
+                int matchDuration = (int) DateTime.Now.Subtract(matchStartTime).TotalMilliseconds;
+                GameObject.Find("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>()
                     .SaveMatchDuration(matchDuration);
                 return;
             }

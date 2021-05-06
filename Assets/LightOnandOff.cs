@@ -8,7 +8,7 @@ public class LightOnandOff : MonoBehaviour
  
 
     public GameObject nosePatient;
-    public bool visualPinzaSetting;
+    public bool visualErrorSetting;
     private Color colorDefault;
     // Start is called before the first frame update
     void Start()
@@ -16,19 +16,19 @@ public class LightOnandOff : MonoBehaviour
         if (GameObject.Find ("SceneLoader_Haptic")!=null)
         {
             Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find ("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
-            visualPinzaSetting = sceneLoaderHaptic.visualPinzaSetting;
+            visualErrorSetting = sceneLoaderHaptic.visualErrorSetting;
         }
         if (GameObject.Find("ManageJsonToSaveDB") != null)
         {
             ManageJsonAndSettingsVR manageJsonAndSettings = GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>();
-            visualPinzaSetting= manageJsonAndSettings.visualPinzaSetting;
+            visualErrorSetting= manageJsonAndSettings.visualErrorSetting;
         }
         colorDefault = nosePatient.GetComponent<MeshRenderer>().material.color;
     }
 
     public void OnLight()
     {
-        if (visualPinzaSetting)
+        if (visualErrorSetting)
         {
             //nosePatient.GetComponent<MeshRenderer>().material.color=Color.red;
             nosePatient.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
@@ -38,7 +38,7 @@ public class LightOnandOff : MonoBehaviour
     
     public void OffLight()
     {
-        if (visualPinzaSetting)
+        if (visualErrorSetting)
         {
             // nosePatient.GetComponent<MeshRenderer>().material.color=colorDefault;
             nosePatient.GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");

@@ -31,12 +31,12 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         if (GameObject.Find ("SceneLoader_Haptic")!=null)
         {
             Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find ("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
-            visualEffectObject = sceneLoaderHaptic.visualObjectSetting;
+            visualEffectObject = sceneLoaderHaptic.visualCorrectObjectSetting;
         }
         if (GameObject.Find("ManageJsonToSaveDB") != null)
         {
             ManageJsonAndSettingsVR manageJsonAndSettings = GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>();
-            visualEffectObject= manageJsonAndSettings.visualObjectSetting;
+            visualEffectObject= manageJsonAndSettings.visualPickingUpObjectSetting;
         }
 
     }

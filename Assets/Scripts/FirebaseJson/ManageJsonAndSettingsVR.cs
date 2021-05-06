@@ -14,9 +14,10 @@ public class ManageJsonAndSettingsVR : MonoBehaviour
     public int matchId=0;
     public String handUsed;
     public bool vibrationSetting;
-    public bool hideHandSetting;
-    public bool visualPinzaSetting;
-    public bool visualObjectSetting;
+    public bool showHandSetting;
+    public bool visualErrorSetting;
+    public bool visualPinzaWarningSetting;
+    public bool visualPickingUpObjectSetting;
     public bool soundObjectSetting;
     public bool detectObjectCollision;
     public bool detectPinzaCollision;
@@ -70,10 +71,10 @@ public class ManageJsonAndSettingsVR : MonoBehaviour
     
 
     
-    public async void HideHandSetting()
+    public async void ShowHandSetting()
     {
-        hideHandSetting = !hideHandSetting;
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"hideHand\":"+ hideHandSetting.ToString().ToLower()+"}");
+        showHandSetting = !showHandSetting;
+        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"showHand\":"+ showHandSetting.ToString().ToLower()+"}");
     }
     
     public async void VibrationFeedbackSetting()
@@ -82,16 +83,21 @@ public class ManageJsonAndSettingsVR : MonoBehaviour
         await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
     }
     
-    public async void VisualPinzaSetting()
+    public async void VisualErrorSetting()
     {
-        visualPinzaSetting = !visualPinzaSetting;
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualPinza\":"+ visualPinzaSetting.ToString().ToLower()+"}");
+        visualErrorSetting = !visualErrorSetting;
+        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualError\":"+ visualErrorSetting.ToString().ToLower()+"}");
+    }
+    public async void VisualWarningPinzaSetting()
+    {
+        visualPinzaWarningSetting = !visualPinzaWarningSetting;
+        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualWarningPinza\":"+ visualPinzaWarningSetting.ToString().ToLower()+"}");
     }
     
-    public async void VisualObjectSetting()
+    public async void VisualCorrectObjectSetting()
     {
-        visualObjectSetting = !visualObjectSetting;
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
+        visualPickingUpObjectSetting = !visualPickingUpObjectSetting;
+        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualCorrectObject\":"+ visualPickingUpObjectSetting.ToString().ToLower()+"}");
     }
     public async void SoundObjectSetting()
     {
@@ -113,13 +119,14 @@ public class ManageJsonAndSettingsVR : MonoBehaviour
 
     public async void SaveStartingSetting()
     {
-       await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"hideHand\":"+hideHandSetting.ToString().ToLower()+"}");
+       await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"hideHand\":"+showHandSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"sound\":"+ soundObjectSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualObject\":"+ visualObjectSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualObject\":"+ visualPickingUpObjectSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"vibration\":"+ vibrationSetting.ToString().ToLower()+"}");
-        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualPinza\":"+ visualPinzaSetting.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualPinza\":"+ visualErrorSetting.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"detectPinzaCollision\":"+ detectPinzaCollision.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"detectObjectCollision\":"+ detectObjectCollision.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child("Settings").PatchAsync("{\"visualWarningPinza\":"+ visualPinzaWarningSetting.ToString().ToLower()+"}");
 
     }
 

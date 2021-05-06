@@ -531,7 +531,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1138815671}
         m_TargetAssemblyTypeName: Scene_Loader_Haptic, Assembly-CSharp
-        m_MethodName: VisualPinza
+        m_MethodName: VisualError
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1359,7 +1359,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1138815671}
         m_TargetAssemblyTypeName: Scene_Loader_Haptic, Assembly-CSharp
-        m_MethodName: VisualObject
+        m_MethodName: VisualCorrectObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

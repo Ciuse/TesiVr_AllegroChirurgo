@@ -59,8 +59,9 @@ public class PinzareV3 : MonoBehaviour
     public GameObject handMesh;
     public bool pinzaInHand;
    
-    public bool disableHand;
-    public bool activateVisualEffectPinza;
+    public bool showHand;
+    public bool visualErrorSetting;
+    public bool visualWarningSetting;
 
     public bool pinzaIsCollideElectricEdge;
     public bool pinza1ColorChanged = false;
@@ -79,8 +80,9 @@ public class PinzareV3 : MonoBehaviour
         if (GameObject.Find("ManageJsonToSaveDB") != null)
         {
             ManageJsonAndSettingsVR manageJsonAndSettings = GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>();
-            activateVisualEffectPinza = manageJsonAndSettings.visualPinzaSetting;
-            disableHand = manageJsonAndSettings.hideHandSetting;
+            visualErrorSetting = manageJsonAndSettings.visualErrorSetting;
+            visualWarningSetting = manageJsonAndSettings.visualPinzaWarningSetting;
+            showHand = manageJsonAndSettings.showHandSetting;
             detectPinzaCollisions = manageJsonAndSettings.detectPinzaCollision;
             resetObjectAfterObjectTouch = manageJsonAndSettings.detectObjectCollision;
         }
@@ -102,7 +104,7 @@ public class PinzareV3 : MonoBehaviour
     {
         if (!pinzaIsCollideElectricEdge)
         {
-            if (pinza1CollidedOutside && activateVisualEffectPinza )
+            if (pinza1CollidedOutside && visualWarningSetting )
             {
                 pinza1MateriaMeshRender.material.color = Color.yellow;
                 pinza1ColorChanged=true;
@@ -118,7 +120,7 @@ public class PinzareV3 : MonoBehaviour
                 }            
             }
 
-            if (pinza2CollidedOutside && activateVisualEffectPinza )
+            if (pinza2CollidedOutside && visualWarningSetting )
             {
                 pinza2MateriaMeshRender.material.color = Color.yellow;
                 pinza2ColorChanged=true;
@@ -140,7 +142,7 @@ public class PinzareV3 : MonoBehaviour
     {
         if (m_gripDown)
         {
-            if (disableHand)
+            if (!showHand)
             {
                 handMesh.SetActive(false);
                 pinzaInHand = true;
@@ -198,7 +200,7 @@ public class PinzareV3 : MonoBehaviour
                 }
         }
         else{
-            if (disableHand)
+            if (!showHand)
             {
                 if (pinzaInHand)
                 {
@@ -565,16 +567,11 @@ public class PinzareV3 : MonoBehaviour
         }
     }
     
-    public void ActiveVisualEffectPinza()
-    {
-        activateVisualEffectPinza = !activateVisualEffectPinza;
-    }
-
    
 
     public void SetPinzaColorError()
     {
-        if (activateVisualEffectPinza)
+        if (visualErrorSetting)
         {
             pinzaIsCollideElectricEdge = true;
             pinza1MateriaMeshRender.material.color=Color.red;
@@ -584,7 +581,7 @@ public class PinzareV3 : MonoBehaviour
     
     public void RemoveSetPinzaColorError()
     {
-        if (activateVisualEffectPinza)
+        if (visualErrorSetting)
         {
             pinza1MateriaMeshRender.material.color = startPinza1Color;
             pinza2MateriaMeshRender.material.color = startPinza2Color;
