@@ -31,7 +31,7 @@ public class Pinzare_Haptic : MonoBehaviour
 	public bool DisableUnityCollisionsWithTouchableObjects = true;
 
 	private  GameObject hapticDevice = null;   //!< Reference to the GameObject representing the Haptic Device
-	private bool buttonStatus = false;			//!< Is the button currently pressed?
+	public bool buttonStatus = false;			//!< Is the button currently pressed?
 	private GameObject touching = null;			//!< Reference to the object currently touched
 	private GameObject grabbing = null;			//!< Reference to the object currently grabbed
 	private FixedJoint joint = null;            //!< The Unity physics joint created between the stylus and the object being grabbed.
@@ -177,7 +177,7 @@ public class Pinzare_Haptic : MonoBehaviour
 						_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
 					}
 
-					animatorPinza1.SetFloat("CloseValue", _smoothClosePinza1);
+					animatorPinza1.SetFloat("ValueClose", _smoothClosePinza1);
 				}
 
 				if (!pinza2Collided && _smoothClosePinza2<=1)
@@ -191,7 +191,7 @@ public class Pinzare_Haptic : MonoBehaviour
 						_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
 					}
 
-					animatorPinza2.SetFloat("CloseValue", _smoothClosePinza2);
+					animatorPinza2.SetFloat("ValueClose", _smoothClosePinza2);
 				}
 				CheckCollidersWhileNoObject();
 			}
@@ -246,14 +246,14 @@ public class Pinzare_Haptic : MonoBehaviour
 		if (_smoothClosePinza1 > 0)
 		{
 			_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
-			animatorPinza1.SetFloat("CloseValue", _smoothClosePinza1);
+			animatorPinza1.SetFloat("ValueClose", _smoothClosePinza1);
 	
 		}
 
 		if (_smoothClosePinza2 > 0)
 		{
 			_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
-			animatorPinza2.SetFloat("CloseValue", _smoothClosePinza2);
+			animatorPinza2.SetFloat("ValueClose", _smoothClosePinza2);
 		}
 	}
 

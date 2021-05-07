@@ -12,8 +12,18 @@ public class Training_Haptic : MonoBehaviour
     public GameEvent startingTrainingVocal;
 
     public bool startingVocal = false;
-    
+    public GameObject objectToPick;
+    public GameObject collider;
+    public GameObject box;
+    public GameEvent startingTraining;
+    public Canvas start_Training_Canvas;
+    public Canvas objectToPickCanvas;
 
+    public void Start()
+    {
+        start_Training_Canvas.enabled = true;
+        objectToPickCanvas.enabled = false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -23,8 +33,24 @@ public class Training_Haptic : MonoBehaviour
         {
             startingTrainingVocal.Raise();
             startingVocal = true;
+            start_Training_Canvas.enabled = false;
+            objectToPickCanvas.enabled = true;
         }
     }
-    
-    
+
+    public void BoxActivate()
+    {
+        objectToPick.SetActive(true);
+        box.SetActive(true);
+        collider.SetActive(true);
+        StartCoroutine(WaitBeforeStartTraining());
+    }
+
+    IEnumerator WaitBeforeStartTraining()
+    {
+        yield return new WaitForSeconds(0.3f);
+        startingTraining.Raise();
+
+    }
+
 }

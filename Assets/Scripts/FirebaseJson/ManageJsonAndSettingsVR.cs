@@ -64,7 +64,6 @@ public class ManageJsonAndSettingsVR : MonoBehaviour
     {
         print("Scene started with right hand");
         handUsed = "\"rightHand\"";
-        userId = userTextId.text;
         await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"hand\":"+ handUsed+"}");
         await firebase.Child(sessionCode).Child(complex).PatchAsync("{\"userId\":"+ userId.ToLower()+"}");
         await firebase.Child(sessionCode).Child(simple).PatchAsync("{\"userId\":"+ userId.ToLower()+"}");
@@ -76,14 +75,16 @@ public class ManageJsonAndSettingsVR : MonoBehaviour
     {
         print("Scene started with left hand");
         handUsed = "\"leftHand\"";
-        userId = userTextId.text;
         await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"hand\":"+ handUsed+"}");
         await firebase.Child(sessionCode).Child(complex).PatchAsync("{\"userId\":"+ userId.ToLower()+"}");
         await firebase.Child(sessionCode).Child(simple).PatchAsync("{\"userId\":"+ userId.ToLower()+"}");
     }
     
+    public void SetUserId()
+    {
+        userId = userTextId.text;
+    }
 
-    
     public async void ShowHandSetting()
     {
         showHandSetting = !showHandSetting;

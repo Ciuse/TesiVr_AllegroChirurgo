@@ -223,5 +223,4 @@ public class Vibrate_effect_haptic : MonoBehaviour
 	    }
 	    
     }
-
 }

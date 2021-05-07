@@ -28,6 +28,9 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         isActive = false;
         FindLeaves(transform, childList);
         defaultMeshColor = childList[0].GetComponent<MeshRenderer>().material.color;
+
+
+            defaultMeshColor = childList[0].GetComponent<MeshRenderer>().material.color;
         if (GameObject.Find ("SceneLoader_Haptic")!=null)
         {
             Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find ("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
@@ -46,7 +49,10 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         
         if (parent.childCount == 0)
         {
-            leafArray.Add(parent);
+            if (parent.GetComponent<MeshRenderer>() != null)
+            {
+                leafArray.Add(parent);
+            }
         }
         else
         {
@@ -60,7 +66,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
     private void OnCollisionEnter(Collision other)
     {
-        if (SceneManager.GetActiveScene().name == "Haptic_Scene2")
+        if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Haptic_VR")
         {
 
             if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
@@ -80,46 +86,52 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
+        if (SceneManager.GetActiveScene().name != "Allegro_Chirurgo_Haptic_VR")
         {
-            Interact();
+            if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
+            {
+                Interact();
+            }
+
+            if (hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
+            {
+                Interactable interactable = new Interactable { id = idObject };
+                objectTouchBox.Raise(interactable);
+
+            }
+
+            if (!hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
+            {
+                ResetState();
+            }
+
         }
 
-        if(hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")) )
-        {
-            Interactable interactable = new Interactable {id = idObject};
-            objectTouchBox.Raise(interactable);
 
-        }
-
-        if (!hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
-        {
-            ResetState();
-        }
-
-    
     }
 
     private void OnTriggerStay(Collider other)
     {
-        
-        if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
+        if (SceneManager.GetActiveScene().name != "Allegro_Chirurgo_Haptic_VR")
         {
-            Interact();
+
+            if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
+            {
+                Interact();
+            }
+
+            if (hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
+            {
+                Interactable interactable = new Interactable { id = idObject };
+                objectTouchBox.Raise(interactable);
+
+            }
+
+            if (!hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
+            {
+                ResetState();
+            }
         }
-
-        if(hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")) )
-        {
-            Interactable interactable = new Interactable {id = idObject};
-            objectTouchBox.Raise(interactable);
-
-        }
-
-        if (!hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
-        {
-            ResetState();
-        }
-
     }
 
     public override void SaveState()

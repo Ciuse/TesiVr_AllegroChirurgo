@@ -59,17 +59,10 @@ public class DrawCardsLogic : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.qKey.wasPressedThisFrame && !startGame)
-        {
-            StartGameHaptic();
-            startGame = true;
-            startGameText.enabled = false;
-        }
         if (startTrainingHaptic && !startGame)
         {
             StartGameHaptic();
             startGame = true;
-            startGameText.enabled = false;
             
         }
 
