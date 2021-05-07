@@ -21,7 +21,6 @@ public class HapticEffect : MonoBehaviour {
 	[Range(0.0f,1.0f)] public double Gain = 0.333f;	
 	[Range(0.0f,1.0f)] public double Magnitude = 0.333f;
 	[Range(1.0f,1000.0f)] public double Frequency = 200.0f;
-	private double Duration = 1.0f;
 	public Vector3 Position = Vector3.zero;
 	public Vector3 Direction = Vector3.up;
 

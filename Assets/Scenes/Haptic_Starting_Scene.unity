@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44770837, g: 0.4976865, b: 0.57539725, a: 1}
+  m_IndirectSpecularColor: {r: 0.18114072, g: 0.22672558, b: 0.30731538, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -531,7 +531,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1138815671}
         m_TargetAssemblyTypeName: Scene_Loader_Haptic, Assembly-CSharp
-        m_MethodName: VisualPinza
+        m_MethodName: VisualError
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -701,8 +701,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 72.8, y: 0}
-  m_SizeDelta: {x: 81.602295, y: 0}
+  m_AnchoredPosition: {x: 90.771164, y: 0}
+  m_SizeDelta: {x: 117.5446, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &397684060
 MonoBehaviour:
@@ -737,7 +737,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Visual Effect Pinza
+  m_Text: Visual Effect Tweezers
 --- !u!222 &397684061
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1359,7 +1359,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1138815671}
         m_TargetAssemblyTypeName: Scene_Loader_Haptic, Assembly-CSharp
-        m_MethodName: VisualObject
+        m_MethodName: VisualCorrectObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

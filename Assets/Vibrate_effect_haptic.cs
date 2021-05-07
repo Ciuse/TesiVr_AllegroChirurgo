@@ -14,7 +14,6 @@ public class Vibrate_effect_haptic : MonoBehaviour
     [Range(0.0f,1.0f)] public double Gain;	
     [Range(0.0f,1.0f)] public double Magnitude;
     [Range(1.0f,1000.0f)] public double Frequency;
-    private double Duration = 1.0f;
     public Vector3 Position = Vector3.zero;
     public Vector3 Direction = Vector3.up;
 
@@ -112,9 +111,9 @@ public class Vibrate_effect_haptic : MonoBehaviour
 		    HapticPlugin.effects_settings(
 			    device.configName,
 			    FXID,
-			    0.33, // Gain
-			    0.33, // Magnitude
-			    300, // Frequency
+			    Gain, // Gain
+			    Magnitude, // Magnitude
+			    Frequency, // Frequency
 			    pos, // Position (not used for vibration)
 			    dir); //Direction.
 
