@@ -56,7 +56,7 @@ public class ManageJsonAndSettingsVR : MonoBehaviour
     {
         String deviceUsed = "\"Oculus_VR\"";
         await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}"); 
-        await firebase.Child(sessionCode).Child(simple).Child("Settings").PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
+        await firebase.Child(sessionCode).Child(simple).PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
 
     }
 

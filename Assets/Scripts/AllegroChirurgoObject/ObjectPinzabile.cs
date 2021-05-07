@@ -182,7 +182,6 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             foreach (Transform child in childList)
             {
                 child.GetComponent<MeshRenderer>().material.color= Color.green;
-                
                 StartCoroutine(WaitXSec());
 
             }

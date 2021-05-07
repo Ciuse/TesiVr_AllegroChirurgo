@@ -5,6 +5,7 @@ using Firebase.Database;
 using Firebase.Database.Query;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,13 +19,13 @@ public class Scene_Loader_Haptic : MonoBehaviour
     public bool detectObjectCollision;
     public bool detectPinzaCollision;
     public FirebaseClient firebase;
-    private String sessionCode;
+    public String sessionCode;
     private string complex="complexData";  
     private string simple="simpleData";
-    private string userId = "-1";
+    public string userId = "-1";
     public String device;
     public int matchId=0;   
-    private String currentMatchId;
+    public String currentMatchId;
     public Text text;
     
     public bool showRightHand;
@@ -32,6 +33,20 @@ public class Scene_Loader_Haptic : MonoBehaviour
 
     public Canvas optionCanvas;
     public Canvas selectHandCanvas;
+
+
+    public void Update()
+    {
+        if (!Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            return;
+        }
+        if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Haptic_VR")
+        {
+            LoadGameHapticAndVR();
+        }
+    }
+
     public void Start()
     {
         DontDestroyOnLoad(this);
@@ -46,7 +61,7 @@ public class Scene_Loader_Haptic : MonoBehaviour
     {
         String deviceUsed = "\""+device+"\"";
         await firebase.Child(sessionCode).Child(complex).Child("Settings").PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
-        await firebase.Child(sessionCode).Child(simple).Child("Settings").PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
+        await firebase.Child(sessionCode).Child(simple).PatchAsync("{\"deviceUsed\":"+ deviceUsed+"}");
     }
     
     public async void SaveStartingSetting()
@@ -106,6 +121,13 @@ public class Scene_Loader_Haptic : MonoBehaviour
 
     }
 
+    public void LoadGameHapticAndVR()
+    {
+        CreateNewMatchId();
+        SceneManager.LoadScene("Allegro_Chirurgo_Haptic_VR");
+    }
+    
+
     public async void Vibration()
     {
         vibrationSetting = !vibrationSetting;
@@ -160,7 +182,7 @@ public class Scene_Loader_Haptic : MonoBehaviour
     }
     
     public void SaveJsonObject(Interactable interactable)
-    {       
+    {
         JsonObject jsonObjectToSave= interactable.interactedObject.GetComponent<TrackingScript>().jsonObjectToSave;
         StartCoroutine(AsyncData(jsonObjectToSave));
         
@@ -171,13 +193,15 @@ public class Scene_Loader_Haptic : MonoBehaviour
     IEnumerator AsyncData(JsonObject jsonObjectToSave)
     {
         string data = JsonUtility.ToJson(jsonObjectToSave);
+        print(data);
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(AsyncSave(data));
         yield return null; 
     }
     
     IEnumerator AsyncSave (String data)
-    { 
+    {
+        print("entrato");
         firebase.Child(sessionCode).Child(complex).Child("listOfMatch").Child(currentMatchId).Child("listOfObject")
             .PostAsync(data);
         yield return null; 
@@ -193,9 +217,9 @@ public class Scene_Loader_Haptic : MonoBehaviour
     }
     
     IEnumerator AsyncSave2 (String data)
-    { 
+    {
         firebase.Child(sessionCode).Child(simple).Child("listOfMatch").Child(currentMatchId).Child("listOfObject")
-            .PostAsync(data);
+          .PostAsync(data);
         yield return null; 
     }
     

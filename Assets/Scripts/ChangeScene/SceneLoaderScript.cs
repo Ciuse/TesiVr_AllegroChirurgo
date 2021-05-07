@@ -22,13 +22,6 @@ public class SceneLoaderScript : MonoBehaviour
         
     }
     
-    public void LoadStartScene()
-    {
-        SceneManager.LoadScene(0);
-        createNewSessionId.Raise();
-        
-    }
-    
     public void LoadSceneRightHandGrab()
     {
         SceneManager.LoadScene("Allegro_Chirurgo_RightHandGrab");

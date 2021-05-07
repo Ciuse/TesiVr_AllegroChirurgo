@@ -29,6 +29,7 @@ public class DrawCardsLogic : MonoBehaviour
     public bool startTrainingHaptic = false;
     public bool startTrainingVrRightHand = false;
     public bool startTrainingVrLeftHand = false;
+    public GameEvent loadHapticGame;
     
     private DateTime matchStartTime;
 
@@ -179,7 +180,8 @@ public class DrawCardsLogic : MonoBehaviour
     IEnumerator WaitBeforeStartGame()
     {
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("Allegro_Chirurgo_Haptic_VR");
+        loadHapticGame.Raise();
+        
         
     }
 
