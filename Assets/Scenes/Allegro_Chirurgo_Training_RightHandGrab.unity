@@ -2770,6 +2770,7 @@ MonoBehaviour:
   objectCanvas: {fileID: 1906852316}
   image1Displayed: 0
   image2Displayed: 0
+  image3Displayed: 0
 --- !u!4 &894836636
 Transform:
   m_ObjectHideFlags: 0
@@ -4260,8 +4261,8 @@ MonoBehaviour:
   handMesh: {fileID: 573763191134881203}
   pinzaInHand: 0
   showHand: 0
-  visualErrorSetting: 0
-  visualWarningSetting: 0
+  visualErrorSetting: 1
+  visualWarningSetting: 1
   pinzaIsCollideElectricEdge: 0
   pinza1ColorChanged: 0
   pinza2ColorChanged: 0

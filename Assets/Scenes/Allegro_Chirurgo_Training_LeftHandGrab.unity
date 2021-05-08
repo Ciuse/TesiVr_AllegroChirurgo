@@ -8025,8 +8025,8 @@ MonoBehaviour:
   handMesh: {fileID: 723383682}
   pinzaInHand: 0
   showHand: 0
-  visualErrorSetting: 0
-  visualWarningSetting: 0
+  visualErrorSetting: 1
+  visualWarningSetting: 1
   pinzaIsCollideElectricEdge: 0
   pinza1ColorChanged: 0
   pinza2ColorChanged: 0
