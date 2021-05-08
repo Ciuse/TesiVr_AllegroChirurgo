@@ -24,7 +24,6 @@ public class DrawCardsLogic : MonoBehaviour
     public List<int> numbers;
     public int currentCard=0;
     public Button startGameButton;
-    public bool startGame = false;
     public TextMeshProUGUI startGameText;
     public bool startTrainingHaptic = false;
     public bool startTrainingVrRightHand = false;
@@ -58,21 +57,12 @@ public class DrawCardsLogic : MonoBehaviour
    
     }
 
-    private void Update()
-    {
-        if (startTrainingHaptic && !startGame)
-        {
-            StartGameHaptic();
-            startGame = true;
-            
-        }
-
-    }
-
     //è il training del haptic
     public void StartTrainingAfterVocal()
     {
-        startTrainingHaptic = true;
+             startTrainingHaptic = true;  
+             StartGameHaptic();
+     
         
     }
     
@@ -96,11 +86,9 @@ public class DrawCardsLogic : MonoBehaviour
     
     public void StartFirstDrawTraining()
     {
-
         SequentialDraw();
-        
-
     } 
+    
     public void StartFirstDraw()
     {
         SequentialDraw();
@@ -181,8 +169,7 @@ public class DrawCardsLogic : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         loadHapticGame.Raise();
-        
-        
+  
     }
 
     IEnumerator WaitBeforeStartGameVrRightHand()
