@@ -144,7 +144,6 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             if (!hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
             {
                 ResetState();
-                print("HOlo o electric edge2");
             }
         }
     }
@@ -156,10 +155,17 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
     public override void ResetState()
     {
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+        rigidbody.isKinematic = true;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero; 
         ResetStatePosition();
         ResetHasInteracted();
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+        rigidbody.isKinematic = false;
+
+       
     }
 
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17588829, g: 0.22010891, b: 0.30243766, a: 1}
+  m_IndirectSpecularColor: {r: 0.17588812, g: 0.2201085, b: 0.302437, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -700,7 +700,7 @@ PrefabInstance:
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.56816185
+      value: 0.5024994
       objectReference: {fileID: 0}
     - target: {fileID: 5635215310086973129, guid: e1236924997b680459988e8ee7ab1aef,
         type: 3}
@@ -1718,7 +1718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661176221}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.19299999, y: 0.742, z: -1.2030001}
+  m_LocalPosition: {x: -0.193, y: 0.731, z: -1.249}
   m_LocalScale: {x: 0.247433, y: 0.12613298, z: 0.23753566}
   m_Children:
   - {fileID: 1280759883}
@@ -1736,8 +1736,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.29068226, y: 0.04256542, z: 0.28697473}
-  m_Center: {x: 0.024041254, y: -0.46396375, z: -0.24477044}
+  m_Size: {x: 0.52782965, y: 0.04256542, z: 0.5693584}
+  m_Center: {x: 0.023993008, y: -0.46396375, z: -0.103578545}
 --- !u!114 &661176224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3148,7 +3148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280759882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.009, y: -0.40399957, z: -0.246}
+  m_LocalPosition: {x: -0.008, y: -0.21, z: -0.246}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 661176222}
@@ -5279,17 +5279,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1.1870719
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.9932857
+      value: 1.0801982
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 1.148178
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
@@ -5299,7 +5299,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5906002
+      value: 0.599
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fef76de1ad81284c89a3e62057e4337,
         type: 3}

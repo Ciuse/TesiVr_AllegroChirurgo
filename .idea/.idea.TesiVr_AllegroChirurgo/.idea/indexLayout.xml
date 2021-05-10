@@ -33,9 +33,12 @@
     <explicitExcludes>
       <Path>.git</Path>
       <Path>.idea</Path>
+      <Path>Buildvr</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Temp</Path>
       <Path>UserSettings</Path>
+      <Path>buildhaptic</Path>
       <Path>obj</Path>
     </explicitExcludes>
   </component>
