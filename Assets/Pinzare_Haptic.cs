@@ -399,20 +399,7 @@ public class Pinzare_Haptic : MonoBehaviour
 		}
 	}
 
-    void grabGrip()
-    {
-        if (jointCreated == false)
-
-        {
-
-            joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
-            joint.connectedBody = objectWithPinza1.gameObject.GetComponent<Rigidbody>();
-            joint.breakForce = 10f;
-            jointCreated = true;
-        }
-       
-
-    }
+  
 
     //! Begin grabbing an object. (Like closing a claw.) Normally called when the button is pressed. 
     void grab()
@@ -467,14 +454,8 @@ public class Pinzare_Haptic : MonoBehaviour
 		
 		joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
 		joint.connectedBody = body;
-		if (grabbing.transform.gameObject.CompareTag("HandGrip"))
-		{
-			
-		}
-		else
-		{
-			joint.breakForce = 10f;
-		}
+		
+			//joint.breakForce = 10f;
 		
 		
 		
