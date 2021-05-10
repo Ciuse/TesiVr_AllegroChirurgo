@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276807, g: 0.21589197, b: 0.29782572, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1170,6 +1170,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1f50a66641be2ca4aa2f90011094db8c, type: 3}
   correctPickClip:
   - {fileID: 8300000, guid: ef5476a48231edc439033ff6c27c6d13, type: 3}
+  elapsed: 0
+  soundTouchEffectPlayed: 0
+  wait: 0
 --- !u!114 &331642865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1770,7 +1773,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543109333}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 0, z: -7.8010006}
+  m_LocalPosition: {x: 0, y: 0, z: -7.5230002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1600480544}
@@ -2966,7 +2969,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createNewSessionId: {fileID: 11400000, guid: 24c7d8ed173bd39469d5f609ca6fcdbf, type: 2}
-  createNewMatchId: {fileID: 11400000, guid: 77a9b63688034494084603a5ba1f4ce9, type: 2}
 --- !u!4 &987226811
 Transform:
   m_ObjectHideFlags: 0
@@ -4256,6 +4258,7 @@ MonoBehaviour:
   m_gripDown: 0
   triggerPressing: {fileID: 3411308250165419798, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  resetting: 0
   pinza1MateriaMeshRender: {fileID: 1448671686}
   pinza2MateriaMeshRender: {fileID: 786130061}
   handMesh: {fileID: 573763191134881203}
@@ -4266,7 +4269,7 @@ MonoBehaviour:
   pinzaIsCollideElectricEdge: 0
   pinza1ColorChanged: 0
   pinza2ColorChanged: 0
-  pinzaWarningEvent: {fileID: 0}
+  pinzaWarningEvent: {fileID: 11400000, guid: 3ac86196d49f17b4daba63f7869372b2, type: 2}
 --- !u!54 &1499930715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5482,7 +5485,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906852311}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 0, z: -7.806}
+  m_LocalPosition: {x: 0, y: 0, z: -7.528}
   m_LocalScale: {x: 0.01468415, y: 0.014684146, z: 0.01}
   m_Children:
   - {fileID: 297894981}
@@ -6423,6 +6426,8 @@ MonoBehaviour:
   startTrainingVrRightHand: 0
   startTrainingVrLeftHand: 0
   loadHapticGame: {fileID: 0}
+  createNewMatchId: {fileID: 0}
+  youWonEvent: {fileID: 0}
 --- !u!4 &2070174723
 Transform:
   m_ObjectHideFlags: 0

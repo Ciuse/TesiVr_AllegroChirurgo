@@ -563,18 +563,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102468727}
-  m_LocalRotation: {x: 0, y: 0.9659258, z: -0.2588191, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -7.5683}
-  m_LocalScale: {x: 0.0046351445, y: 0.004635144, z: 0.01}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 0, z: -5.896}
+  m_LocalScale: {x: 0.008, y: 0.008, z: 0.01}
   m_Children:
   - {fileID: 95627093}
   - {fileID: 1260705600}
   m_Father: {fileID: 255243083}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 30, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -6.325, y: 1.853}
+  m_AnchoredPosition: {x: -6.338, y: 2.1679997}
   m_SizeDelta: {x: 68.0677, y: 41.0321}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &102468729
@@ -1871,6 +1871,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 255243083}
+  - component: {fileID: 255243085}
+  - component: {fileID: 255243084}
   m_Layer: 0
   m_Name: AreaUI
   m_TagString: Untagged
@@ -1895,6 +1897,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &255243084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255243082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806786c3845344e2b02c629f041f2611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 33bb4651fdd253540bb8991028f6f71b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 255243085}
+        m_TargetAssemblyTypeName: UiReloadGame, Assembly-CSharp
+        m_MethodName: ReloadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &255243085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255243082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e6c3844858f77f45b5b2ce838213810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameUI: {fileID: 1906852316}
+  reloadUI: {fileID: 102468732}
 --- !u!1 &270107965 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5233112405309087440, guid: 5bc7e92365a68764d9c284c0b5ba8759,
@@ -2387,7 +2431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reload Game
+  m_text: Gioca di nuovo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2414,7 +2458,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.1
+  m_fontSize: 20.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2450,7 +2494,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -1.0495708, y: 2.7837107, z: -0.7125149, w: 4.341265}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2542,6 +2586,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1f50a66641be2ca4aa2f90011094db8c, type: 3}
   correctPickClip:
   - {fileID: 8300000, guid: ef5476a48231edc439033ff6c27c6d13, type: 3}
+  elapsed: 0
+  soundTouchEffectPlayed: 0
+  wait: 0
 --- !u!114 &331642865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5481,7 +5528,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createNewSessionId: {fileID: 11400000, guid: 24c7d8ed173bd39469d5f609ca6fcdbf, type: 2}
-  createNewMatchId: {fileID: 11400000, guid: 77a9b63688034494084603a5ba1f4ce9, type: 2}
 --- !u!4 &987226811
 Transform:
   m_ObjectHideFlags: 0
@@ -8225,6 +8271,7 @@ MonoBehaviour:
   m_gripDown: 0
   triggerPressing: {fileID: 3411308250165419798, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  resetting: 0
   pinza1MateriaMeshRender: {fileID: 403214341}
   pinza2MateriaMeshRender: {fileID: 1152180238}
   handMesh: {fileID: 573763191134881203}
@@ -9562,8 +9609,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906852311}
-  m_LocalRotation: {x: 0.2588186, y: -0, z: -0, w: 0.965926}
-  m_LocalPosition: {x: 0, y: 0, z: -6.108}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 0, z: -5.929}
   m_LocalScale: {x: 0.023330858, y: 0.02333086, z: 0.01}
   m_Children:
   - {fileID: 297894981}
@@ -9571,10 +9618,10 @@ RectTransform:
   - {fileID: 1213540609}
   m_Father: {fileID: 255243083}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -6.2601, y: 1.842}
+  m_AnchoredPosition: {x: -6.322, y: 2.018}
   m_SizeDelta: {x: 47.9739, y: 27.8256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1906852313
@@ -11733,6 +11780,8 @@ MonoBehaviour:
   startTrainingVrRightHand: 0
   startTrainingVrLeftHand: 0
   loadHapticGame: {fileID: 0}
+  createNewMatchId: {fileID: 11400000, guid: 77a9b63688034494084603a5ba1f4ce9, type: 2}
+  youWonEvent: {fileID: 11400000, guid: 33bb4651fdd253540bb8991028f6f71b, type: 2}
 --- !u!4 &2070174723
 Transform:
   m_ObjectHideFlags: 0

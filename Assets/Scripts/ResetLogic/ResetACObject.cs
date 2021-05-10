@@ -32,6 +32,7 @@ public class ResetACObject : MonoBehaviour
                 if (objToRes.GetHashCode() == beforeState.gameObjectHash)
                 {
                     beforeState.ResetState();
+                    print("non usato");
                 }
             }
         }
@@ -49,6 +50,8 @@ public class ResetACObject : MonoBehaviour
                 if (objToRes.GetHashCode() == beforeState.gameObjectHash)
                 {
                     beforeState.ResetState();
+                    print("non usato2");
+
                 }
             }
         }

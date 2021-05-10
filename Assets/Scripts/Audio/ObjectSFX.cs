@@ -13,17 +13,41 @@ public class ObjectSFX : MonoBehaviour
 
     public AudioClip[] correctPickClip;
 
+    public float elapsed = 0f;
+
+    public bool soundTouchEffectPlayed = false;
+    public bool wait = false;
+
+    public void Update()
+    {
+        elapsed += Time.deltaTime;
+        if (soundTouchEffectPlayed)
+        {
+            if (elapsed >= 1f)
+            {
+                soundTouchEffectPlayed = false;
+            }
+        }
+
+    }
+
     public void ObjectTouchBox(Interactable interactable)
     {
-        var rand = Random.Range(0, tapClip.Length);
-        var randPitch = Random.Range(0.9f, 1.1f);
+        if (!soundTouchEffectPlayed)
+        {
+            var rand = Random.Range(0, tapClip.Length);
+            var randPitch = Random.Range(0.9f, 1.1f);
+
+
+            objectAudioSources[interactable.id].pitch = randPitch;
+            objectAudioSources[interactable.id].Stop();
+            objectAudioSources[interactable.id].PlayOneShot(tapClip[rand]);
+            soundTouchEffectPlayed = true;
+        }
         
-        
-        objectAudioSources[interactable.id].pitch = randPitch;
-        objectAudioSources[interactable.id].Stop();
-        objectAudioSources[interactable.id].PlayOneShot(tapClip[rand]);    
+
     }
-    
+
     public void WrongPick(Interactable interactable)
     {
         var rand = Random.Range(0, wrongPickClip.Length);

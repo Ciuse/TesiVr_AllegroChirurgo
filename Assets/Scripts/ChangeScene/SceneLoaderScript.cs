@@ -8,7 +8,6 @@ public class SceneLoaderScript : MonoBehaviour
 {
 
     public GameEvent createNewSessionId;
-    public GameEvent createNewMatchId;
 
     public void LoadSceneRightHandTraining()
     {
@@ -24,14 +23,14 @@ public class SceneLoaderScript : MonoBehaviour
     
     public void LoadSceneRightHandGrab()
     {
+     
         SceneManager.LoadScene("Allegro_Chirurgo_RightHandGrab");
-        createNewMatchId.Raise();
     }
     
     public void LoadSceneLeftHandGrab()
     {
+
         SceneManager.LoadScene("Allegro_Chirurgo_LeftHandGrab");
-        createNewMatchId.Raise();
     }
 
     

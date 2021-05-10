@@ -47,7 +47,7 @@ public class PinzareV3 : MonoBehaviour
     public bool m_gripDown;    
 
     public InputActionReference triggerPressing;
-    private bool resetting;
+    public bool resetting;
 
     public SkinnedMeshRenderer pinza1MateriaMeshRender;
     public SkinnedMeshRenderer pinza2MateriaMeshRender;
@@ -150,7 +150,7 @@ public class PinzareV3 : MonoBehaviour
                 pinzaInHand = true;
             }
 
-           
+
             float triggerValue = triggerPressing.action.ReadValue<float>();
 
             if (triggerValue > 0.05)
@@ -176,32 +176,36 @@ public class PinzareV3 : MonoBehaviour
 
 
             if (!collided)
+            {
+                if (!pinza1Collided && !pinza1CollidedOutside && !pinzaIsCollideElectricEdge)
                 {
-                    if (!pinza1Collided && !pinza1CollidedOutside && !pinzaIsCollideElectricEdge)
-                    {
-                        SmoothMovePinza1(triggerValue);
-                    }
+                    SmoothMovePinza1(triggerValue);
+                }
 
-                    if (!pinza2Collided && !pinza2CollidedOutside && !pinzaIsCollideElectricEdge)
-                    {
-                        SmoothMovePinza2(triggerValue);
-                    }
+                if (!pinza2Collided && !pinza2CollidedOutside && !pinzaIsCollideElectricEdge)
+                {
+                    SmoothMovePinza2(triggerValue);
+                }
 
-                    //animatorPinza1.SetFloat("TriggerValue", Random.Range(0f,1f));    
-                    //ClosePinze();
+                //animatorPinza1.SetFloat("TriggerValue", Random.Range(0f,1f));    
+                //ClosePinze();
+                if (triggerValue > 0.05)
+                {
                     CheckCollidersWhileNoObject();
                 }
-          
-                else
+            }
+
+            else
+            {
+                if (triggerValue < 0.05)
                 {
-                    if (triggerValue<0.05)
-                    {
-                        ResetPinze();
-                    }
-                    
+                    ResetPinze();
                 }
+
+            }
         }
-        else{
+        else
+        {
             if (!showHand)
             {
                 if (pinzaInHand)
@@ -455,6 +459,7 @@ public class PinzareV3 : MonoBehaviour
     public void RemoveObjectPinzatoPinzaTouch()
     {
         resetting = true;
+       
         if (objectWithPinza1 != null)
         {
             objectWithPinza1.gameObject.transform.SetParent(null);

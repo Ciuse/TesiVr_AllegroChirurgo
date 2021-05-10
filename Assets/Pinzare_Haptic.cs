@@ -284,12 +284,12 @@ public class Pinzare_Haptic : MonoBehaviour
 		if (pinza1Collided && pinza2Collided)
 		{
 			collided = true;
-			if (objectWithPinza1 != null &&  objectWithPinza1.CompareTag("HandGrip"))
+			if (objectWithPinza1 != null)
 			{
-				objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
-			}
-			
-		}
+                objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().SetHasInteract();
+            }
+
+        }
 		
 	}
 	

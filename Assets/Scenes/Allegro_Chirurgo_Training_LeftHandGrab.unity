@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276807, g: 0.21589197, b: 0.29782572, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1202,6 +1202,8 @@ MonoBehaviour:
   startTrainingVrRightHand: 0
   startTrainingVrLeftHand: 0
   loadHapticGame: {fileID: 0}
+  createNewMatchId: {fileID: 0}
+  youWonEvent: {fileID: 0}
 --- !u!4 &267965455
 Transform:
   m_ObjectHideFlags: 0
@@ -1383,7 +1385,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createNewSessionId: {fileID: 11400000, guid: 24c7d8ed173bd39469d5f609ca6fcdbf, type: 2}
-  createNewMatchId: {fileID: 11400000, guid: 77a9b63688034494084603a5ba1f4ce9, type: 2}
 --- !u!4 &343982932
 Transform:
   m_ObjectHideFlags: 0
@@ -3630,6 +3631,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1f50a66641be2ca4aa2f90011094db8c, type: 3}
   correctPickClip:
   - {fileID: 8300000, guid: ef5476a48231edc439033ff6c27c6d13, type: 3}
+  elapsed: 0
+  soundTouchEffectPlayed: 0
+  wait: 0
 --- !u!1 &868564879
 GameObject:
   m_ObjectHideFlags: 0
@@ -6850,7 +6854,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585045350}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 0, z: -7.806}
+  m_LocalPosition: {x: 0, y: 0, z: -7.514}
   m_LocalScale: {x: 0.01468415, y: 0.014684146, z: 0.01}
   m_Children:
   - {fileID: 1634338383}
@@ -8020,6 +8024,7 @@ MonoBehaviour:
   m_gripDown: 0
   triggerPressing: {fileID: 781759381747284146, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  resetting: 0
   pinza1MateriaMeshRender: {fileID: 795851516}
   pinza2MateriaMeshRender: {fileID: 1039461047}
   handMesh: {fileID: 723383682}
@@ -9195,7 +9200,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903827117}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 0, z: -7.8010006}
+  m_LocalPosition: {x: 0, y: 0, z: -7.5090003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 161392973}

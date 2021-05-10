@@ -66,7 +66,8 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
     private void OnCollisionEnter(Collision other)
     {
-        if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Haptic_VR")
+
+        if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Haptic_VR"||SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Training_Haptic_VR")
         {
 
             if (other.gameObject.layer == LayerMask.NameToLayer("Pinza"))
@@ -76,9 +77,12 @@ public class ObjectPinzabile  : DynamicObjectAbstract
 
             if (hasInteract && other.gameObject.layer == LayerMask.NameToLayer("Object"))
             {
+
+
                 Interactable interactable = new Interactable {id = idObject};
                 objectTouchBox.Raise(interactable);
             }
+            
 
         }
 
@@ -103,8 +107,18 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             if (!hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
             {
                 ResetState();
+                print("HOlo o electric edge");
             }
 
+        }
+
+
+        if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Haptic_VR" || SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Training_Haptic_VR")
+        {
+            if (hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge")))
+            {
+                ResetState();
+            }
         }
 
 
@@ -130,6 +144,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
             if (!hasInteract && (other.gameObject.layer == LayerMask.NameToLayer("HoleEdge") || other.gameObject.layer == LayerMask.NameToLayer("Electric Edge")))
             {
                 ResetState();
+                print("HOlo o electric edge2");
             }
         }
     }
@@ -163,6 +178,7 @@ public class ObjectPinzabile  : DynamicObjectAbstract
         {
             ResetMesh();
             ResetState();
+            print("cardRESETDRAW");
         }
    
     }

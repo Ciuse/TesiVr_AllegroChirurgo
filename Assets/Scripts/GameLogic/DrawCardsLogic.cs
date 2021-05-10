@@ -31,10 +31,18 @@ public class DrawCardsLogic : MonoBehaviour
     public GameEvent loadHapticGame;
     
     private DateTime matchStartTime;
+    public GameEvent createNewMatchId;
+    public GameEvent youWonEvent;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_RightHandGrab" ||
+               SceneManager.GetActiveScene().name == "Allegro_Chirurgo_LeftHandGrab")
+        {
+            createNewMatchId.Raise();
+        }
         for (int i=0; i<imagesCards.Count; i++)
         {
             numbers.Add(i);
@@ -47,6 +55,8 @@ public class DrawCardsLogic : MonoBehaviour
             StartCoroutine(WaitBeforeStartGameVr());
             matchStartTime=DateTime.Now;;
         }
+
+
         
     }
     
@@ -134,7 +144,9 @@ public class DrawCardsLogic : MonoBehaviour
                 int matchDuration = (int) DateTime.Now.Subtract(matchStartTime).TotalMilliseconds;
                 GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>()
                     .SaveMatchDuration(matchDuration);
+                youWonEvent.Raise();
                 return;
+          
             }
 
             if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Haptic_VR")

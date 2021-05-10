@@ -201,6 +201,7 @@ public class ManageJsonAndSettingsVR : MonoBehaviour
         {
             matchId = matchId + 1;
             currentMatchId = "match"+matchId;
+        print("Nuovo match" + currentMatchId);
         }
         
     public async void SaveMatchDuration(int duration)
