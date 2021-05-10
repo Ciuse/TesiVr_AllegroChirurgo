@@ -359,9 +359,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainingAudioSource: {fileID: 1644186685}
-  trainingClip1: {fileID: 8300000, guid: ea014f1f56ad6ba48a07d5e6ba17df4e, type: 3}
-  trainingClip2: {fileID: 8300000, guid: cf262e2dbd6f100498819a9e76fb8e81, type: 3}
-  trainingClip3: {fileID: 8300000, guid: 83a3d01dbe03ffd40af92c46b7a2a1f9, type: 3}
+  trainingClip1: {fileID: 8300000, guid: 2d0ddaab1ebd822438fccc0141699c86, type: 3}
+  trainingClip2: {fileID: 8300000, guid: f136cb027ffcd394194f3a646ff9a0ff, type: 3}
+  trainingClip3: {fileID: 8300000, guid: 34dfe7c0dc385b7439713c143f338158, type: 3}
   endTrainingVocal: {fileID: 11400000, guid: 6736a8b96cd3cd6418a1ada801a24148, type: 2}
   startedVocals: 0
   startedVocal1: 0
