@@ -30,6 +30,10 @@ public class StartingSimulationVr : MonoBehaviour
     public Canvas infoTraining;
     public Canvas objectCanvas;
 
+    public bool image1Displayed;
+    public bool image2Displayed;
+    public bool image3Displayed;
+
     private void Start()
     {
         objectCanvas.enabled = false;
@@ -46,18 +50,26 @@ public class StartingSimulationVr : MonoBehaviour
         //if ((Keyboard.current.aKey.wasPressedThisFrame||Keyboard.current.xKey.wasPressedThisFrame )&& !isStarted)
         {
             startingVocalTrainingVR.Raise();
-            text.text = "";
-            imageMappingButton.sprite = null;
+            infoTraining.enabled = false;
             isStarted = true;
         }
 
-        if (trainingVRSfx.startedVocal1)
+        if (trainingVRSfx.startedVocal1 && !image1Displayed)
         {
             StartCoroutine(WaitBeforeShowGripButton());
+            image1Displayed = true;
+
         }
-        if (trainingVRSfx.startedVocal2)
+        if (trainingVRSfx.startedVocal2 &&!image2Displayed)
         {
             StartCoroutine(WaitBeforeShowTriggerButton());
+            image2Displayed = true;
+        }
+        
+        if (trainingVRSfx.startedVocal3 &&!image3Displayed)
+        {
+            infoTraining.enabled = false;
+            image3Displayed = true;
         }
     }
 
@@ -68,29 +80,34 @@ public class StartingSimulationVr : MonoBehaviour
         collider.SetActive(true);
         infoTraining.enabled = false;
         objectCanvas.enabled = true;
+
         StartCoroutine(WaitBeforeStartTraining());
     }
     
     IEnumerator WaitBeforeStartTraining()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         startingTraining.Raise();
         
     }
     IEnumerator WaitBeforeShowGripButton()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(5.5f);
         imageMappingButton.sprite = gripButton;
         imageMappingButton.preserveAspect = true;
-        text.text = "PRESS AND HOLD GRIP";
+        text.text = "PREMI E TIENI PREMUTO IL GRIP";        
+        infoTraining.enabled = true;
 
     }
     IEnumerator WaitBeforeShowTriggerButton()
     {
+        infoTraining.enabled = false;
         yield return new WaitForSeconds(4f);
         imageMappingButton.sprite = triggerButton;
         imageMappingButton.preserveAspect = true;
-        text.text = "PRESS AND HOLD TRIGGER";
+        text.text = "PREMI E TIENI PREMUTO IL TRIGGER";
+        infoTraining.enabled = true;
+
     }
     
     

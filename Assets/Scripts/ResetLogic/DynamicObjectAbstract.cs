@@ -60,8 +60,10 @@ public abstract class DynamicObjectAbstract : MonoBehaviour
         }
         public void ResetStatePosition()
         {
-            gameObject.transform.localPosition = new Vector3(defaultPosition.x,defaultPosition.y,defaultPosition.z);
-            gameObject.transform.localRotation = new Quaternion(defaultRotation.x,defaultRotation.y,defaultRotation.z, defaultRotation.w);
+        float randomX = Random.Range(-0.01f, 0.01f);
+        float randomZ = Random.Range(-0.01f, 0.01f);
+            gameObject.transform.localPosition = new Vector3(defaultPosition.x+randomX,defaultPosition.y,defaultPosition.z + randomZ);
+            gameObject.transform.localRotation = new Quaternion(defaultRotation.x, defaultRotation.y,defaultRotation.z, defaultRotation.w);
             print("pos resettata");
         }
 

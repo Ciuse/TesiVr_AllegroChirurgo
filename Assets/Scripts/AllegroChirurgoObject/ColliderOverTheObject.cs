@@ -49,9 +49,10 @@ public class ColliderOverTheObject : MonoBehaviour
                 objectToPick.transform.position = new Vector3(positionObjectAfterSuccess.position.x,positionObjectAfterSuccess.position.y,positionObjectAfterSuccess.position.z);
                 
                 saveObjectPickedEvent.Raise();
-                StartCoroutine(StartDissolve());
-                StartCoroutine(ObjectPickedWithSuccessWait());
+               StartCoroutine(StartDissolve());
+               StartCoroutine(ObjectPickedWithSuccessWait());
 
+                
             }else{
 
                 objectPinzabile.WrongPickEvents();

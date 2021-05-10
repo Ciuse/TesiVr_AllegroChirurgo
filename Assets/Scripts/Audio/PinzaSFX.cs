@@ -19,7 +19,7 @@ public class PinzaSFX : MonoBehaviour
         var randPitch = Random.Range(0.95f, 1.1f);
         PinzaAudioSource.pitch = randPitch;
         PinzaAudioSource.Stop();
-        PinzaAudioSource.volume = 0.7f;
+        PinzaAudioSource.volume = 0.9f;
         PinzaAudioSource.loop = true;
         PinzaAudioSource.clip=vibrationClips[rand];    
         PinzaAudioSource.Play();

@@ -31,7 +31,7 @@ public class Pinzare_Haptic : MonoBehaviour
 	public bool DisableUnityCollisionsWithTouchableObjects = true;
 
 	private  GameObject hapticDevice = null;   //!< Reference to the GameObject representing the Haptic Device
-	private bool buttonStatus = false;			//!< Is the button currently pressed?
+	public bool buttonStatus = false;			//!< Is the button currently pressed?
 	private GameObject touching = null;			//!< Reference to the object currently touched
 	private GameObject grabbing = null;			//!< Reference to the object currently grabbed
 	private FixedJoint joint = null;            //!< The Unity physics joint created between the stylus and the object being grabbed.
@@ -43,8 +43,13 @@ public class Pinzare_Haptic : MonoBehaviour
     private Color startPinza1Color;
     private Color startPinza2Color;
     
-    public bool activateVisualEffectPinza;
+    public bool visualPinzaSetting;
+
+    public bool showHandRight;
+    public bool showhandLeft;
     
+    public GameObject righthand;
+    public GameObject leftHand;
 	//! Automatically called for initialization
 	void Start () 
 	{
@@ -64,7 +69,31 @@ public class Pinzare_Haptic : MonoBehaviour
 		if (GameObject.Find("SceneLoader_Haptic") != null)
 		{
 			Scene_Loader_Haptic sceneLoaderHaptic = GameObject.Find("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>();
-			activateVisualEffectPinza = sceneLoaderHaptic.activateVisualEffectPinza;
+			visualPinzaSetting = sceneLoaderHaptic.visualErrorSetting;
+			if (sceneLoaderHaptic.showHandSetting)
+			{
+				showHandRight = sceneLoaderHaptic.showRightHand;
+				showhandLeft = sceneLoaderHaptic.showLeftHand;
+			}
+
+		}
+
+		if (showHandRight)
+		{
+			righthand.SetActive(true);
+		}
+		else
+		{
+			righthand.SetActive(false);
+		}
+		
+		if (showhandLeft)
+		{
+			leftHand.SetActive(true);
+		}
+		else
+		{
+			leftHand.SetActive(false);
 		}
 		
 		if ( physicsToggleStyle != PhysicsToggleStyle.none)
@@ -132,8 +161,8 @@ public class Pinzare_Haptic : MonoBehaviour
 		// check collision with tweezer and object
 		if (buttonStatus)
 		{
-			animatorPinza1.SetBool("CloseLeft", true);
-			animatorPinza2.SetBool("CloseRight", true);
+			animatorPinza1.SetBool("Close", true);
+			animatorPinza2.SetBool("Close", true);
 
 			if (!collided)
 			{
@@ -148,7 +177,7 @@ public class Pinzare_Haptic : MonoBehaviour
 						_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
 					}
 
-					animatorPinza1.SetFloat("Left", _smoothClosePinza1);
+					animatorPinza1.SetFloat("ValueClose", _smoothClosePinza1);
 				}
 
 				if (!pinza2Collided && _smoothClosePinza2<=1)
@@ -162,7 +191,7 @@ public class Pinzare_Haptic : MonoBehaviour
 						_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
 					}
 
-					animatorPinza2.SetFloat("Right", _smoothClosePinza2);
+					animatorPinza2.SetFloat("ValueClose", _smoothClosePinza2);
 				}
 				CheckCollidersWhileNoObject();
 			}
@@ -204,8 +233,8 @@ public class Pinzare_Haptic : MonoBehaviour
 
 	public void ResetPinze()
 	{
-		animatorPinza1.SetBool("CloseLeft",false);
-		animatorPinza2.SetBool("CloseRight",false);
+		animatorPinza1.SetBool("Close",false);
+		animatorPinza2.SetBool("Close",false);
 		
 		pinza1Collided = false;
 		pinza2Collided = false;
@@ -217,14 +246,14 @@ public class Pinzare_Haptic : MonoBehaviour
 		if (_smoothClosePinza1 > 0)
 		{
 			_smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
-			animatorPinza1.SetFloat("Left", _smoothClosePinza1);
+			animatorPinza1.SetFloat("ValueClose", _smoothClosePinza1);
 	
 		}
 
 		if (_smoothClosePinza2 > 0)
 		{
 			_smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
-			animatorPinza2.SetFloat("Right", _smoothClosePinza2);
+			animatorPinza2.SetFloat("ValueClose", _smoothClosePinza2);
 		}
 	}
 
@@ -255,12 +284,12 @@ public class Pinzare_Haptic : MonoBehaviour
 		if (pinza1Collided && pinza2Collided)
 		{
 			collided = true;
-			if (objectWithPinza1 != null &&  objectWithPinza1.CompareTag("HandGrip"))
+			if (objectWithPinza1 != null)
 			{
-				objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
-			}
-			
-		}
+                objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().SetHasInteract();
+            }
+
+        }
 		
 	}
 	
@@ -370,20 +399,7 @@ public class Pinzare_Haptic : MonoBehaviour
 		}
 	}
 
-    void grabGrip()
-    {
-        if (jointCreated == false)
-
-        {
-
-            joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
-            joint.connectedBody = objectWithPinza1.gameObject.GetComponent<Rigidbody>();
-            joint.breakForce = 10f;
-            jointCreated = true;
-        }
-       
-
-    }
+  
 
     //! Begin grabbing an object. (Like closing a claw.) Normally called when the button is pressed. 
     void grab()
@@ -438,14 +454,8 @@ public class Pinzare_Haptic : MonoBehaviour
 		
 		joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
 		joint.connectedBody = body;
-		if (grabbing.transform.gameObject.CompareTag("HandGrip"))
-		{
-			
-		}
-		else
-		{
-			joint.breakForce = 10f;
-		}
+		
+			//joint.breakForce = 10f;
 		
 		
 		
@@ -490,7 +500,7 @@ public class Pinzare_Haptic : MonoBehaviour
 	
 	public void SetPinzaColorError()
 	{
-		if (activateVisualEffectPinza)
+		if (visualPinzaSetting)
 		{
 			pinza1MateriaMeshRender.material.color=Color.red;
 			pinza2MateriaMeshRender.material.color=Color.red;
@@ -499,7 +509,7 @@ public class Pinzare_Haptic : MonoBehaviour
     
 	public void RemoveSetPinzaColorError()
 	{
-		if (activateVisualEffectPinza)
+		if (visualPinzaSetting)
 		{
 			pinza1MateriaMeshRender.material.color = startPinza1Color;
 			pinza2MateriaMeshRender.material.color = startPinza2Color;

@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StartingScene.unity
     guid: 1dc610165ae15b845a13043cc6975705
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Allegro_Chirurgo_Training_RightHandGrab.unity
     guid: 6746944ac68be5f42961201a65308625
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Allegro_Chirurgo_Training_LeftHandGrab.unity
     guid: c66c7013073a13b46b71373e88dae5eb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Allegro_Chirurgo_RightHandGrab.unity
     guid: 0a6f899f503a8514aa42c67011f3eee7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Allegro_Chirurgo_LeftHandGrab.unity
     guid: 5ee1646855e55384d8f8079f775fb371
   - enabled: 0
@@ -26,13 +26,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Allegro_Chirurgo_Haptic.unity
     guid: 09b011c297ef3a740a106154f6a0a84d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/HapticAndVR_Starting_Scene.unity
     guid: 47f6e58d3f8a85c44912a93fce8c6a70
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Allegro_Chirurgo_Training_Haptic_VR.unity
     guid: 3c9e4876e6982834d926de532b20ffd0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Allegro_Chirurgo_Haptic_VR.unity
     guid: 892393e8afe23ea4f87c5afd2457a90a
   m_configObjects:

@@ -24,26 +24,39 @@ public class DrawCardsLogic : MonoBehaviour
     public List<int> numbers;
     public int currentCard=0;
     public Button startGameButton;
-    public bool startGame = false;
     public TextMeshProUGUI startGameText;
     public bool startTrainingHaptic = false;
     public bool startTrainingVrRightHand = false;
     public bool startTrainingVrLeftHand = false;
-
+    public GameEvent loadHapticGame;
+    
+    private DateTime matchStartTime;
+    public GameEvent createNewMatchId;
+    public GameEvent youWonEvent;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_RightHandGrab" ||
+               SceneManager.GetActiveScene().name == "Allegro_Chirurgo_LeftHandGrab")
+        {
+            createNewMatchId.Raise();
+        }
         for (int i=0; i<imagesCards.Count; i++)
         {
             numbers.Add(i);
         }
 
         if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_RightHandGrab" ||
-            SceneManager.GetActiveScene().name == "Allegro_Chirurgo_LeftHandGrab")
+            SceneManager.GetActiveScene().name == "Allegro_Chirurgo_LeftHandGrab" || 
+            SceneManager.GetActiveScene().name =="Allegro_Chirurgo_Haptic_VR")
         {
             StartCoroutine(WaitBeforeStartGameVr());
+            matchStartTime=DateTime.Now;;
         }
+
+
         
     }
     
@@ -54,28 +67,12 @@ public class DrawCardsLogic : MonoBehaviour
    
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.qKey.wasPressedThisFrame && !startGame)
-        {
-            StartGameHaptic();
-            startGame = true;
-            startGameText.enabled = false;
-        }
-        if (startTrainingHaptic && !startGame)
-        {
-            StartGameHaptic();
-            startGame = true;
-            startGameText.enabled = false;
-            
-        }
-
-    }
-
     //è il training del haptic
     public void StartTrainingAfterVocal()
     {
-        startTrainingHaptic = true;
+             startTrainingHaptic = true;  
+             StartGameHaptic();
+     
         
     }
     
@@ -93,35 +90,24 @@ public class DrawCardsLogic : MonoBehaviour
     
     public void StartGameHaptic()
     {
-        resetCardsEvent.Raise();
-        StartCoroutine(WaitSequentialDraw());
+        SequentialDraw();
     }
     
     
     public void StartFirstDrawTraining()
     {
-        resetCardsEvent.Raise();
-        StartCoroutine(WaitSequentialDraw());
-        
-
+        SequentialDraw();
     } 
+    
     public void StartFirstDraw()
     {
-        resetCardsEvent.Raise();
-        StartCoroutine(WaitSequentialDraw());
+        SequentialDraw();
         if (startGameButton != null)
         {
             startGameButton.interactable = false;
         }
         
 
-    }
-
-    public void DrawCard()
-    {
-        resetCardsEvent.Raise();
-        StartCoroutine(WaitRandomDraw());
-       
     }
 
     IEnumerator WaitRandomDraw()
@@ -135,31 +121,56 @@ public class DrawCardsLogic : MonoBehaviour
    
     }
 
-    IEnumerator WaitSequentialDraw()
+    public void SequentialDraw()
     {
         if (currentCard<imagesCards.Count)
         {
-            yield return new WaitForSeconds(0.5f);
             imageCard.sprite = imagesCards[currentCard];
+            imageCard.preserveAspect = true;
             cardPickedPending = imagesCards[currentCard];
             Interactable interactable = new Interactable {id = currentCard};
             cardHasBeenDrawedEvent.Raise(interactable);
             currentCard++;
+           
         }
         else
         {
             print("vinto");
+            if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_RightHandGrab" ||
+                SceneManager.GetActiveScene().name == "Allegro_Chirurgo_LeftHandGrab")
+            {
+               
+
+                int matchDuration = (int) DateTime.Now.Subtract(matchStartTime).TotalMilliseconds;
+                GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>()
+                    .SaveMatchDuration(matchDuration);
+                youWonEvent.Raise();
+                return;
+          
+            }
+
+            if (SceneManager.GetActiveScene().name == "Allegro_Chirurgo_Haptic_VR")
+            {
+                int matchDuration = (int) DateTime.Now.Subtract(matchStartTime).TotalMilliseconds;
+                GameObject.Find("SceneLoader_Haptic").GetComponent<Scene_Loader_Haptic>()
+                    .SaveMatchDuration(matchDuration);
+                return;
+            }
+
             if (startTrainingHaptic)
             {
                 StartCoroutine(WaitBeforeStartGame());
+                return;
             }
             if (startTrainingVrRightHand)
             {
                 StartCoroutine(WaitBeforeStartGameVrRightHand());
+                return;
             }
             if (startTrainingVrLeftHand)
             {
                 StartCoroutine(WaitBeforeStartGameVrLeftHand());
+                return;
             }
         }
         
@@ -169,8 +180,8 @@ public class DrawCardsLogic : MonoBehaviour
     IEnumerator WaitBeforeStartGame()
     {
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("Allegro_Chirurgo_Haptic_VR");
-        
+        loadHapticGame.Raise();
+  
     }
 
     IEnumerator WaitBeforeStartGameVrRightHand()
@@ -190,7 +201,7 @@ public class DrawCardsLogic : MonoBehaviour
     IEnumerator Wait2Sec()
     {
         yield return new WaitForSeconds(2f);
-        StartCoroutine(WaitSequentialDraw());
+        SequentialDraw();
     }
     
     public void CardPickedWithSuccess()
@@ -206,6 +217,7 @@ public class DrawCardsLogic : MonoBehaviour
 
         imagesCardsSuccess.Add(cardPickedPending);
         imageCard.sprite = wellDoneImage;
+        imageCard.preserveAspect = true;
         StartCoroutine(Wait2Sec());
     }
     

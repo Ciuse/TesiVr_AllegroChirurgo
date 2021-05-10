@@ -10,7 +10,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class PinzareV3 : MonoBehaviour
 {
-    public bool resetObjectAfterPinzaTouch;
+    public bool detectPinzaCollisions;
     public bool resetObjectAfterObjectTouch;
     public List<GameObject> sphereListPinza1;
     public List<GameObject> sphereListPinza2;
@@ -47,7 +47,7 @@ public class PinzareV3 : MonoBehaviour
     public bool m_gripDown;    
 
     public InputActionReference triggerPressing;
-    private bool resetting;
+    public bool resetting;
 
     public SkinnedMeshRenderer pinza1MateriaMeshRender;
     public SkinnedMeshRenderer pinza2MateriaMeshRender;
@@ -59,12 +59,15 @@ public class PinzareV3 : MonoBehaviour
     public GameObject handMesh;
     public bool pinzaInHand;
    
-    public bool disableHand;
-    public bool activateVisualEffectPinza;
+    public bool showHand;
+    public bool visualErrorSetting;
+    public bool visualWarningSetting;
 
     public bool pinzaIsCollideElectricEdge;
     public bool pinza1ColorChanged = false;
     public bool pinza2ColorChanged = false;
+
+    public GameEvent pinzaWarningEvent;
     
     // Start is called before the first frame update
     void Start()
@@ -77,9 +80,10 @@ public class PinzareV3 : MonoBehaviour
         if (GameObject.Find("ManageJsonToSaveDB") != null)
         {
             ManageJsonAndSettingsVR manageJsonAndSettings = GameObject.Find("ManageJsonToSaveDB").GetComponent<ManageJsonAndSettingsVR>();
-            activateVisualEffectPinza = manageJsonAndSettings.visualPinzaSetting;
-            disableHand = manageJsonAndSettings.hideHandSetting;
-            resetObjectAfterPinzaTouch = manageJsonAndSettings.detectPinzaCollision;
+            visualErrorSetting = manageJsonAndSettings.visualErrorSetting;
+            visualWarningSetting = manageJsonAndSettings.visualPinzaWarningSetting;
+            showHand = manageJsonAndSettings.showHandSetting;
+            detectPinzaCollisions = manageJsonAndSettings.detectPinzaCollision;
             resetObjectAfterObjectTouch = manageJsonAndSettings.detectObjectCollision;
         }
     }
@@ -100,10 +104,11 @@ public class PinzareV3 : MonoBehaviour
     {
         if (!pinzaIsCollideElectricEdge)
         {
-            if (pinza1CollidedOutside && activateVisualEffectPinza)
+            if (pinza1CollidedOutside && visualWarningSetting )
             {
                 pinza1MateriaMeshRender.material.color = Color.yellow;
                 pinza1ColorChanged=true;
+                
             }
             else
             {
@@ -111,11 +116,11 @@ public class PinzareV3 : MonoBehaviour
                 {
                     pinza1MateriaMeshRender.material.color = startPinza1Color;
                     pinza1ColorChanged=false;
-
+                    pinzaWarningEvent.Raise();
                 }            
             }
 
-            if (pinza2CollidedOutside && activateVisualEffectPinza)
+            if (pinza2CollidedOutside && visualWarningSetting )
             {
                 pinza2MateriaMeshRender.material.color = Color.yellow;
                 pinza2ColorChanged=true;
@@ -127,6 +132,8 @@ public class PinzareV3 : MonoBehaviour
                 {
                     pinza2MateriaMeshRender.material.color = startPinza2Color;
                     pinza2ColorChanged=false;
+                    pinzaWarningEvent.Raise();
+
                 }            
             }
         }
@@ -137,27 +144,27 @@ public class PinzareV3 : MonoBehaviour
     {
         if (m_gripDown)
         {
-            if (disableHand)
+            if (!showHand)
             {
                 handMesh.SetActive(false);
                 pinzaInHand = true;
             }
 
-           
+
             float triggerValue = triggerPressing.action.ReadValue<float>();
 
             if (triggerValue > 0.05)
             {
                 // check collision with tweezer and object
-                animatorPinza1.SetBool("CloseRight", true);
-                animatorPinza2.SetBool("CloseLeft", true);
+                animatorPinza1.SetBool("Close", true);
+                animatorPinza2.SetBool("Close", true);
             }
             else
             {
                 if (_smoothClosePinza1 < 0.05 & _smoothClosePinza2 < 0.05)
                 {
-                    animatorPinza1.SetBool("CloseRight", false);
-                    animatorPinza2.SetBool("CloseLeft", false);
+                    animatorPinza1.SetBool("Close", false);
+                    animatorPinza2.SetBool("Close", false);
                 }
                 else
                 {
@@ -169,33 +176,37 @@ public class PinzareV3 : MonoBehaviour
 
 
             if (!collided)
+            {
+                if (!pinza1Collided && !pinza1CollidedOutside && !pinzaIsCollideElectricEdge)
                 {
-                    if (!pinza1Collided && !pinza1CollidedOutside)
-                    {
-                        SmoothMovePinza1(triggerValue);
-                    }
+                    SmoothMovePinza1(triggerValue);
+                }
 
-                    if (!pinza2Collided && !pinza2CollidedOutside)
-                    {
-                        SmoothMovePinza2(triggerValue);
-                    }
+                if (!pinza2Collided && !pinza2CollidedOutside && !pinzaIsCollideElectricEdge)
+                {
+                    SmoothMovePinza2(triggerValue);
+                }
 
-                    //animatorPinza1.SetFloat("TriggerValue", Random.Range(0f,1f));    
-                    //ClosePinze();
+                //animatorPinza1.SetFloat("TriggerValue", Random.Range(0f,1f));    
+                //ClosePinze();
+                if (triggerValue > 0.05)
+                {
                     CheckCollidersWhileNoObject();
                 }
-          
-                else
+            }
+
+            else
+            {
+                if (triggerValue < 0.05)
                 {
-                    if (triggerValue<0.05)
-                    {
-                        ResetPinze();
-                    }
-                    
+                    ResetPinze();
                 }
+
+            }
         }
-        else{
-            if (disableHand)
+        else
+        {
+            if (!showHand)
             {
                 if (pinzaInHand)
                 {
@@ -220,7 +231,7 @@ public class PinzareV3 : MonoBehaviour
             _smoothClosePinza1 = _smoothClosePinza1 - 0.02f;
         }
 
-        animatorPinza1.SetFloat("Right", _smoothClosePinza1);
+        animatorPinza1.SetFloat("ValueClose", _smoothClosePinza1);
     }
 
     private void SmoothMovePinza2(float triggerValue)
@@ -234,7 +245,7 @@ public class PinzareV3 : MonoBehaviour
             _smoothClosePinza2 = _smoothClosePinza2 - 0.02f;
         }
 
-        animatorPinza2.SetFloat("Left", _smoothClosePinza2);
+        animatorPinza2.SetFloat("ValueClose", _smoothClosePinza2);
     }
 
     private bool IsPinza1Collided()
@@ -337,81 +348,91 @@ public class PinzareV3 : MonoBehaviour
         return false;
 
     }
-    
+
     public void CheckCollidersWhileNoObject()
     {
         if (!resetting)
         {
             if (IsPinza1Collided())
-        {
-            pinza1Collided = true;
-            if (objectWithPinza1 == null)
-                objectWithPinza1 = _colliders[0].gameObject.transform.root.gameObject;
-        }
-        else
-        {
-            pinza1Collided = false;
-            objectWithPinza1 = null;
-
-        }
-
-
-
-        if (IsPinza2Collided())
-        {
-            pinza2Collided = true;
-            if (objectWithPinza2 == null)
-                objectWithPinza2 = _colliders[0].gameObject.transform.root.gameObject;
-        }
-        else
-        {
-            pinza2Collided = false;
-            objectWithPinza2 = null;
-        }
-        
-        if (IsPinza1CollidedOutside() || IsPinza1CollidedTable())
-        {
-            pinza1CollidedOutside = true;
-           
-        }
-        else
-        {
-            pinza1CollidedOutside = false;
-        }
-        
-        if (IsPinza2CollidedOutside() || IsPinza2CollidedTable())
-        {
-            pinza2CollidedOutside = true;
-        }
-        else
-        {
-            pinza2CollidedOutside = false;
-        }
-
-        if (pinza1Collided && pinza2Collided && !pinza1CollidedOutside && !pinza2CollidedOutside)
-        {
-            if (objectWithPinza1 != null && objectWithPinza2 != null)
             {
-                if (objectWithPinza1 == objectWithPinza2)
-                {
-                    collided = true;
-                    objectWithPinza1.gameObject.transform.SetParent(transform);
-                    objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().SetHasInteract();
+                pinza1Collided = true;
+                if (objectWithPinza1 == null)
+                    objectWithPinza1 = _colliders[0].gameObject.transform.root.gameObject;
+            }
+            else
+            {
+                pinza1Collided = false;
+                objectWithPinza1 = null;
 
+            }
+
+
+
+            if (IsPinza2Collided())
+            {
+                pinza2Collided = true;
+                if (objectWithPinza2 == null)
+                    objectWithPinza2 = _colliders[0].gameObject.transform.root.gameObject;
+            }
+            else
+            {
+                pinza2Collided = false;
+                objectWithPinza2 = null;
+            }
+
+            if (detectPinzaCollisions)
+            {
+
+
+                if (IsPinza1CollidedOutside() || IsPinza1CollidedTable())
+                {
+                    pinza1CollidedOutside = true;
+
+                }
+                else
+                {
+                    pinza1CollidedOutside = false;
+                }
+
+                if (IsPinza2CollidedOutside() || IsPinza2CollidedTable())
+                {
+                    pinza2CollidedOutside = true;
+
+                }
+                else
+                {
+                    pinza2CollidedOutside = false;
+                }
+            }
+
+            if (pinza1Collided && pinza2Collided && !pinza1CollidedOutside && !pinza2CollidedOutside &&
+                !pinzaIsCollideElectricEdge)
+            {
+                if (objectWithPinza1 != null && objectWithPinza2 != null)
+                {
+                    if (objectWithPinza1 == objectWithPinza2)
+                    {
+                        if(!objectWithPinza1.GetComponent<ObjectPinzabile>().objectPicked)
+                        {
+                            collided = true;
+                            objectWithPinza1.gameObject.transform.SetParent(transform);
+                            objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+                            objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().SetHasInteract();
+                        }
+
+                    }
                 }
             }
         }
-    }
     }
 
 
     public void ResetPinze()
     {                        
-        animatorPinza1.SetBool("CloseRight", false);
-        animatorPinza2.SetBool("CloseLeft", false);
-        animatorPinza1.SetFloat("Right", 0f);
-        animatorPinza2.SetFloat("Left", 0f);
+        animatorPinza1.SetBool("Close", false);
+        animatorPinza2.SetBool("Close", false);
+        animatorPinza1.SetFloat("ValueClose", 0f);
+        animatorPinza2.SetFloat("ValueClose", 0f);
        // animatorPinza2.SetBool("ClosePinza2",false);
         
         if (objectWithPinza1 != null)
@@ -437,29 +458,25 @@ public class PinzareV3 : MonoBehaviour
 
     public void RemoveObjectPinzatoPinzaTouch()
     {
-        if (resetObjectAfterPinzaTouch)
+        resetting = true;
+       
+        if (objectWithPinza1 != null)
         {
-            resetting = true;
-            if (objectWithPinza1 != null)
-            {
-                objectWithPinza1.gameObject.transform.SetParent(null);
-                objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
-                objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().ResetState();
-            }
-        
-            pinza1CollidedOutside = false;
-            pinza2CollidedOutside = false;
-            pinza1Collided = false;
-            pinza2Collided = false;
-            objectWithPinza1 = null;
-            objectWithPinza2 = null;
-        
-            collided = false;
-        
-            StartCoroutine(WaitReset());
-    
+            objectWithPinza1.gameObject.transform.SetParent(null);
+            objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+            objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().ResetState();
         }
         
+        pinza1CollidedOutside = false;
+        pinza2CollidedOutside = false;
+        pinza1Collided = false;
+        pinza2Collided = false;
+        objectWithPinza1 = null;
+        objectWithPinza2 = null;
+        
+        collided = false;
+        
+        StartCoroutine(WaitReset());
     }
     
     public void RemoveObjectPinzatoObjectTouch()
@@ -489,6 +506,7 @@ public class PinzareV3 : MonoBehaviour
     
     public void RemoveObjectSuccess()
     {
+  
         resetting = true;
         if (objectWithPinza1 != null)
         {
@@ -556,16 +574,11 @@ public class PinzareV3 : MonoBehaviour
         }
     }
     
-    public void ActiveVisualEffectPinza()
-    {
-        activateVisualEffectPinza = !activateVisualEffectPinza;
-    }
-
    
 
     public void SetPinzaColorError()
     {
-        if (activateVisualEffectPinza)
+        if (visualErrorSetting)
         {
             pinzaIsCollideElectricEdge = true;
             pinza1MateriaMeshRender.material.color=Color.red;
@@ -575,7 +588,7 @@ public class PinzareV3 : MonoBehaviour
     
     public void RemoveSetPinzaColorError()
     {
-        if (activateVisualEffectPinza)
+        if (visualErrorSetting)
         {
             pinza1MateriaMeshRender.material.color = startPinza1Color;
             pinza2MateriaMeshRender.material.color = startPinza2Color;

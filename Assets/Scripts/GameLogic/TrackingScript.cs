@@ -26,7 +26,6 @@ public class TrackingScript : MonoBehaviour
 
     private Vector3 objectPosition;
 
-
     public void Update()
     {
         elapsed += Time.deltaTime;
@@ -41,7 +40,7 @@ public class TrackingScript : MonoBehaviour
                 {
                     jsonObjectToSave.numberOfErrorObject++;
                     DateTime currentTime = DateTime.Now;
-                    singleTrajectory.duration = currentTime.Subtract(lastTime);
+                    singleTrajectory.duration = currentTime.Subtract(lastTime).TotalMilliseconds;
                     jsonObjectToSave.trajectoryList.Add(singleTrajectory);
                     singleTrajectory = new TrajectoryObject {id = jsonObjectToSave.trajectoryList.Count};
                     lastTime = currentTime;
@@ -51,16 +50,12 @@ public class TrackingScript : MonoBehaviour
                 {
                     jsonObjectToSave.numberOfErrorPinza++;
                     DateTime currentTime = DateTime.Now;
-                    singleTrajectory.duration = currentTime.Subtract(lastTime);
+                    singleTrajectory.duration = currentTime.Subtract(lastTime).TotalMilliseconds;
                     jsonObjectToSave.trajectoryList.Add(singleTrajectory);
                     singleTrajectory = new TrajectoryObject {id = jsonObjectToSave.trajectoryList.Count};
                     lastTime = currentTime;
                     errorPinza = false;
                 }
-                Debug.Log(pinzaTransform.position.y);
-                Debug.Log(GetNormalizedPinzaPosition().y);
-
-                
             }
         }
     }
@@ -111,6 +106,7 @@ public class TrackingScript : MonoBehaviour
         isRecording = false;
         jsonObjectToSave.trajectoryList.Add(singleTrajectory);
         jsonObjectToSave.endTime = DateTime.Now;
+        jsonObjectToSave.duration = (int) jsonObjectToSave.endTime.Subtract(jsonObjectToSave.startTime).TotalMilliseconds;
         transform.GetChild(idObject).GetComponent<BoxCollider>().enabled=false;
         Interactable objectToSave = new Interactable{ interactedObject= this.gameObject};
         saveJsonObject.Raise(objectToSave);
@@ -119,8 +115,6 @@ public class TrackingScript : MonoBehaviour
     private Vector3 GetNormalizedPinzaPosition()
     {
         Vector3 pinzaPos = pinzaTransform.position;
-        print("pinza"+pinzaPos);
-        print("obj"+objectPosition);
         return new Vector3(
             pinzaPos.x-objectPosition.x, 
             pinzaPos.y-objectPosition.y, 
@@ -134,5 +128,8 @@ public class TrackingScript : MonoBehaviour
             jsonObjectToSave.wrongObjectPicked.Add(interactable.id);
     }
  
-    
+    public void AddWarningPinza()
+    {
+        jsonObjectToSave.numberOfWarningPinza++;
+    }
 }
