@@ -189,10 +189,9 @@ public class PinzareV3 : MonoBehaviour
 
                 //animatorPinza1.SetFloat("TriggerValue", Random.Range(0f,1f));    
                 //ClosePinze();
-                if (triggerValue > 0.05)
-                {
-                    CheckCollidersWhileNoObject();
-                }
+               
+                CheckCollidersWhileNoObject(triggerValue);
+               
             }
 
             else
@@ -349,15 +348,18 @@ public class PinzareV3 : MonoBehaviour
 
     }
 
-    public void CheckCollidersWhileNoObject()
+    public void CheckCollidersWhileNoObject(float triggerValue)
     {
         if (!resetting)
         {
             if (IsPinza1Collided())
             {
                 pinza1Collided = true;
-                if (objectWithPinza1 == null)
-                    objectWithPinza1 = _colliders[0].gameObject.transform.root.gameObject;
+                if (triggerValue > 0.05)
+                {
+                    if (objectWithPinza1 == null)
+                        objectWithPinza1 = _colliders[0].gameObject.transform.root.gameObject;
+                }
             }
             else
             {
@@ -371,8 +373,11 @@ public class PinzareV3 : MonoBehaviour
             if (IsPinza2Collided())
             {
                 pinza2Collided = true;
-                if (objectWithPinza2 == null)
-                    objectWithPinza2 = _colliders[0].gameObject.transform.root.gameObject;
+                if (triggerValue > 0.05)
+                {
+                    if (objectWithPinza2 == null)
+                        objectWithPinza2 = _colliders[0].gameObject.transform.root.gameObject;
+                }
             }
             else
             {
@@ -414,10 +419,12 @@ public class PinzareV3 : MonoBehaviour
                     {
                         if(!objectWithPinza1.GetComponent<ObjectPinzabile>().objectPicked)
                         {
-                            collided = true;
-                            objectWithPinza1.gameObject.transform.SetParent(transform);
-                            objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
-                            objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().SetHasInteract();
+                           
+                                collided = true;
+                                objectWithPinza1.gameObject.transform.SetParent(transform);
+                                objectWithPinza1.gameObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+                                objectWithPinza1.gameObject.GetComponent<ObjectPinzabile>().SetHasInteract();
+                     
                         }
 
                     }
