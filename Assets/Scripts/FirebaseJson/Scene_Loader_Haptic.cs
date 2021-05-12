@@ -233,6 +233,8 @@ public class Scene_Loader_Haptic : MonoBehaviour
     {
         print("{\"duration\":"+ duration.ToString().ToLower()+"}");
         await firebase.Child(sessionCode).Child(complex).Child("listOfMatch").Child(currentMatchId).PatchAsync("{\"duration\":"+ duration.ToString().ToLower()+"}");
+        await firebase.Child(sessionCode).Child(simple).Child("listOfMatch").Child(currentMatchId).PatchAsync("{\"duration\":"+ duration.ToString().ToLower()+"}");
+
     }
 
 

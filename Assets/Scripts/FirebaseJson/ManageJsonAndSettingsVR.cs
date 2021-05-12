@@ -6,6 +6,8 @@ using Firebase.Database.Query;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class ManageJsonAndSettingsVR : MonoBehaviour
 {
@@ -51,6 +53,8 @@ public class ManageJsonAndSettingsVR : MonoBehaviour
         GameStartedWithVR();
 
     }
+
+ 
 
     public async void GameStartedWithVR()
     {
